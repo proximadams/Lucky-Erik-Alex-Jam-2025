@@ -39,9 +39,10 @@ shadow_enabled = true
 spot_range = 100.0
 
 [node name="Player_0" parent="." instance=ExtResource("4_eiw2n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -4)
 
 [node name="Player_1" parent="." instance=ExtResource("4_eiw2n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.041, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
 playerID = 1
 
 [editable path="Floor/SM_Skybox"]
