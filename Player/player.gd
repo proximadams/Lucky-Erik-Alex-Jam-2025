@@ -96,7 +96,7 @@ func _set_angle():
 	rotation = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 # awful function.
-func _set_velocity_to_jumping():
+func _calc_jumping_velocity():
 	velocity.x = (rotation.z * -jumpVelocity)
 	velocity.y = jumpVelocity
 	velocity.z = (rotation.x * jumpVelocity)
