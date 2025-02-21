@@ -14,8 +14,8 @@ func _movement(delta: float):
 
 	if is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		velocity.x = rotation.z * SPEED * -1
-		velocity.z = rotation.x * SPEED
+		velocity.x = (rotation.z * SPEED * -0.7) + (velocity.x * 0.3)
+		velocity.z = (rotation.x * SPEED * 0.7) + (velocity.z * 0.3)
 
 	move_and_slide()
 
