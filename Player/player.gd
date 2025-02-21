@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+var bounceSmall1SoundRes = load('res://SoundEffects/BounceSmall1Sound.tscn')
+
 const SPEED = 10.0
 const GRAVITY_SPEED = 10.0
 const JUMP_VELOCITY = 5.0
@@ -14,6 +16,7 @@ var jumpEarlyWindowTimer = JUMP_GRACE_WINDOW_TIME
 var secondsSinceOnFloor = 0.0 # airtime?
 var isDiving = false
 var oldAirVelocity = Vector3(0,0,0)
+var oldIsOnFloor = false
 
 @export var playerID = 0
 var MAX_GROUND_TIME = 0.2
@@ -30,7 +33,10 @@ func _movement(delta: float):
 		oldAirVelocity = velocity
 
 	if is_on_floor():
-		$AnimationPlayer.play('SquishJump')
+		if not oldIsOnFloor:
+			oldIsOnFloor = true
+			$AnimationPlayer.play('SquishJump')
+			add_child(bounceSmall1SoundRes.instantiate())
 		isDiving = false
 		currGroundTime += delta
 		velocity = Vector3(0,0,0)
@@ -44,6 +50,8 @@ func _movement(delta: float):
 			velocity.y = JUMP_VELOCITY
 			velocity.x = (rotation.z * SPEED * -0.7) + (oldAirVelocity.x * 0.3)
 			velocity.z = (rotation.x * SPEED * 0.7) + (oldAirVelocity.z * 0.3)
+	elif oldIsOnFloor:
+		oldIsOnFloor = false
 
 	elif isDiving: # we are NOT diving i we're on the floor
 		velocity.y = -JUMP_VELOCITY * divePower
