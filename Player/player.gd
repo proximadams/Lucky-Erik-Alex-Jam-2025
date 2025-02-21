@@ -28,6 +28,7 @@ func _movement(delta: float):
 		velocity += get_gravity() * delta * GRAVITY_SPEED
 
 	if is_on_floor():
+		$AnimationPlayer.play('SquishJump')
 		isDiving = false
 		currGroundTime += delta
 		velocity = Vector3(0,0,0)
