@@ -40,14 +40,26 @@ light_energy = 10.0
 shadow_enabled = true
 spot_range = 100.0
 
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.04067, 0)
+[node name="Player_0" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.041, -4)
 script = ExtResource("1_2ufpp")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player_0"]
 shape = SubResource("SphereShape3D_bvhw4")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Player"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Player_0"]
+radius = 0.2
+height = 1.0
+
+[node name="Player_1" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.041, 4)
+script = ExtResource("1_2ufpp")
+playerID = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player_1"]
+shape = SubResource("SphereShape3D_bvhw4")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Player_1"]
 radius = 0.2
 height = 1.0
 

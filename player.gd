@@ -12,6 +12,8 @@ var jumpConstantSpeedTimer = JUMP_GRACE_WINDOW_TIME
 var jumpEarlyWindowTimer = JUMP_GRACE_WINDOW_TIME
 var secondsSinceOnFloor = 0.0
 
+@export var playerID = 0
+
 func _physics_process(delta: float) -> void:
 	_set_angle()
 	_movement(delta)
@@ -43,9 +45,9 @@ func _movement(delta: float):
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed('restart'):
+	if event.is_action_pressed('restart.' + str(playerID)):
 		_restart_me()
-	if not event.is_echo() and event.is_action_pressed('jump'):
+	if not event.is_echo() and event.is_action_pressed('jump.' + str(playerID)):
 		if jumpConstantSpeedTimer < JUMP_GRACE_WINDOW_TIME and numJumpsSoFar <= 3:
 			numJumpsSoFar += 1
 		else:
@@ -58,5 +60,5 @@ func _restart_me():
 
 # Angle the player based on the stick/arrows
 func _set_angle():
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir := Input.get_vector('move_left.' + str(playerID), 'move_right.' + str(playerID), 'move_up.' + str(playerID), 'move_down.' + str(playerID))
 	rotation = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
