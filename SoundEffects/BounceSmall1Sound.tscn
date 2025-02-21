@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://mup50pcmuicx"]
+
+[ext_resource type="AudioStream" uid="uid://mdntfat5p0ir" path="res://SoundEffects/BounceSmall1.mp3" id="1_a6sn3"]
+
+[node name="BounceSmall1Sound" type="AudioStreamPlayer"]
+stream = ExtResource("1_a6sn3")
+autoplay = true
+
+[connection signal="finished" from="." to="." method="queue_free"]

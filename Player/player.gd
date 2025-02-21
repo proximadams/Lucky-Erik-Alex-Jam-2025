@@ -14,6 +14,8 @@ var state = GROUNDED
 @export var jumpVelocity = 20
 @export var diveVelocity = 45
 
+var bounceSmall1SoundRes = load('res://SoundEffects/BounceSmall1Sound.tscn')
+
 const SPEED = 10.0
 const GRAVITY_SPEED = 10.0
 const JUMP_VELOCITY = 5.0
@@ -23,6 +25,8 @@ const MAX_JUMPS = 3
 var didJumpEarly = false
 var numJumpsSoFar = 0
 var jumpEarlyWindowTimer = 0
+var oldAirVelocity = Vector3(0,0,0)
+var oldIsOnFloor = false # did we just land????
 
 @export var playerID = 0
 var MAX_GROUND_TIME = 0.2
@@ -38,12 +42,17 @@ func _movement(delta: float):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta * GRAVITY_SPEED
+		oldAirVelocity = velocity
 
 	if is_on_floor():
 		velocity = Vector3(0,0,0)
 		currGroundTime += delta
 		jumpEarlyWindowTimer += delta
 		didJumpEarly = (jumpEarlyWindowTimer < JUMP_GRACE_WINDOW_TIME)
+
+		if state != GROUNDED and state != STUCK:
+			$AnimationPlayer.play('SquishJump')
+			add_child(bounceSmall1SoundRes.instantiate())
 
 		if state == DIVING:
 			state = STUCK
