@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://byh6xb4v8jlow"]
+[gd_scene load_steps=7 format=3 uid="uid://byh6xb4v8jlow"]
 
 [ext_resource type="PackedScene" uid="uid://cqqyvg1fsgj1w" path="res://Environment/sm_main_platform.tscn" id="1_1isdm"]
-[ext_resource type="Script" path="res://player.gd" id="1_2ufpp"]
 [ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environment/SM_Skybox.fbx" id="2_dp8aw"]
 [ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environment/T_Skybox.png" id="3_t73nb"]
+[ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="4_eiw2n"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_phmpv"]
 height = 100.0
@@ -12,8 +12,6 @@ radius = 10.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofd5i"]
 albedo_texture = ExtResource("3_t73nb")
 emission = Color(0.226707, 0.226707, 0.226707, 1)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_bvhw4"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -40,27 +38,10 @@ light_energy = 10.0
 shadow_enabled = true
 spot_range = 100.0
 
-[node name="Player_0" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.041, -4)
-script = ExtResource("1_2ufpp")
+[node name="Player_0" parent="." instance=ExtResource("4_eiw2n")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player_0"]
-shape = SubResource("SphereShape3D_bvhw4")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Player_0"]
-radius = 0.2
-height = 1.0
-
-[node name="Player_1" type="CharacterBody3D" parent="."]
+[node name="Player_1" parent="." instance=ExtResource("4_eiw2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.041, 4)
-script = ExtResource("1_2ufpp")
 playerID = 1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player_1"]
-shape = SubResource("SphereShape3D_bvhw4")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Player_1"]
-radius = 0.2
-height = 1.0
 
 [editable path="Floor/SM_Skybox"]
