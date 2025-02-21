@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+const JUMP_CONSTANT_SPEED_TIME = 0.3
+
+var jumpConstantSpeedTimer = 0.0
 
 func _physics_process(delta: float) -> void:
 	_set_angle()
@@ -13,9 +16,12 @@ func _movement(delta: float):
 		velocity += get_gravity() * delta
 
 	if is_on_floor():
+		jumpConstantSpeedTimer = 0.0
 		velocity.y = JUMP_VELOCITY
 		velocity.x = (rotation.z * SPEED * -0.7) + (velocity.x * 0.3)
 		velocity.z = (rotation.x * SPEED * 0.7) + (velocity.z * 0.3)
+	if jumpConstantSpeedTimer < JUMP_CONSTANT_SPEED_TIME:
+		jumpConstantSpeedTimer += delta
 
 	move_and_slide()
 
