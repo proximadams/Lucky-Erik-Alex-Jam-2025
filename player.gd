@@ -1,10 +1,16 @@
 extends CharacterBody3D
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-const JUMP_CONSTANT_SPEED_TIME = 0.3
+const GRAVITY_SPEED = 10.0
+const JUMP_VELOCITY = 15.0
+const JUMP_CONSTANT_SPEED_TIME = 0.1
+const JUMP_GRACE_WINDOW_TIME = 0.1
 
-var jumpConstantSpeedTimer = 0.0
+var didJumpEarly = false
+var numJumpsSoFar = 1
+var jumpConstantSpeedTimer = JUMP_GRACE_WINDOW_TIME
+var jumpEarlyWindowTimer = JUMP_GRACE_WINDOW_TIME
+var secondsSinceOnFloor = 0.0
 
 func _physics_process(delta: float) -> void:
 	_set_angle()
@@ -13,21 +19,37 @@ func _physics_process(delta: float) -> void:
 func _movement(delta: float):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * delta * GRAVITY_SPEED
 
 	if is_on_floor():
+		secondsSinceOnFloor = 0.0
 		jumpConstantSpeedTimer = 0.0
+		if jumpEarlyWindowTimer < JUMP_GRACE_WINDOW_TIME and numJumpsSoFar <= 3:
+				numJumpsSoFar += 1
+		didJumpEarly = (jumpEarlyWindowTimer < JUMP_GRACE_WINDOW_TIME)
 		velocity.y = JUMP_VELOCITY
 		velocity.x = (rotation.z * SPEED * -0.7) + (velocity.x * 0.3)
 		velocity.z = (rotation.x * SPEED * 0.7) + (velocity.z * 0.3)
-	if jumpConstantSpeedTimer < JUMP_CONSTANT_SPEED_TIME:
+	secondsSinceOnFloor += delta
+	if jumpConstantSpeedTimer < JUMP_CONSTANT_SPEED_TIME * numJumpsSoFar:
 		jumpConstantSpeedTimer += delta
+		velocity.y = JUMP_VELOCITY
+	if JUMP_CONSTANT_SPEED_TIME <= jumpConstantSpeedTimer and not didJumpEarly and jumpConstantSpeedTimer <= secondsSinceOnFloor:
+		numJumpsSoFar = 1
+
+	if jumpEarlyWindowTimer < JUMP_GRACE_WINDOW_TIME:
+		jumpEarlyWindowTimer += delta
 
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed('restart'):
 		_restart_me()
+	if not event.is_echo() and event.is_action_pressed('jump'):
+		if jumpConstantSpeedTimer < JUMP_GRACE_WINDOW_TIME and numJumpsSoFar <= 3:
+			numJumpsSoFar += 1
+		else:
+			jumpEarlyWindowTimer = 0.0
 
 # This is purely a debug function. Delete it later
 func _restart_me():
