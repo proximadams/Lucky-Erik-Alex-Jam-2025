@@ -6,3 +6,10 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 radius = 5.0
 height = 100.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.847659, 0.530541, 0, -0.530541, 0.847659, 0, 4.52641, 7.73827)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.45217, 0.891932, 0, -0.891932, 0.45217, 0, 8.85513, 4.63213)
+spot_range = 20.0
