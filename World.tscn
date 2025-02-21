@@ -16,6 +16,7 @@ emission = Color(0.226707, 0.226707, 0.226707, 1)
 [node name="Node3D" type="Node3D"]
 
 [node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="SM_MainPlatform" parent="Floor" instance=ExtResource("1_1isdm")]
 
@@ -24,13 +25,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 shape = SubResource("CylinderShape3D_phmpv")
 
 [node name="SM_Skybox" parent="Floor" instance=ExtResource("2_dp8aw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.102794, -0.0891743, -0.309763)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.102794, -297.591, -0.309763)
 
 [node name="pCylinder3" parent="Floor/SM_Skybox" index="0"]
 material_override = SubResource("StandardMaterial3D_ofd5i")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0.529919, -0.848048, 0, 0.848048, 0.529919, 1, 2.31635e-08, -3.70694e-08, -16.535, 10.8477, 0)
+transform = Transform3D(-4.37114e-08, 0.642788, -0.766044, 0, 0.766044, 0.642788, 1, 2.80971e-08, -3.34849e-08, -19.2129, 11.5709, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 27.886, 0)

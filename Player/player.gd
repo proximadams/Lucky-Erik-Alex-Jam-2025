@@ -3,8 +3,8 @@ extends CharacterBody3D
 var bounceSmall1SoundRes = load('res://SoundEffects/BounceSmall1Sound.tscn')
 
 const SPEED = 10.0
-const GRAVITY_SPEED = 10.0
-const JUMP_VELOCITY = 5.0
+const GRAVITY_SPEED = 5.0
+const JUMP_VELOCITY = 10.0
 const JUMP_CONSTANT_SPEED_TIME = 0.2
 const JUMP_GRACE_WINDOW_TIME = 0.2
 @export var divePower = 2
