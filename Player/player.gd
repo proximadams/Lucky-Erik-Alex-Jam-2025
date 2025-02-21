@@ -113,4 +113,4 @@ func _calc_grounded_velocity():
 func _calc_diving_velocity():
 	velocity.y = -diveVelocity
 	velocity.x = (-rotation.z * diveVelocity)
-	velocity.z = (-rotation.x * diveVelocity)
+	velocity.z = (rotation.x * diveVelocity)
