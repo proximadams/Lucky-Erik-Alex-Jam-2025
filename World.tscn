@@ -34,7 +34,6 @@ spot_range = 100.0
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.04067, 0)
-motion_mode = 1
 script = ExtResource("1_2ufpp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
