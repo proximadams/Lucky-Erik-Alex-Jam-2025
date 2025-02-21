@@ -3,8 +3,8 @@ extends CharacterBody3D
 const SPEED = 5.0
 const GRAVITY_SPEED = 10.0
 const JUMP_VELOCITY = 15.0
-const JUMP_CONSTANT_SPEED_TIME = 0.1
-const JUMP_GRACE_WINDOW_TIME = 0.1
+const JUMP_CONSTANT_SPEED_TIME = 0.2
+const JUMP_GRACE_WINDOW_TIME = 0.2
 
 var didJumpEarly = false
 var numJumpsSoFar = 1
