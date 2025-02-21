@@ -11,10 +11,12 @@ var didJumpEarly = false
 var numJumpsSoFar = 1
 var jumpConstantSpeedTimer = JUMP_GRACE_WINDOW_TIME
 var jumpEarlyWindowTimer = JUMP_GRACE_WINDOW_TIME
-var secondsSinceOnFloor = 0.0
+var secondsSinceOnFloor = 0.0 # airtime?
 var isDiving = false
 
 @export var playerID = 0
+var MAX_GROUND_TIME = 0.2
+var currGroundTime = 0;
 
 func _physics_process(delta: float) -> void:
 	_set_angle()
@@ -27,14 +29,19 @@ func _movement(delta: float):
 
 	if is_on_floor():
 		isDiving = false
-		secondsSinceOnFloor = 0.0
-		jumpConstantSpeedTimer = 0.0
-		if jumpEarlyWindowTimer < JUMP_GRACE_WINDOW_TIME and numJumpsSoFar <= 3:
-				numJumpsSoFar += 1
-		didJumpEarly = (jumpEarlyWindowTimer < JUMP_GRACE_WINDOW_TIME)
-		velocity.y = JUMP_VELOCITY
-		velocity.x = (rotation.z * SPEED * -0.7) + (velocity.x * 0.3)
-		velocity.z = (rotation.x * SPEED * 0.7) + (velocity.z * 0.3)
+		currGroundTime += delta
+		velocity = Vector3(0,0,0)
+		if currGroundTime >= MAX_GROUND_TIME:
+			currGroundTime = 0
+			secondsSinceOnFloor = 0.0
+			jumpConstantSpeedTimer = 0.0
+			if jumpEarlyWindowTimer < JUMP_GRACE_WINDOW_TIME and numJumpsSoFar <= 3:
+					numJumpsSoFar += 1
+			didJumpEarly = (jumpEarlyWindowTimer < JUMP_GRACE_WINDOW_TIME)
+			velocity.y = JUMP_VELOCITY
+			velocity.x = (rotation.z * SPEED * -0.7) + (velocity.x * 0.3)
+			velocity.z = (rotation.x * SPEED * 0.7) + (velocity.z * 0.3)
+
 	elif isDiving: # we are NOT diving i we're on the floor
 		velocity.y = -JUMP_VELOCITY * divePower
 		velocity.x = (rotation.z * SPEED * -0.7) + (velocity.x * 0.3)
