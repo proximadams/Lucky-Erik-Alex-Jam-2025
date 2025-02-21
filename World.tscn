@@ -1,15 +1,45 @@
-[gd_scene format=3 uid="uid://byh6xb4v8jlow"]
+[gd_scene load_steps=4 format=3 uid="uid://byh6xb4v8jlow"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_2ufpp"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_phmpv"]
+height = 100.0
+radius = 10.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hswm5"]
+radius = 0.2
+height = 1.0
 
 [node name="Node3D" type="Node3D"]
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
-radius = 5.0
+radius = 10.0
 height = 100.0
+sides = 50
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+shape = SubResource("CylinderShape3D_phmpv")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.847659, 0.530541, 0, -0.530541, 0.847659, 0, 4.52641, 7.73827)
+transform = Transform3D(1, 0, 0, 0, 0.847659, 0.530541, 0, -0.530541, 0.847659, 0, 7.59333, 16.5352)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.45217, 0.891932, 0, -0.891932, 0.45217, 0, 8.85513, 4.63213)
-spot_range = 20.0
+transform = Transform3D(1, 0, 0, 0, 0.304498, 0.952513, 0, -0.952513, 0.304498, 0, 27.8858, 14.4969)
+light_energy = 10.0
+spot_range = 100.0
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.04067, 0)
+motion_mode = 1
+script = ExtResource("1_2ufpp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_hswm5")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Player"]
+radius = 0.2
+height = 1.0
