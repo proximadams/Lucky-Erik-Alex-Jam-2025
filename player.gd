@@ -60,8 +60,8 @@ func _input(event: InputEvent) -> void:
 			numJumpsSoFar += 1
 		else:
 			jumpEarlyWindowTimer = 0.0
-	
-	if not event.is_echo() and event.is_action_pressed('dive'): # do the dive
+
+	if not event.is_echo() and event.is_action_pressed('dive.' + str(playerID)): # do the dive
 		isDiving = true;
 
 # This is purely a debug function. Delete it later
