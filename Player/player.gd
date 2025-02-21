@@ -17,8 +17,7 @@ var state = GROUNDED
 var bounceSmall1SoundRes = load('res://SoundEffects/BounceSmall1Sound.tscn')
 
 const SPEED = 10.0
-const GRAVITY_SPEED = 10.0
-const JUMP_VELOCITY = 5.0
+const GRAVITY_SPEED = 5.0
 const JUMP_GRACE_WINDOW_TIME = 0.4
 const MAX_JUMPS = 3
 
@@ -97,9 +96,9 @@ func _set_angle():
 
 # awful function.
 func _calc_jumping_velocity():
-	velocity.x = (rotation.z * -jumpVelocity)
+	velocity.x = (rotation.z * -jumpVelocity * 0.5)
 	velocity.y = jumpVelocity
-	velocity.z = (rotation.x * jumpVelocity)
+	velocity.z = (rotation.x * jumpVelocity * 0.5)
 
 # x/z swap is intentional
 func _calc_bouncing_velocity():
