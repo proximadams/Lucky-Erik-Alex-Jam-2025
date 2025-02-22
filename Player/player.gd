@@ -11,14 +11,16 @@ enum {
 var state = GROUNDED
 
 @export var bounceVelocity = 10
-@export var jumpVelocity = 20
+@export var jumpVelocity = 24
 @export var diveVelocity = 45
 
 var bounceSmall1SoundRes = load('res://SoundEffects/BounceSmall1Sound.tscn')
 
 const SPEED = 10.0
+const SPEED_MULT_SHALLOW_BOUNCE = 1.5
+const SPEED_MULT_JUMP = 0.5
 const GRAVITY_SPEED = 5.0
-const JUMP_GRACE_WINDOW_TIME = 0.4
+const JUMP_GRACE_WINDOW_TIME = 0.1
 const MAX_JUMPS = 3
 
 var didJumpEarly = false
@@ -99,15 +101,15 @@ func _set_angle():
 
 # awful function.
 func _calc_jumping_velocity():
-	velocity.x = (rotation.z * -jumpVelocity * 0.5)
+	velocity.x = (rotation.z * -jumpVelocity * SPEED_MULT_JUMP)
 	velocity.y = jumpVelocity
-	velocity.z = (rotation.x * jumpVelocity * 0.5)
+	velocity.z = (rotation.x * jumpVelocity * SPEED_MULT_JUMP)
 
 # x/z swap is intentional
 func _calc_bouncing_velocity():
-	velocity.x = (rotation.z * -bounceVelocity)
+	velocity.x = (rotation.z * -bounceVelocity * SPEED_MULT_SHALLOW_BOUNCE)
 	velocity.y = bounceVelocity
-	velocity.z = (rotation.x * bounceVelocity)
+	velocity.z = (rotation.x * bounceVelocity * SPEED_MULT_SHALLOW_BOUNCE)
 	
 func _calc_grounded_velocity():
 	velocity.x = ((rotation.z * SPEED * -0.7) + (velocity.x * 0.3)) *.5
