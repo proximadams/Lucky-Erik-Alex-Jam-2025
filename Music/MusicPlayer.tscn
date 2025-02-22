@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dba1orv1ubw7b"]
+
+[ext_resource type="AudioStream" uid="uid://cqcft2k2s3vmy" path="res://Music/Mixed/SongLayersLoop.mp3" id="1_27r4a"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_27r4a")
+autoplay = true
+parameters/looping = true
