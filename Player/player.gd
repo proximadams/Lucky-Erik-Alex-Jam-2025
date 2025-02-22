@@ -13,6 +13,7 @@ var state = GROUNDED
 @export var bounceVelocity = 10
 @export var jumpVelocity = 24
 @export var diveVelocity = 45
+@export var colour: Color
 
 var bounceSmall1SoundRes = load('res://SoundEffects/BounceSmall1Sound.tscn')
 
@@ -30,10 +31,15 @@ var oldAirVelocity = Vector3(0,0,0)
 var oldIsOnFloor = false # did we just land????
 
 @export var playerID = 0
-var MAX_GROUND_TIME = 0.2
+var MAX_GROUND_TIME = 0.1
 var MAX_STUCK_TIME = 0.5
 var currGroundTime = 0;
 var currAirTime = 0;
+
+func _ready() -> void:
+	var material = StandardMaterial3D.new()
+	material.albedo_color = colour
+	$Visuals/CSGCylinder3D.material = material
 
 func _physics_process(delta: float) -> void:
 	_set_angle()
