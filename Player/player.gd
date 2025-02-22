@@ -48,9 +48,8 @@ var lastHitVector: Vector3 = Vector3(0,0,0)
 signal player_died(playerID: int)
 
 func _ready() -> void:
-	var material = StandardMaterial3D.new()
-	material.albedo_color = colour
-	#$Visuals/CSGCylinder3D.material = material
+	$SM_PogoStick/pogo_purple.visible = (playerID == 0)
+	$SM_PogoStick/pogo_yellow.visible = (playerID != 0)
 
 func _physics_process(delta: float) -> void:
 	_set_angle()
