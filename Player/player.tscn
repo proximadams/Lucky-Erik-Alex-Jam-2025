@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=4 uid="uid://c4yjmdym54n72"]
+[gd_scene load_steps=29 format=4 uid="uid://c4yjmdym54n72"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_ixvv2"]
+[ext_resource type="PackedScene" uid="uid://b72gt2cvwv77a" path="res://Player/Effects/Explosion.tscn" id="2_43kq7"]
 [ext_resource type="PackedScene" uid="uid://mup50pcmuicx" path="res://SoundEffects/BounceSmall1Sound.tscn" id="2_s5pna"]
 [ext_resource type="AudioStream" uid="uid://dedv6mkbq4l45" path="res://SoundEffects/Mixed/BounceNote1.mp3" id="3_23bbc"]
 [ext_resource type="AudioStream" uid="uid://bfe8ccb4md8k8" path="res://SoundEffects/Mixed/BounceNote2.mp3" id="4_fscw0"]
@@ -247,6 +248,7 @@ _data = {
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 2
 script = ExtResource("1_ixvv2")
+explosionScene = ExtResource("2_43kq7")
 
 [node name="BounceSmall1Sound" parent="." instance=ExtResource("2_s5pna")]
 volume_db = -30.0
