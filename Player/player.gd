@@ -43,6 +43,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_set_angle()
+	if position.y < -100:
+		_restart_me()
 	_movement(delta)
 
 func _movement(delta: float):
@@ -83,8 +85,6 @@ func _movement(delta: float):
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed('restart.' + str(playerID)):
-		_restart_me()
 	if not event.is_echo() and event.is_action_pressed('jump.' + str(playerID)) and state != STUCK:
 		state = PRE_JUMP
 		jumpEarlyWindowTimer = 0.0
@@ -92,7 +92,6 @@ func _input(event: InputEvent) -> void:
 	if not event.is_echo() and event.is_action_pressed('dive.' + str(playerID)) and not is_on_floor(): # do the dive
 		state = DIVING
 
-# This is purely a debug function. Delete it later
 func _restart_me():
 	velocity = Vector3(0,0,0)
 	position = Vector3(0,3,0)
