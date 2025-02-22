@@ -93,6 +93,9 @@ func _restart_me():
 func _set_angle():
 	var input_dir := Input.get_vector('move_left.' + str(playerID), 'move_right.' + str(playerID), 'move_up.' + str(playerID), 'move_down.' + str(playerID))
 	rotation = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if state == DIVING:
+		rotation.x *= -1
+		rotation.z *= -1
 
 # awful function.
 func _calc_jumping_velocity():
@@ -112,5 +115,5 @@ func _calc_grounded_velocity():
 
 func _calc_diving_velocity():
 	velocity.y = -diveVelocity
-	velocity.x = (-rotation.z * diveVelocity)
-	velocity.z = (rotation.x * diveVelocity)
+	velocity.x = (rotation.z * diveVelocity)
+	velocity.z = (-rotation.x * diveVelocity)
