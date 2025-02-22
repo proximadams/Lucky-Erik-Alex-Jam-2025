@@ -66,5 +66,7 @@ theme = ExtResource("3_d1n7v")
 text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlsButton" to="ControlsTextureRect/BackButton" method="grab_focus"]
 [connection signal="pressed" from="VBoxContainer/ControlsButton" to="ControlsTextureRect" method="set_visible" binds= [true]]
+[connection signal="pressed" from="ControlsTextureRect/BackButton" to="VBoxContainer/StartButton" method="grab_focus"]
 [connection signal="pressed" from="ControlsTextureRect/BackButton" to="ControlsTextureRect" method="set_visible" binds= [false]]

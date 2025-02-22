@@ -18,6 +18,7 @@ var state = GROUNDED
 @export var floorPath: NodePath
 @export var jumpVelocity = 24
 @export var playerID = 0
+@export var explosionScene: PackedScene
 
 const GRAVITY_SPEED = 5.0
 const JUMP_GRACE_WINDOW_TIME = 0.1
@@ -28,7 +29,7 @@ const SPEED = 10.0
 const SPEED_MULT_SHALLOW_BOUNCE = 1.5
 const SPEED_MULT_JUMP = 0.5
 const VOLUME_SILENT = -80.0
-const VOLUME_NOTE_LOUD = 10.0
+const VOLUME_NOTE_LOUD = 0.0
 
 var didJumpEarly = false
 var numJumpsSoFar = 0
@@ -120,20 +121,23 @@ func _input(event: InputEvent) -> void:
 		_set_hitbox(true)
 
 func _note_bounce_volumes():
-	var secondsInBar = 1.333
-	if MusicPlayer.get_playback_position() < secondsInBar:
+	var barTime = MusicPlayer.get_child(0).get_playback_position()
+	var secondsInBar = 1.3333333
+	while 5.3333333 < barTime:
+		barTime -= 5.3333333
+	if barTime < secondsInBar:
 		$Note1Sound.volume_db = VOLUME_NOTE_LOUD
 		$Note2Sound.volume_db = VOLUME_SILENT
 		$Note3Sound.volume_db = VOLUME_SILENT
-	elif MusicPlayer.get_playback_position() < secondsInBar * 2:
+	elif barTime < secondsInBar * 2:
 		$Note1Sound.volume_db = VOLUME_SILENT
 		$Note2Sound.volume_db = VOLUME_NOTE_LOUD
 		$Note3Sound.volume_db = VOLUME_SILENT
-	elif MusicPlayer.get_playback_position() < secondsInBar * 3:
+	elif barTime < secondsInBar * 3:
 		$Note1Sound.volume_db = VOLUME_NOTE_LOUD
 		$Note2Sound.volume_db = VOLUME_SILENT
 		$Note3Sound.volume_db = VOLUME_SILENT
-	elif MusicPlayer.get_playback_position() < secondsInBar * 4:
+	elif barTime < secondsInBar * 4:
 		$Note1Sound.volume_db = VOLUME_SILENT
 		$Note2Sound.volume_db = VOLUME_SILENT
 		$Note3Sound.volume_db = VOLUME_NOTE_LOUD
@@ -190,7 +194,12 @@ func _on_hurtbox_area_entered(area: Area3D) -> void:
 	if groups.find("Hitbox") != -1 and area.get_parent_node_3d().name != $Hitbox.get_parent_node_3d().name:
 		state = HIT
 		$Hitbox.set_deferred("monitorable", false)
-		lastHitVector = Vector3(25,25,25)
+		var hitVelocity = area.get_parent_node_3d().velocity
+		lastHitVector = Vector3(hitVelocity.x, -hitVelocity.y,hitVelocity.z)
+		var explosionInstance = explosionScene.instantiate()
+		explosionInstance.position = position
+		explosionInstance.position.y -= .5
+		get_tree().get_root().add_child(explosionInstance)
 		
 func _set_hitbox(x: bool):
 	$Hitbox.monitorable = x
