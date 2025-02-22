@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://byh6xb4v8jlow"]
+[gd_scene load_steps=17 format=3 uid="uid://byh6xb4v8jlow"]
 
 [ext_resource type="PackedScene" uid="uid://cqqyvg1fsgj1w" path="res://Environment/sm_main_platform.tscn" id="1_1isdm"]
 [ext_resource type="Script" path="res://Environment/floor.gd" id="1_8reu6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environment/T_Skybox.png" id="3_t73nb"]
 [ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="4_eiw2n"]
 [ext_resource type="FontFile" uid="uid://cmjwv7ccyiqyi" path="res://Themes/Bungee-Regular.ttf" id="6_78its"]
+[ext_resource type="PackedScene" uid="uid://djyqk7xmvc81i" path="res://Environment/SM_MainPlatform2.fbx" id="8_hgijc"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_phmpv"]
 height = 100.0
@@ -127,6 +128,10 @@ theme = SubResource("Theme_14284")
 text = "Player 0 Wins"
 horizontal_alignment = 2
 
+[node name="SM_MainPlatform2" parent="." instance=ExtResource("8_hgijc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83956, 0.891556, -51.2487)
+
 [connection signal="tree_exited" from="Floor" to="." method="game_over"]
 
 [editable path="Floor/SM_Skybox"]
+[editable path="SM_MainPlatform2"]
