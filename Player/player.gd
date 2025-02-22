@@ -64,7 +64,7 @@ func _movement(delta: float):
 		if state == DIVING:
 			state = STUCK
 		
-		if state == PRE_JUMP && didJumpEarly:
+		if state == PRE_JUMP and didJumpEarly:
 			state = JUMPING
 			numJumpsSoFar += 1
 			_calc_jumping_velocity()
