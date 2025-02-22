@@ -29,7 +29,7 @@ const SPEED = 10.0
 const SPEED_MULT_SHALLOW_BOUNCE = 1.5
 const SPEED_MULT_JUMP = 0.5
 const VOLUME_SILENT = -80.0
-const VOLUME_NOTE_LOUD = 10.0
+const VOLUME_NOTE_LOUD = 0.0
 
 var didJumpEarly = false
 var numJumpsSoFar = 0
@@ -121,20 +121,23 @@ func _input(event: InputEvent) -> void:
 		_set_hitbox(true)
 
 func _note_bounce_volumes():
-	var secondsInBar = 1.333
-	if MusicPlayer.get_playback_position() < secondsInBar:
+	var barTime = MusicPlayer.get_child(0).get_playback_position()
+	var secondsInBar = 1.3333333
+	while 5.3333333 < barTime:
+		barTime -= 5.3333333
+	if barTime < secondsInBar:
 		$Note1Sound.volume_db = VOLUME_NOTE_LOUD
 		$Note2Sound.volume_db = VOLUME_SILENT
 		$Note3Sound.volume_db = VOLUME_SILENT
-	elif MusicPlayer.get_playback_position() < secondsInBar * 2:
+	elif barTime < secondsInBar * 2:
 		$Note1Sound.volume_db = VOLUME_SILENT
 		$Note2Sound.volume_db = VOLUME_NOTE_LOUD
 		$Note3Sound.volume_db = VOLUME_SILENT
-	elif MusicPlayer.get_playback_position() < secondsInBar * 3:
+	elif barTime < secondsInBar * 3:
 		$Note1Sound.volume_db = VOLUME_NOTE_LOUD
 		$Note2Sound.volume_db = VOLUME_SILENT
 		$Note3Sound.volume_db = VOLUME_SILENT
-	elif MusicPlayer.get_playback_position() < secondsInBar * 4:
+	elif barTime < secondsInBar * 4:
 		$Note1Sound.volume_db = VOLUME_SILENT
 		$Note2Sound.volume_db = VOLUME_SILENT
 		$Note3Sound.volume_db = VOLUME_NOTE_LOUD
