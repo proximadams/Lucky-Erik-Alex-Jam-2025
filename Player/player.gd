@@ -1,4 +1,5 @@
 extends CharacterBody3D
+
 enum {
 	DEAD,
 	GROUNDED, # on the ground.
@@ -131,6 +132,8 @@ func _die():
 	if state != DEAD:
 		state = DEAD
 		player_died.emit(playerID)
+		$YellSound.stream = Global.get_random_yell_sound()
+		$YellSound.play()
 
 func _restart_me():
 	velocity = Vector3(0,0,0)
