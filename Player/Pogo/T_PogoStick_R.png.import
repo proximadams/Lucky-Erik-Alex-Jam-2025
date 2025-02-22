@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bcmnc5xpdwpc6"
-path.s3tc="res://.godot/imported/T_PogoStickPurple_R.png-4346278bda3be05928a03684de8aae68.s3tc.ctex"
+path.s3tc="res://.godot/imported/T_PogoStick_R.png-a4c9e6db4206ec8e6b82bfacd9634536.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Player/Pogo/T_PogoStickPurple_R.png"
-dest_files=["res://.godot/imported/T_PogoStickPurple_R.png-4346278bda3be05928a03684de8aae68.s3tc.ctex"]
+source_file="res://Player/Pogo/T_PogoStick_R.png"
+dest_files=["res://.godot/imported/T_PogoStick_R.png-a4c9e6db4206ec8e6b82bfacd9634536.s3tc.ctex"]
 
 [params]
 
