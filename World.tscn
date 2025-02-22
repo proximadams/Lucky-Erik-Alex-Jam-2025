@@ -43,7 +43,7 @@ Label/fonts/font = ExtResource("6_78its")
 script = ExtResource("1_oh6od")
 
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 6.02073, 0, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_8reu6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
