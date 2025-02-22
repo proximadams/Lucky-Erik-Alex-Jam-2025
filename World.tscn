@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://byh6xb4v8jlow"]
+[gd_scene load_steps=12 format=3 uid="uid://byh6xb4v8jlow"]
 
 [ext_resource type="PackedScene" uid="uid://cqqyvg1fsgj1w" path="res://Environment/sm_main_platform.tscn" id="1_1isdm"]
 [ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environment/SM_Skybox.fbx" id="2_dp8aw"]
@@ -13,6 +13,24 @@ radius = 10.0
 albedo_texture = ExtResource("3_t73nb")
 emission = Color(0.226707, 0.226707, 0.226707, 1)
 
+[sub_resource type="Gradient" id="Gradient_rtt0v"]
+offsets = PackedFloat32Array(0.190678, 0.372881, 0.478814, 0.538136, 0.631356)
+colors = PackedColorArray(0.143595, 0.0929463, 0.0618819, 1, 0.442296, 0.198819, 0.0975255, 1, 0.370997, 0.683203, 0.785498, 1, 0.848555, 0.961495, 1, 1, 0.427658, 0.854481, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mw65n"]
+gradient = SubResource("Gradient_rtt0v")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ne7n0"]
+panorama = SubResource("GradientTexture2D_mw65n")
+
+[sub_resource type="Sky" id="Sky_f0f87"]
+sky_material = SubResource("PanoramaSkyMaterial_ne7n0")
+
+[sub_resource type="Environment" id="Environment_hhfu7"]
+background_mode = 2
+sky = SubResource("Sky_f0f87")
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Floor" type="StaticBody3D" parent="."]
@@ -26,6 +44,7 @@ shape = SubResource("CylinderShape3D_phmpv")
 
 [node name="SM_Skybox" parent="Floor" instance=ExtResource("2_dp8aw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.102794, -297.591, -0.309763)
+visible = false
 
 [node name="pCylinder3" parent="Floor/SM_Skybox" index="0"]
 material_override = SubResource("StandardMaterial3D_ofd5i")
@@ -33,7 +52,7 @@ material_override = SubResource("StandardMaterial3D_ofd5i")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0.642788, -0.766044, 0, 0.766044, 0.642788, 1, 2.80971e-08, -3.34849e-08, -19.2129, 11.5709, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
+[node name="MainSpotlight" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 27.886, 0)
 light_energy = 10.0
 shadow_enabled = true
@@ -45,5 +64,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -4)
 [node name="Player_1" parent="." instance=ExtResource("4_eiw2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
 playerID = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hhfu7")
 
 [editable path="Floor/SM_Skybox"]
