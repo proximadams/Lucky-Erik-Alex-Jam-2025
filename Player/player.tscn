@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4yjmdym54n72"]
+[gd_scene load_steps=13 format=3 uid="uid://c4yjmdym54n72"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_ixvv2"]
 [ext_resource type="PackedScene" uid="uid://mup50pcmuicx" path="res://SoundEffects/BounceSmall1Sound.tscn" id="2_s5pna"]
@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://bfe8ccb4md8k8" path="res://SoundEffects/Mixed/BounceNote2.mp3" id="4_fscw0"]
 [ext_resource type="AudioStream" uid="uid://ld6lmw3ipntl" path="res://SoundEffects/Mixed/BounceNote3.mp3" id="5_ecl7q"]
 [ext_resource type="AudioStream" uid="uid://c6guc21w8rumy" path="res://SoundEffects/Unmixed/yellSound1.wav" id="6_tk1wj"]
+[ext_resource type="PackedScene" uid="uid://cxofaq4qkkpb2" path="res://Player/Pogo/SM_PogoStickPurple.fbx" id="7_hanhp"]
+[ext_resource type="Material" uid="uid://uni1heob0piv" path="res://Player/Pogo/M_PogoPurple.tres" id="8_66mpi"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bvhw4"]
 radius = 0.2
@@ -77,12 +79,27 @@ shape = SubResource("SphereShape3D_bvhw4")
 
 [node name="Visuals" type="Node3D" parent="."]
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Visuals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-radius = 0.2
-height = 1.0
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_h03nl")
 }
+
+[node name="SM_PogoStickPurple" parent="." instance=ExtResource("7_hanhp")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="pogo_01_low" parent="SM_PogoStickPurple/pogo_low" index="0"]
+surface_material_override/0 = ExtResource("8_66mpi")
+
+[node name="pogo_02_low" parent="SM_PogoStickPurple/pogo_low" index="1"]
+surface_material_override/0 = ExtResource("8_66mpi")
+
+[node name="pogo_03_low" parent="SM_PogoStickPurple/pogo_low" index="2"]
+surface_material_override/0 = ExtResource("8_66mpi")
+
+[node name="pogo_04_low" parent="SM_PogoStickPurple/pogo_low" index="3"]
+surface_material_override/0 = ExtResource("8_66mpi")
+
+[node name="pogo_05_low" parent="SM_PogoStickPurple/pogo_low" index="4"]
+surface_material_override/0 = ExtResource("8_66mpi")
+
+[editable path="SM_PogoStickPurple"]

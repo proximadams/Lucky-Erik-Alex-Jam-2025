@@ -46,7 +46,7 @@ signal player_died(playerID: int)
 func _ready() -> void:
 	var material = StandardMaterial3D.new()
 	material.albedo_color = colour
-	$Visuals/CSGCylinder3D.material = material
+	#$Visuals/CSGCylinder3D.material = material
 
 func _physics_process(delta: float) -> void:
 	_set_angle()
