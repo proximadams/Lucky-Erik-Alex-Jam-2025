@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://byh6xb4v8jlow"]
+[gd_scene load_steps=18 format=3 uid="uid://byh6xb4v8jlow"]
 
 [ext_resource type="PackedScene" uid="uid://cqqyvg1fsgj1w" path="res://Environment/sm_main_platform.tscn" id="1_1isdm"]
 [ext_resource type="Script" path="res://Environment/floor.gd" id="1_8reu6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environment/T_Skybox.png" id="3_t73nb"]
 [ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="4_eiw2n"]
 [ext_resource type="FontFile" uid="uid://cmjwv7ccyiqyi" path="res://Themes/Bungee-Regular.ttf" id="6_78its"]
+[ext_resource type="Script" path="res://PlayerShadowFollow.gd" id="7_5eh6i"]
 [ext_resource type="PackedScene" uid="uid://djyqk7xmvc81i" path="res://Environment/SM_MainPlatform2.fbx" id="8_hgijc"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_phmpv"]
@@ -64,15 +65,32 @@ material_override = SubResource("StandardMaterial3D_ofd5i")
 transform = Transform3D(-4.37114e-08, 0.642788, -0.766044, 0, 0.766044, 0.642788, 1, 2.80971e-08, -3.34849e-08, -19.2129, 11.5709, 0)
 
 [node name="MainSpotlight" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 27.886, 0)
-light_energy = 10.0
-shadow_enabled = true
+transform = Transform3D(0.707107, 1.28028e-08, -0.707107, 0.707107, -3.09086e-08, 0.707107, -1.28028e-08, -1, -3.09086e-08, -45, 45, 0)
+light_energy = 100.0
 spot_range = 100.0
+
+[node name="P0Shadow" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 3, 4)
+light_energy = 10.0
+light_negative = true
+spot_range = 100.0
+spot_angle = 10.0
+script = ExtResource("7_5eh6i")
+playerNodePath = NodePath("../Player_0")
 
 [node name="Player_0" parent="." instance=ExtResource("4_eiw2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -4)
 colour = Color(0.128822, 0.0644205, 0.391381, 1)
 floorPath = NodePath("../Floor")
+
+[node name="P1Shadow" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 3, 4)
+light_energy = 10.0
+light_negative = true
+spot_range = 100.0
+spot_angle = 10.0
+script = ExtResource("7_5eh6i")
+playerNodePath = NodePath("../Player_1")
 
 [node name="Player_1" parent="." instance=ExtResource("4_eiw2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
