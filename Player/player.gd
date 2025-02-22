@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+class_name PogoPlayer
 enum {
 	DEAD,
 	GROUNDED, # on the ground.
@@ -39,6 +39,10 @@ var oldIsOnFloor = false # did we just land????
 var currGroundTime = 0;
 var currAirTime = 0;
 
+var MAX_HIT_TIME = 0.5
+var currHitTime = 0
+var lastHitVector: Vector3 = Vector3(0,0,0)
+
 @onready var floorInst = get_node(floorPath)
 
 signal player_died(playerID: int)
@@ -56,9 +60,17 @@ func _physics_process(delta: float) -> void:
 		_restart_me()
 	_movement(delta)
 	_note_bounce_volumes()
+	move_and_slide()
+	_deal_with_collisions()
 
 func _movement(delta: float):
 	# Add the gravity.
+	if state == HIT:
+		currHitTime += delta
+		if (currHitTime < MAX_HIT_TIME):
+			_calc_hit_velocity()
+			return
+
 	if not is_on_floor():
 		velocity += get_gravity() * delta * GRAVITY_SPEED
 		oldAirVelocity = velocity
@@ -94,8 +106,6 @@ func _movement(delta: float):
 			_calc_grounded_velocity()
 	elif state == DIVING:
 		_calc_diving_velocity()
-
-	move_and_slide()
 
 func _input(event: InputEvent) -> void:
 	if not event.is_echo() and event.is_action_pressed('jump.' + str(playerID)) and state != STUCK:
@@ -167,3 +177,18 @@ func _calc_diving_velocity():
 	velocity.y = -diveVelocity
 	velocity.x = (rotation.z * diveVelocity)
 	velocity.z = (-rotation.x * diveVelocity)
+
+func _calc_hit_velocity():
+	velocity = lastHitVector
+
+# call after move_and_slide! assumes that it has been called beforehand.
+func _deal_with_collisions():
+	for index in get_slide_collision_count():
+		var collision := get_slide_collision(index)
+		var body := collision.get_collider()
+		if body is CharacterBody3D:
+			var other_player: PogoPlayer = body
+			if other_player.state == DIVING:
+				lastHitVector = collision.get_collider_velocity()
+				state = HIT
+				
