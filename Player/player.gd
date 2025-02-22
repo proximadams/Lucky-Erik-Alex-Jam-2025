@@ -48,10 +48,9 @@ var lastHitVector: Vector3 = Vector3(0,0,0)
 signal player_died(playerID: int)
 
 func _ready() -> void:
-	var material = StandardMaterial3D.new()
-	material.albedo_color = colour
-	$Visuals/CSGCylinder3D.material = material
 	_set_hitbox(false)
+	$SM_PogoStick/pogo_purple.visible = (playerID == 0)
+	$SM_PogoStick/pogo_yellow.visible = (playerID != 0)
 
 func _physics_process(delta: float) -> void:
 	_set_angle()
@@ -157,7 +156,7 @@ func _restart_me():
 # Angle the player based on the stick/arrows
 func _set_angle():
 	var input_dir := Input.get_vector('move_left.' + str(playerID), 'move_right.' + str(playerID), 'move_up.' + str(playerID), 'move_down.' + str(playerID))
-	rotation = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	rotation = transform.basis * Vector3(input_dir.x, 0, input_dir.y)
 	if state == DIVING:
 		rotation.x *= -1
 		rotation.z *= -1

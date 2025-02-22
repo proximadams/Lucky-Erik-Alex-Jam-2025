@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bseiq1g37wfol"]
+
+[ext_resource type="Texture2D" uid="uid://bgbrn04ornlc4" path="res://Player/Pogo/T_PogoStickYellow_C.png" id="1_8nbfp"]
+[ext_resource type="Texture2D" uid="uid://cqra1smj7ewru" path="res://Player/Pogo/T_PogoStick_M.png" id="2_16tf8"]
+[ext_resource type="Texture2D" uid="uid://d2b85awsj6h17" path="res://Player/Pogo/T_PogoStick_N.png" id="3_bieln"]
+[ext_resource type="Texture2D" uid="uid://bcmnc5xpdwpc6" path="res://Player/Pogo/T_PogoStick_R.png" id="4_ip16t"]
+
+[resource]
+albedo_texture = ExtResource("1_8nbfp")
+albedo_texture_force_srgb = true
+metallic = 1.0
+metallic_texture = ExtResource("2_16tf8")
+roughness_texture = ExtResource("4_ip16t")
+normal_enabled = true
+normal_texture = ExtResource("3_bieln")

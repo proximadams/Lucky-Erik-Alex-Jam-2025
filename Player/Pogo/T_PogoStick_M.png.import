@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbyeenvkdf3g"
-path.s3tc="res://.godot/imported/ControlsScreen.png-ca5828f6490a26b2d004f234357e2838.s3tc.ctex"
+uid="uid://cqra1smj7ewru"
+path.s3tc="res://.godot/imported/T_PogoStick_M.png-586aa0f951ebd7e829132fd10b6abe46.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://UI/ControlsScreen.png"
-dest_files=["res://.godot/imported/ControlsScreen.png-ca5828f6490a26b2d004f234357e2838.s3tc.ctex"]
+source_file="res://Player/Pogo/T_PogoStick_M.png"
+dest_files=["res://.godot/imported/T_PogoStick_M.png-586aa0f951ebd7e829132fd10b6abe46.s3tc.ctex"]
 
 [params]
 

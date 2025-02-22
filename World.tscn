@@ -143,6 +143,7 @@ grow_vertical = 1
 player = NodePath("../../Player_0")
 
 [node name="p1Debug" parent="HUD" node_paths=PackedStringArray("player") instance=ExtResource("8_nrs5k")]
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
