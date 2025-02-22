@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://byh6xb4v8jlow"]
+[gd_scene load_steps=17 format=3 uid="uid://byh6xb4v8jlow"]
 
 [ext_resource type="PackedScene" uid="uid://cqqyvg1fsgj1w" path="res://Environment/sm_main_platform.tscn" id="1_1isdm"]
 [ext_resource type="Script" path="res://Environment/floor.gd" id="1_8reu6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environment/T_Skybox.png" id="3_t73nb"]
 [ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="4_eiw2n"]
 [ext_resource type="FontFile" uid="uid://cmjwv7ccyiqyi" path="res://Themes/Bungee-Regular.ttf" id="6_78its"]
+[ext_resource type="PackedScene" uid="uid://cetdhrgxsahsk" path="res://Player/playerDebugHUD.tscn" id="8_nrs5k"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_phmpv"]
 height = 100.0
@@ -43,6 +44,7 @@ script = ExtResource("1_oh6od")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+collision_layer = 2
 script = ExtResource("1_8reu6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
@@ -126,6 +128,31 @@ grow_vertical = 2
 theme = SubResource("Theme_14284")
 text = "Player 0 Wins"
 horizontal_alignment = 2
+
+[node name="p0Debug" parent="HUD" node_paths=PackedStringArray("player") instance=ExtResource("8_nrs5k")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 5.0
+offset_top = 72.0
+offset_right = 52.0
+offset_bottom = 176.0
+grow_horizontal = 1
+grow_vertical = 1
+player = NodePath("../../Player_0")
+
+[node name="p1Debug" parent="HUD" node_paths=PackedStringArray("player") instance=ExtResource("8_nrs5k")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1082.0
+offset_top = 75.0
+offset_right = 1129.0
+offset_bottom = 206.0
+grow_horizontal = 1
+grow_vertical = 1
+player = NodePath("../../Player_1")
 
 [connection signal="tree_exited" from="Floor" to="." method="game_over"]
 

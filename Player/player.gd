@@ -51,6 +51,7 @@ func _ready() -> void:
 	var material = StandardMaterial3D.new()
 	material.albedo_color = colour
 	$Visuals/CSGCylinder3D.material = material
+	_set_hitbox(false)
 
 func _physics_process(delta: float) -> void:
 	_set_angle()
@@ -61,7 +62,6 @@ func _physics_process(delta: float) -> void:
 	_movement(delta)
 	_note_bounce_volumes()
 	move_and_slide()
-	_deal_with_collisions()
 
 func _movement(delta: float):
 	# Add the gravity.
@@ -70,12 +70,16 @@ func _movement(delta: float):
 		if (currHitTime < MAX_HIT_TIME):
 			_calc_hit_velocity()
 			return
-
+		else:
+			currHitTime = 0
+			state = BOUNCING
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta * GRAVITY_SPEED
 		oldAirVelocity = velocity
 
 	if is_on_floor():
+		_set_hitbox(false)
 		velocity = Vector3(0,0,0)
 		currGroundTime += delta
 		jumpEarlyWindowTimer += delta
@@ -114,6 +118,7 @@ func _input(event: InputEvent) -> void:
 
 	if not event.is_echo() and event.is_action_pressed('dive.' + str(playerID)) and not is_on_floor(): # do the dive
 		state = DIVING
+		_set_hitbox(true)
 
 func _note_bounce_volumes():
 	var secondsInBar = 1.333
@@ -181,14 +186,15 @@ func _calc_diving_velocity():
 func _calc_hit_velocity():
 	velocity = lastHitVector
 
-# call after move_and_slide! assumes that it has been called beforehand.
-func _deal_with_collisions():
-	for index in get_slide_collision_count():
-		var collision := get_slide_collision(index)
-		var body := collision.get_collider()
-		if body is CharacterBody3D:
-			var other_player: PogoPlayer = body
-			if other_player.state == DIVING:
-				lastHitVector = collision.get_collider_velocity()
-				state = HIT
-				
+func _on_hurtbox_area_entered(area: Area3D) -> void:
+	var groups = area.get_groups()
+	if groups.find("Hitbox") != -1 and area.get_parent_node_3d().name != $Hitbox.get_parent_node_3d().name:
+		state = HIT
+		$Hitbox.set_deferred("monitorable", false)
+		lastHitVector = Vector3(25,25,25)
+		
+func _set_hitbox(x: bool):
+	$Hitbox.monitorable = x
+
+func is_hitbox_on():
+	return $Hitbox.monitorable

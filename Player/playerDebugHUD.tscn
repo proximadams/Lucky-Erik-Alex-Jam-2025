@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://cetdhrgxsahsk"]
+
+[ext_resource type="Script" path="res://PlayerDebugHud.gd" id="1_aha4t"]
+
+[node name="Control" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aha4t")
+
+[node name="StateLabel" type="Label" parent="."]
+layout_mode = 2
+text = "aaaaa"
+
+[node name="AirLabel" type="Label" parent="."]
+layout_mode = 2
+text = "bbbb"
+
+[node name="GroundLabel" type="Label" parent="."]
+layout_mode = 2
+text = "cccc"
+
+[node name="HitLabel" type="Label" parent="."]
+layout_mode = 2
+text = "dddd"
+
+[node name="HitBoxLabel" type="Label" parent="."]
+layout_mode = 2
