@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwxa4h324n0fx"]
+
+[sub_resource type="Gradient" id="Gradient_rtt0v"]
+offsets = PackedFloat32Array(0.190678, 0.372881, 0.478814, 0.538136, 0.631356)
+colors = PackedColorArray(0.143595, 0.0929463, 0.0618819, 1, 0.442296, 0.198819, 0.0975255, 1, 0.370997, 0.683203, 0.785498, 1, 0.848555, 0.961495, 1, 1, 0.427658, 0.854481, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mw65n"]
+gradient = SubResource("Gradient_rtt0v")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ne7n0"]
+panorama = SubResource("GradientTexture2D_mw65n")
+
+[sub_resource type="Sky" id="Sky_f0f87"]
+sky_material = SubResource("PanoramaSkyMaterial_ne7n0")
+
+[sub_resource type="Environment" id="Environment_hhfu7"]
+background_mode = 2
+sky = SubResource("Sky_f0f87")
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_hhfu7")
