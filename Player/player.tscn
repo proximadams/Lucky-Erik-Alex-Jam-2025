@@ -85,7 +85,7 @@ libraries = {
 }
 
 [node name="SM_PogoStickPurple" parent="." instance=ExtResource("7_hanhp")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 1.5, 0, -3, 0, -1.31134e-07, 0, 0, 0)
 
 [node name="pogo_01_low" parent="SM_PogoStickPurple/pogo_low" index="0"]
 surface_material_override/0 = ExtResource("8_66mpi")
