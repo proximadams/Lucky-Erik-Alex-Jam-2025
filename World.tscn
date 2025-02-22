@@ -1,10 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://byh6xb4v8jlow"]
+[gd_scene load_steps=15 format=3 uid="uid://byh6xb4v8jlow"]
 
 [ext_resource type="PackedScene" uid="uid://cqqyvg1fsgj1w" path="res://Environment/sm_main_platform.tscn" id="1_1isdm"]
 [ext_resource type="Script" path="res://Environment/floor.gd" id="1_8reu6"]
 [ext_resource type="Script" path="res://world.gd" id="1_oh6od"]
-[ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environment/SM_Skybox.fbx" id="2_dp8aw"]
-[ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environment/T_Skybox.png" id="3_t73nb"]
 [ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="4_eiw2n"]
 [ext_resource type="FontFile" uid="uid://cmjwv7ccyiqyi" path="res://Themes/Bungee-Regular.ttf" id="6_78its"]
 [ext_resource type="Script" path="res://PlayerShadowFollow.gd" id="7_5eh6i"]
@@ -12,11 +10,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_phmpv"]
 height = 100.0
-radius = 10.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofd5i"]
-albedo_texture = ExtResource("3_t73nb")
-emission = Color(0.226707, 0.226707, 0.226707, 1)
+radius = 6.68
 
 [sub_resource type="Gradient" id="Gradient_rtt0v"]
 offsets = PackedFloat32Array(0.190678, 0.372881, 0.478814, 0.538136, 0.631356)
@@ -44,22 +38,22 @@ Label/fonts/font = ExtResource("6_78its")
 script = ExtResource("1_oh6od")
 
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_8reu6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 shape = SubResource("CylinderShape3D_phmpv")
 
+[node name="SM_MainPlatform2" parent="Floor/CollisionShape3D" instance=ExtResource("8_hgijc")]
+transform = Transform3D(0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 50, 0)
+
+[node name="MainPlatform" parent="Floor/CollisionShape3D/SM_MainPlatform2" index="0"]
+transform = Transform3D(1000, 0, 0, 0, 5000, 0, 0, 0, 1000, 0, -50, 0)
+
 [node name="SM_MainPlatform" parent="Floor/CollisionShape3D" instance=ExtResource("1_1isdm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
-
-[node name="SM_Skybox" parent="Floor" instance=ExtResource("2_dp8aw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.102794, -297.591, -0.309763)
 visible = false
-
-[node name="pCylinder3" parent="Floor/SM_Skybox" index="0"]
-material_override = SubResource("StandardMaterial3D_ofd5i")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0.642788, -0.766044, 0, 0.766044, 0.642788, 1, 2.80971e-08, -3.34849e-08, -19.2129, 11.5709, 0)
@@ -146,10 +140,6 @@ theme = SubResource("Theme_14284")
 text = "Player 0 Wins"
 horizontal_alignment = 2
 
-[node name="SM_MainPlatform2" parent="." instance=ExtResource("8_hgijc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83956, 0.891556, -51.2487)
-
 [connection signal="tree_exited" from="Floor" to="." method="game_over"]
 
-[editable path="Floor/SM_Skybox"]
-[editable path="SM_MainPlatform2"]
+[editable path="Floor/CollisionShape3D/SM_MainPlatform2"]
