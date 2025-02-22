@@ -249,7 +249,7 @@ collision_mask = 2
 script = ExtResource("1_ixvv2")
 
 [node name="BounceSmall1Sound" parent="." instance=ExtResource("2_s5pna")]
-volume_db = -20.0
+volume_db = -30.0
 autoplay = false
 
 [node name="Note1Sound" parent="." instance=ExtResource("2_s5pna")]
