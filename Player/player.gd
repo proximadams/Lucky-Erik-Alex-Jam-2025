@@ -151,7 +151,7 @@ func _restart_me():
 # Angle the player based on the stick/arrows
 func _set_angle():
 	var input_dir := Input.get_vector('move_left.' + str(playerID), 'move_right.' + str(playerID), 'move_up.' + str(playerID), 'move_down.' + str(playerID))
-	rotation = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	rotation = transform.basis * Vector3(input_dir.x, 0, input_dir.y)
 	if state == DIVING:
 		rotation.x *= -1
 		rotation.z *= -1
