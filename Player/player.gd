@@ -12,17 +12,20 @@ enum {
 var state = GROUNDED
 
 @export var bounceVelocity = 10
-@export var jumpVelocity = 24
-@export var diveVelocity = 45
 @export var colour: Color
+@export var diveVelocity = 45
 @export var floorPath: NodePath
+@export var jumpVelocity = 24
+@export var playerID = 0
 
-const SPEED = 10.0
-const SPEED_MULT_SHALLOW_BOUNCE = 1.5
-const SPEED_MULT_JUMP = 0.5
 const GRAVITY_SPEED = 5.0
 const JUMP_GRACE_WINDOW_TIME = 0.1
 const MAX_JUMPS = 3
+const MAX_GROUND_TIME = 0.1
+const MAX_STUCK_TIME = 0.5
+const SPEED = 10.0
+const SPEED_MULT_SHALLOW_BOUNCE = 1.5
+const SPEED_MULT_JUMP = 0.5
 const VOLUME_SILENT = -80.0
 const VOLUME_NOTE_LOUD = 10.0
 
@@ -32,9 +35,6 @@ var jumpEarlyWindowTimer = 0
 var oldAirVelocity = Vector3(0,0,0)
 var oldIsOnFloor = false # did we just land????
 
-@export var playerID = 0
-var MAX_GROUND_TIME = 0.1
-var MAX_STUCK_TIME = 0.5
 var currGroundTime = 0;
 var currAirTime = 0;
 
