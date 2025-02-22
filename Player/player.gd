@@ -18,6 +18,7 @@ var state = GROUNDED
 @export var floorPath: NodePath
 @export var jumpVelocity = 24
 @export var playerID = 0
+@export var explosionScene: PackedScene
 
 const GRAVITY_SPEED = 5.0
 const JUMP_GRACE_WINDOW_TIME = 0.1
@@ -192,6 +193,10 @@ func _on_hurtbox_area_entered(area: Area3D) -> void:
 		$Hitbox.set_deferred("monitorable", false)
 		var hitVelocity = area.get_parent_node_3d().velocity
 		lastHitVector = Vector3(hitVelocity.x, -hitVelocity.y,hitVelocity.z)
+		var explosionInstance = explosionScene.instantiate()
+		explosionInstance.position = position
+		explosionInstance.position.y -= .5
+		get_tree().get_root().add_child(explosionInstance)
 		
 func _set_hitbox(x: bool):
 	$Hitbox.monitorable = x
