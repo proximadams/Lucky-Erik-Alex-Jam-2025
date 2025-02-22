@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkuvfiredapns"]
+
+[ext_resource type="Script" path="res://TitleScreen/title_screen.gd" id="1_o0vp8"]
+[ext_resource type="Texture2D" uid="uid://beph7tvfly38t" path="res://TitleScreen/TitleImage.png" id="2_308d5"]
+[ext_resource type="Theme" uid="uid://b807bm2g6mjc8" path="res://Themes/ButtonTheme.tres" id="3_d1n7v"]
+
+[node name="TitleScreen" type="CanvasLayer"]
+script = ExtResource("1_o0vp8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_308d5")
+expand_mode = 5
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.0
+offset_top = -88.0
+offset_right = 127.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_d1n7v")
+text = "Start"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_button_pressed"]
