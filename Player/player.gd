@@ -1,5 +1,5 @@
 extends CharacterBody3D
-class_name = PogoPlayer
+class_name PogoPlayer
 enum {
 	DEAD,
 	GROUNDED, # on the ground.

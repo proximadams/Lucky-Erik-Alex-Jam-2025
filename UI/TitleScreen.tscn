@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkuvfiredapns"]
+
+[ext_resource type="Script" path="res://UI/title_screen.gd" id="1_o0vp8"]
+[ext_resource type="Texture2D" uid="uid://beph7tvfly38t" path="res://UI/TitleImage.png" id="2_308d5"]
+[ext_resource type="Theme" uid="uid://b807bm2g6mjc8" path="res://Themes/ButtonTheme.tres" id="3_d1n7v"]
+[ext_resource type="Texture2D" uid="uid://cbyeenvkdf3g" path="res://UI/ControlsScreen.png" id="3_ea5o3"]
+
+[node name="TitleScreen" type="CanvasLayer"]
+script = ExtResource("1_o0vp8")
+
+[node name="TitleTextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_308d5")
+expand_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -362.5
+offset_top = -182.0
+offset_right = 362.5
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_d1n7v")
+text = "Start"
+
+[node name="ControlsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_d1n7v")
+text = "Controls"
+
+[node name="ControlsTextureRect" type="TextureRect" parent="."]
+visible = false
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ea5o3")
+expand_mode = 5
+
+[node name="BackButton" type="Button" parent="ControlsTextureRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -204.0
+offset_right = 396.0
+offset_bottom = -24.0
+grow_vertical = 0
+theme = ExtResource("3_d1n7v")
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlsButton" to="ControlsTextureRect" method="set_visible" binds= [true]]
+[connection signal="pressed" from="ControlsTextureRect/BackButton" to="ControlsTextureRect" method="set_visible" binds= [false]]
