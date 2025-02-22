@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://byh6xb4v8jlow"]
+[gd_scene load_steps=16 format=3 uid="uid://byh6xb4v8jlow"]
 
 [ext_resource type="PackedScene" uid="uid://cqqyvg1fsgj1w" path="res://Environment/sm_main_platform.tscn" id="1_1isdm"]
 [ext_resource type="Script" path="res://floor.gd" id="1_8reu6"]
+[ext_resource type="Script" path="res://world.gd" id="1_oh6od"]
 [ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environment/SM_Skybox.fbx" id="2_dp8aw"]
 [ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environment/T_Skybox.png" id="3_t73nb"]
 [ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="4_eiw2n"]
+[ext_resource type="FontFile" uid="uid://cmjwv7ccyiqyi" path="res://Themes/Bungee-Regular.ttf" id="6_78its"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_phmpv"]
 height = 100.0
@@ -32,17 +34,23 @@ sky_material = SubResource("PanoramaSkyMaterial_ne7n0")
 background_mode = 2
 sky = SubResource("Sky_f0f87")
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="Theme" id="Theme_14284"]
+Label/font_sizes/font_size = 64
+Label/fonts/font = ExtResource("6_78its")
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_oh6od")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_8reu6")
 
-[node name="SM_MainPlatform" parent="Floor" instance=ExtResource("1_1isdm")]
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 shape = SubResource("CylinderShape3D_phmpv")
+
+[node name="SM_MainPlatform" parent="Floor/CollisionShape3D" instance=ExtResource("1_1isdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
 
 [node name="SM_Skybox" parent="Floor" instance=ExtResource("2_dp8aw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.102794, -297.591, -0.309763)
@@ -63,13 +71,41 @@ spot_range = 100.0
 [node name="Player_0" parent="." instance=ExtResource("4_eiw2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -4)
 colour = Color(0.128822, 0.0644205, 0.391381, 1)
+floorPath = NodePath("../Floor")
 
 [node name="Player_1" parent="." instance=ExtResource("4_eiw2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
 colour = Color(0.971812, 0.860267, 0.747942, 1)
+floorPath = NodePath("../Floor")
 playerID = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hhfu7")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="P0DeathsLabel" type="Label" parent="HUD"]
+offset_right = 110.0
+offset_bottom = 23.0
+theme = SubResource("Theme_14284")
+text = "P0 Deaths = 0"
+
+[node name="P1DeathsLabel" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -110.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme = SubResource("Theme_14284")
+text = "P1 Deaths = 0"
+horizontal_alignment = 2
 
 [editable path="Floor/SM_Skybox"]

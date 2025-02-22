@@ -1,5 +1,6 @@
 extends CharacterBody3D
 enum {
+	DEAD,
 	GROUNDED, # on the ground.
 	BOUNCING, # air, did not use a jump.
 	PRE_JUMP, # grounded but going to jump
@@ -14,6 +15,7 @@ var state = GROUNDED
 @export var jumpVelocity = 24
 @export var diveVelocity = 45
 @export var colour: Color
+@export var floorPath: NodePath
 
 var bounceSmall1SoundRes = load('res://SoundEffects/BounceSmall1Sound.tscn')
 
@@ -36,6 +38,10 @@ var MAX_STUCK_TIME = 0.5
 var currGroundTime = 0;
 var currAirTime = 0;
 
+@onready var floorInst = get_node(floorPath)
+
+signal player_died(playerID: int)
+
 func _ready() -> void:
 	var material = StandardMaterial3D.new()
 	material.albedo_color = colour
@@ -43,7 +49,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_set_angle()
-	if position.y < -100:
+	if position.y < -5:
+		_die()
+	if position.y < -100 and is_instance_valid(floorInst):
 		_restart_me()
 	_movement(delta)
 
@@ -91,6 +99,11 @@ func _input(event: InputEvent) -> void:
 
 	if not event.is_echo() and event.is_action_pressed('dive.' + str(playerID)) and not is_on_floor(): # do the dive
 		state = DIVING
+
+func _die():
+	if state != DEAD:
+		state = DEAD
+		player_died.emit(playerID)
 
 func _restart_me():
 	velocity = Vector3(0,0,0)
