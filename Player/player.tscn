@@ -1,6 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4yjmdym54n72"]
+[gd_scene load_steps=10 format=3 uid="uid://c4yjmdym54n72"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_ixvv2"]
+[ext_resource type="PackedScene" uid="uid://mup50pcmuicx" path="res://SoundEffects/BounceSmall1Sound.tscn" id="2_s5pna"]
+[ext_resource type="AudioStream" uid="uid://dedv6mkbq4l45" path="res://SoundEffects/Mixed/BounceNote1.mp3" id="3_23bbc"]
+[ext_resource type="AudioStream" uid="uid://bfe8ccb4md8k8" path="res://SoundEffects/Mixed/BounceNote2.mp3" id="4_fscw0"]
+[ext_resource type="AudioStream" uid="uid://ld6lmw3ipntl" path="res://SoundEffects/Mixed/BounceNote3.mp3" id="5_ecl7q"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bvhw4"]
 radius = 0.2
@@ -45,6 +49,22 @@ _data = {
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ixvv2")
+
+[node name="BounceSmall1Sound" parent="." instance=ExtResource("2_s5pna")]
+volume_db = -20.0
+autoplay = false
+
+[node name="Note1Sound" parent="." instance=ExtResource("2_s5pna")]
+stream = ExtResource("3_23bbc")
+autoplay = false
+
+[node name="Note2Sound" parent="." instance=ExtResource("2_s5pna")]
+stream = ExtResource("4_fscw0")
+autoplay = false
+
+[node name="Note3Sound" parent="." instance=ExtResource("2_s5pna")]
+stream = ExtResource("5_ecl7q")
+autoplay = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)

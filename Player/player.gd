@@ -17,14 +17,14 @@ var state = GROUNDED
 @export var colour: Color
 @export var floorPath: NodePath
 
-var bounceSmall1SoundRes = load('res://SoundEffects/BounceSmall1Sound.tscn')
-
 const SPEED = 10.0
 const SPEED_MULT_SHALLOW_BOUNCE = 1.5
 const SPEED_MULT_JUMP = 0.5
 const GRAVITY_SPEED = 5.0
 const JUMP_GRACE_WINDOW_TIME = 0.1
 const MAX_JUMPS = 3
+const VOLUME_SILENT = -80.0
+const VOLUME_NOTE_LOUD = 10.0
 
 var didJumpEarly = false
 var numJumpsSoFar = 0
@@ -54,6 +54,7 @@ func _physics_process(delta: float) -> void:
 	if position.y < -100 and is_instance_valid(floorInst):
 		_restart_me()
 	_movement(delta)
+	_note_bounce_volumes()
 
 func _movement(delta: float):
 	# Add the gravity.
@@ -69,7 +70,10 @@ func _movement(delta: float):
 
 		if state != GROUNDED and state != STUCK:
 			$AnimationPlayer.play('SquishJump')
-			add_child(bounceSmall1SoundRes.instantiate())
+			$BounceSmall1Sound.play()
+			$Note1Sound.play()
+			$Note2Sound.play()
+			$Note3Sound.play()
 
 		if state == DIVING:
 			state = STUCK
@@ -99,6 +103,29 @@ func _input(event: InputEvent) -> void:
 
 	if not event.is_echo() and event.is_action_pressed('dive.' + str(playerID)) and not is_on_floor(): # do the dive
 		state = DIVING
+
+func _note_bounce_volumes():
+	var secondsInBar = 1.333
+	if MusicPlayer.get_playback_position() < secondsInBar:
+		$Note1Sound.volume_db = VOLUME_NOTE_LOUD
+		$Note2Sound.volume_db = VOLUME_SILENT
+		$Note3Sound.volume_db = VOLUME_SILENT
+	elif MusicPlayer.get_playback_position() < secondsInBar * 2:
+		$Note1Sound.volume_db = VOLUME_SILENT
+		$Note2Sound.volume_db = VOLUME_NOTE_LOUD
+		$Note3Sound.volume_db = VOLUME_SILENT
+	elif MusicPlayer.get_playback_position() < secondsInBar * 3:
+		$Note1Sound.volume_db = VOLUME_NOTE_LOUD
+		$Note2Sound.volume_db = VOLUME_SILENT
+		$Note3Sound.volume_db = VOLUME_SILENT
+	elif MusicPlayer.get_playback_position() < secondsInBar * 4:
+		$Note1Sound.volume_db = VOLUME_SILENT
+		$Note2Sound.volume_db = VOLUME_SILENT
+		$Note3Sound.volume_db = VOLUME_NOTE_LOUD
+	else:
+		$Note1Sound.volume_db = VOLUME_NOTE_LOUD
+		$Note2Sound.volume_db = VOLUME_SILENT
+		$Note3Sound.volume_db = VOLUME_SILENT
 
 func _die():
 	if state != DEAD:
