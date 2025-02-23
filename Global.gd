@@ -10,6 +10,7 @@ var yellSounds = [
 	load('res://SoundEffects/Unmixed/yellSound4.wav'),
 	load('res://SoundEffects/Unmixed/yellSound5.wav'),
 	load('res://SoundEffects/Unmixed/yellSound6.wav'),
+	load('res://SoundEffects/Mixed/MyLeg.mp3'),
 ]
 
 var musicVolume = 1.0# range between 0.0 and 1.0 (inclusive)
