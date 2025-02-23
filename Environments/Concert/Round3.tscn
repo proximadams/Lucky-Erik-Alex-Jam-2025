@@ -29,7 +29,7 @@ Panel/styles/panel = SubResource("StyleBoxFlat_cwkv4")
 
 [node name="Round3" type="Node3D"]
 script = ExtResource("1_nq1y7")
-nextRoundScene = "res://Environments/Cookie/Round1.tscn"
+nextRoundScene = "res://UI/endScreen.tscn"
 
 [node name="CountDown" parent="." instance=ExtResource("2_omlaj")]
 fightRound = 3
