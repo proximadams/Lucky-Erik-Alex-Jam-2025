@@ -37,6 +37,7 @@ var jumpEarlyWindowTimer = 0
 var oldAirVelocity = Vector3(0,0,0)
 var oldIsOnFloor = false # did we just land????
 var playerOpponent
+var hitPercent = 0.0
 
 var currGroundTime = 0;
 var currAirTime = 0;
@@ -48,6 +49,7 @@ var lastHitVector: Vector3 = Vector3(0,0,0)
 @onready var floorInst = get_node(floorPath)
 
 signal player_died(playerID: int)
+signal player_percent_changed(playerID: int, percent: float)
 
 func _ready() -> void:
 	_set_hitbox(false)
@@ -58,7 +60,7 @@ func _physics_process(delta: float) -> void:
 	_set_angle()
 	if position.y < -5:
 		_die()
-	if position.y < -100 and is_instance_valid(floorInst):
+	if position.y < -50 and is_instance_valid(floorInst):
 		_restart_me()
 	_movement(delta)
 	_note_bounce_volumes()
@@ -117,7 +119,7 @@ func _input(event: InputEvent) -> void:
 		state = PRE_JUMP
 		jumpEarlyWindowTimer = 0.0
 
-	if not event.is_echo() and event.is_action_pressed('dive.' + str(playerID)) and not is_on_floor(): # do the dive
+	if state != DEAD and state != HIT and not event.is_echo() and event.is_action_pressed('dive.' + str(playerID)) and not is_on_floor(): # do the dive
 		state = DIVING
 		_set_hitbox(true)
 
@@ -156,7 +158,9 @@ func _die():
 
 func _restart_me():
 	velocity = Vector3(0,0,0)
-	position = Vector3(0,3,0)
+	position = Vector3(Global.rng.randf_range(-0.1, 0.1),3,Global.rng.randf_range(-0.1, 0.1))
+	hitPercent = 0.0
+	player_percent_changed.emit(playerID, hitPercent)
 
 # Angle the player based on the stick/arrows
 func _set_angle():
@@ -206,8 +210,10 @@ func _on_hurtbox_area_entered(area: Area3D) -> void:
 	var groups = area.get_groups()
 	if groups.find("Hitbox") != -1 and area.get_parent_node_3d().name != $Hitbox.get_parent_node_3d().name:
 		state = HIT
+		hitPercent += Global.rng.randf_range(0.05, 0.2)
+		player_percent_changed.emit(playerID, hitPercent)
 		$Hitbox.set_deferred("monitorable", false)
-		var hitVelocity = area.get_parent_node_3d().velocity * 0.3
+		var hitVelocity = area.get_parent_node_3d().velocity * hitPercent
 		lastHitVector = Vector3(hitVelocity.x, -hitVelocity.y,hitVelocity.z)
 		var explosionInstance = explosionScene.instantiate()
 		explosionInstance.position = position

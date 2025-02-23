@@ -36,7 +36,7 @@ background_mode = 2
 sky = SubResource("Sky_f0f87")
 
 [sub_resource type="Theme" id="Theme_14284"]
-Label/font_sizes/font_size = 64
+Label/font_sizes/font_size = 128
 Label/fonts/font = ExtResource("6_78its")
 
 [node name="World" type="Node3D"]
@@ -97,23 +97,40 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="P0DeathsLabel" type="Label" parent="HUD"]
+[node name="P0" type="VBoxContainer" parent="HUD"]
 layout_mode = 0
-offset_right = 110.0
-offset_bottom = 23.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DeathsLabel" type="Label" parent="HUD/P0"]
+layout_mode = 2
 theme = SubResource("Theme_14284")
 text = "P0 Deaths = 0"
 
-[node name="P1DeathsLabel" type="Label" parent="HUD"]
+[node name="PercentLabel" type="Label" parent="HUD/P0"]
+layout_mode = 2
+theme = SubResource("Theme_14284")
+text = "0%"
+
+[node name="P1" type="VBoxContainer" parent="HUD"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -110.0
-offset_bottom = 23.0
+offset_left = -485.0
+offset_bottom = 176.0
 grow_horizontal = 0
+
+[node name="DeathsLabel" type="Label" parent="HUD/P1"]
+layout_mode = 2
 theme = SubResource("Theme_14284")
 text = "P1 Deaths = 0"
+horizontal_alignment = 2
+
+[node name="PercentLabel" type="Label" parent="HUD/P1"]
+layout_mode = 2
+theme = SubResource("Theme_14284")
+text = "0%"
 horizontal_alignment = 2
 
 [node name="WinnerLabel" type="Label" parent="HUD"]
