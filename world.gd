@@ -1,6 +1,6 @@
 extends Node3D
 
-const ROUND_TIME = 3.0
+const ROUND_TIME = 30.0
 
 var currentRound = 1
 var numDeathsArr = [0, 0]
