@@ -1,0 +1,212 @@
+[gd_scene load_steps=20 format=3 uid="uid://byh6xb4v8jlow"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_0e4qq"]
+[ext_resource type="Script" path="res://Environments/Hoodoo/floor.gd" id="2_n6xlw"]
+[ext_resource type="PackedScene" uid="uid://dk1afjd68iofm" path="res://UI/CountDown.tscn" id="2_wyfdr"]
+[ext_resource type="PackedScene" uid="uid://djyqk7xmvc81i" path="res://Environments/Hoodoo/SM_MainPlatform2.fbx" id="3_5t6qs"]
+[ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environments/Hoodoo/SM_Skybox.fbx" id="4_4pnhd"]
+[ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environments/Hoodoo/T_Skybox.png" id="5_umqud"]
+[ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="6_dx8tj"]
+[ext_resource type="FontFile" uid="uid://cmjwv7ccyiqyi" path="res://UI/Themes/Bungee-Regular.ttf" id="7_7oqr0"]
+[ext_resource type="PackedScene" uid="uid://bagy4yri1s7v4" path="res://Environments/Hoodoo/SM_BGPillar.fbx" id="8_0b1jv"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_phmpv"]
+height = 100.0
+radius = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofd5i"]
+albedo_texture = ExtResource("5_umqud")
+emission = Color(0.226707, 0.226707, 0.226707, 1)
+
+[sub_resource type="Gradient" id="Gradient_rtt0v"]
+offsets = PackedFloat32Array(0.190678, 0.372881, 0.478814, 0.538136, 0.631356)
+colors = PackedColorArray(0.143595, 0.0929463, 0.0618819, 1, 0.442296, 0.198819, 0.0975255, 1, 0.370997, 0.683203, 0.785498, 1, 0.848555, 0.961495, 1, 1, 0.427658, 0.854481, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mw65n"]
+gradient = SubResource("Gradient_rtt0v")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ne7n0"]
+panorama = SubResource("GradientTexture2D_mw65n")
+
+[sub_resource type="Sky" id="Sky_f0f87"]
+sky_material = SubResource("PanoramaSkyMaterial_ne7n0")
+
+[sub_resource type="Environment" id="Environment_hhfu7"]
+background_mode = 2
+sky = SubResource("Sky_f0f87")
+
+[sub_resource type="Theme" id="Theme_14284"]
+Label/font_sizes/font_size = 128
+Label/fonts/font = ExtResource("7_7oqr0")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwkv4"]
+bg_color = Color(1, 0.539459, 0.817639, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.466057, 0.236093, 0.373678, 1)
+
+[sub_resource type="Theme" id="Theme_bk8hy"]
+Panel/styles/panel = SubResource("StyleBoxFlat_cwkv4")
+
+[node name="Round1" type="Node3D"]
+script = ExtResource("1_0e4qq")
+nextRoundScene = "res://Environments/Cookie/Round2.tscn"
+
+[node name="CountDown" parent="." instance=ExtResource("2_wyfdr")]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+collision_layer = 3
+script = ExtResource("2_n6xlw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+shape = SubResource("CylinderShape3D_phmpv")
+
+[node name="SM_MainPlatform2" parent="Floor/CollisionShape3D" instance=ExtResource("3_5t6qs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9719, 50, 0)
+
+[node name="SM_Skybox" parent="Floor" instance=ExtResource("4_4pnhd")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.102794, -297.591, -0.309763)
+visible = false
+
+[node name="pCylinder3" parent="Floor/SM_Skybox" index="0"]
+material_override = SubResource("StandardMaterial3D_ofd5i")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.642788, -0.766044, 0, 0.766044, 0.642788, 1, 2.80971e-08, -3.34849e-08, -19.2129, 11.5709, 0)
+
+[node name="CameraSpotlight" type="SpotLight3D" parent="Camera3D"]
+light_energy = 10.0
+light_size = 10.0
+spot_range = 100.0
+
+[node name="MainSpotlight" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 27.886, 0)
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 100.0
+
+[node name="Player_0" parent="." instance=ExtResource("6_dx8tj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -4)
+colour = Color(0.128822, 0.0644205, 0.391381, 1)
+floorPath = NodePath("../Floor")
+
+[node name="Player_1" parent="." instance=ExtResource("6_dx8tj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
+colour = Color(0.971812, 0.860267, 0.747942, 1)
+floorPath = NodePath("../Floor")
+playerID = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hhfu7")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="P0" type="VBoxContainer" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DeathsLabel" type="Label" parent="HUD/P0"]
+layout_mode = 2
+theme = SubResource("Theme_14284")
+text = "P0 Deaths = 0"
+
+[node name="PercentLabel" type="Label" parent="HUD/P0"]
+layout_mode = 2
+theme = SubResource("Theme_14284")
+text = "0%"
+
+[node name="P1" type="VBoxContainer" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -485.0
+offset_bottom = 176.0
+grow_horizontal = 0
+
+[node name="DeathsLabel" type="Label" parent="HUD/P1"]
+layout_mode = 2
+theme = SubResource("Theme_14284")
+text = "P1 Deaths = 0"
+horizontal_alignment = 2
+
+[node name="PercentLabel" type="Label" parent="HUD/P1"]
+layout_mode = 2
+theme = SubResource("Theme_14284")
+text = "0%"
+horizontal_alignment = 2
+
+[node name="WinnerLabel" type="Label" parent="HUD"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.5
+offset_top = -43.0
+offset_right = 262.5
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_14284")
+text = "Player 0 Wins"
+horizontal_alignment = 2
+
+[node name="TimeBar" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(576, 0)
+
+[node name="Panel" type="Panel" parent="HUD/TimeBar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_bk8hy")
+
+[node name="SM_BGPillar" parent="." instance=ExtResource("8_0b1jv")]
+transform = Transform3D(0.500723, 0, -1.73831, 0.2319, 2.69619, 0.060914, 1.80551, -0.346299, 0.47426, 202.417, -351.406, -100.17)
+
+[node name="SM_BGPillar7" parent="." instance=ExtResource("8_0b1jv")]
+transform = Transform3D(1.00145, 0.43166, -1.02884, -0.412408, 2.3486, -0.12941, 0.836907, 0.640807, 1.16734, 205.721, -303.111, -209.965)
+
+[node name="SM_BGPillar3" parent="." instance=ExtResource("8_0b1jv")]
+transform = Transform3D(2.006, -0.548754, -1.6656, 0.53314, 3.73634, 0, 1.80494, -0.493754, 1.85114, 312.006, -255.326, -63.1115)
+
+[node name="SM_BGPillar8" parent="." instance=ExtResource("8_0b1jv")]
+transform = Transform3D(1.87493, 0.795074, -1.74632, -0.713255, 3.67585, 0.087829, 1.88201, 0.601009, 1.77303, 247.224, -315.993, -316.738)
+
+[node name="SM_BGPillar9" parent="." instance=ExtResource("8_0b1jv")]
+transform = Transform3D(-0.240814, 0.880485, -2.41288, 0.582704, 3.6363, 0.519596, 2.67741, -0.712201, -0.330106, 490.139, -312.856, 179.294)
+
+[node name="SM_BGPillar4" parent="." instance=ExtResource("8_0b1jv")]
+transform = Transform3D(1.26798, -0.371949, -1.03695, 0.104303, 2.54863, -0.228305, 1.18504, 0.173661, 1.12962, 278.954, -256.554, 44.4131)
+
+[node name="SM_BGPillar5" parent="." instance=ExtResource("8_0b1jv")]
+transform = Transform3D(2.80837, -0.152577, -0.151192, 0.152787, 3.6088, 0.962166, 0.0987904, -1.2439, 2.80997, 84.3447, -319.681, 223.76)
+
+[node name="SM_BGPillar10" parent="." instance=ExtResource("8_0b1jv")]
+transform = Transform3D(2.752, -0.75217, -0.210041, 0.574751, 3.71203, 0.353431, 0.127282, -0.499057, 2.94542, 352.669, -418.818, 461.132)
+
+[node name="SM_BGPillar6" parent="." instance=ExtResource("8_0b1jv")]
+transform = Transform3D(2.52227, -1.09586, 1.10587, 0.792368, 3.69874, 0.239362, -1.23318, 0.135177, 2.41566, 421.334, -320.762, 260.462)
+
+[node name="SM_BGPillar2" parent="." instance=ExtResource("8_0b1jv")]
+transform = Transform3D(0.688367, 0.144958, 0.710731, -0.117319, 0.989177, -0.0881213, -0.715813, -0.0227223, 0.697923, -4.10726, -84.7799, -41.7973)
+
+[editable path="Floor/SM_Skybox"]

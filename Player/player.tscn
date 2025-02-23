@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bfe8ccb4md8k8" path="res://SoundEffects/Mixed/BounceNote2.mp3" id="4_fscw0"]
 [ext_resource type="AudioStream" uid="uid://ld6lmw3ipntl" path="res://SoundEffects/Mixed/BounceNote3.mp3" id="5_ecl7q"]
 [ext_resource type="AudioStream" uid="uid://c6guc21w8rumy" path="res://SoundEffects/Unmixed/yellSound1.wav" id="6_tk1wj"]
-[ext_resource type="Material" path="res://Player/Pogo/M_PogoYellow.tres" id="7_8i3vx"]
+[ext_resource type="Material" uid="uid://bseiq1g37wfol" path="res://Player/Pogo/M_PogoYellow.tres" id="7_8i3vx"]
 [ext_resource type="Material" uid="uid://uni1heob0piv" path="res://Player/Pogo/M_PogoPurple.tres" id="8_66mpi"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bvhw4"]
@@ -18,14 +18,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals:scale")
+tracks/0/path = NodePath("SM_PogoStick:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 1, 1)]
+"values": [Vector3(3, 1.5, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_ymuik"]
@@ -35,14 +35,14 @@ step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals:scale")
+tracks/0/path = NodePath("SM_PogoStick:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.025, 0.15, 0.25, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(2, 0.25, 2), Vector3(2, 0.25, 2), Vector3(0.5, 2, 0.5), Vector3(1, 1, 1)]
+"values": [Vector3(3, 1.5, 3), Vector3(6, 0.5, 6), Vector3(6, 0.5, 6), Vector3(1.5, 2, 1.5), Vector3(3, 1.5, 3)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h03nl"]
@@ -273,8 +273,6 @@ autoplay = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("SphereShape3D_bvhw4")
-
-[node name="Visuals" type="Node3D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

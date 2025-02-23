@@ -10,7 +10,7 @@ enum {
 	HIT, # got hit
 	STUCK,
 }
-var state = GROUNDED
+var state = BOUNCING
 
 @export var bounceVelocity = 10
 @export var colour: Color
@@ -20,6 +20,7 @@ var state = GROUNDED
 @export var playerID = 0
 @export var explosionScene: PackedScene
 
+const BOUNCE_BACK_TO_CENTRE_SPEED = 3.0
 const GRAVITY_SPEED = 5.0
 const JUMP_GRACE_WINDOW_TIME = 0.1
 const MAX_JUMPS = 3
@@ -36,6 +37,8 @@ var numJumpsSoFar = 0
 var jumpEarlyWindowTimer = 0
 var oldAirVelocity = Vector3(0,0,0)
 var oldIsOnFloor = false # did we just land????
+var playerOpponent
+var hitPercent = 0.0
 
 var currGroundTime = 0;
 var currAirTime = 0;
@@ -47,6 +50,7 @@ var lastHitVector: Vector3 = Vector3(0,0,0)
 @onready var floorInst = get_node(floorPath)
 
 signal player_died(playerID: int)
+signal player_percent_changed(playerID: int, percent: float)
 
 func _ready() -> void:
 	_set_hitbox(false)
@@ -57,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	_set_angle()
 	if position.y < -5:
 		_die()
-	if position.y < -100 and is_instance_valid(floorInst):
+	if position.y < -50 and is_instance_valid(floorInst):
 		_restart_me()
 	_movement(delta)
 	_note_bounce_volumes()
@@ -93,7 +97,15 @@ func _movement(delta: float):
 			$Note3Sound.play()
 
 		if state == DIVING:
-			state = STUCK
+			if playerOpponent.state == HIT:
+				state = GROUNDED
+				velocity = Vector3(
+					global_position.x * -BOUNCE_BACK_TO_CENTRE_SPEED,
+					jumpVelocity,
+					global_position.z * -BOUNCE_BACK_TO_CENTRE_SPEED
+				)
+			else:
+				state = STUCK
 		
 		if state == PRE_JUMP and didJumpEarly:
 			state = JUMPING
@@ -105,20 +117,21 @@ func _movement(delta: float):
 			numJumpsSoFar = 0
 			currGroundTime = 0
 			_calc_bouncing_velocity()
-		elif state != STUCK:
+		elif state != STUCK and state != DEAD:
 			state = GROUNDED
 			_calc_grounded_velocity()
 	elif state == DIVING:
 		_calc_diving_velocity()
 
 func _input(event: InputEvent) -> void:
-	if not event.is_echo() and event.is_action_pressed('jump.' + str(playerID)) and state != STUCK:
-		state = PRE_JUMP
-		jumpEarlyWindowTimer = 0.0
+	if state != DEAD:
+		if not event.is_echo() and event.is_action_pressed('jump.' + str(playerID)) and state != STUCK:
+			state = PRE_JUMP
+			jumpEarlyWindowTimer = 0.0
 
-	if not event.is_echo() and event.is_action_pressed('dive.' + str(playerID)) and not is_on_floor(): # do the dive
-		state = DIVING
-		_set_hitbox(true)
+		if state != HIT and not event.is_echo() and event.is_action_pressed('dive.' + str(playerID)) and not is_on_floor(): # do the dive
+			state = DIVING
+			_set_hitbox(true)
 
 func _note_bounce_volumes():
 	var barTime = MusicPlayer.get_child(0).get_playback_position()
@@ -154,8 +167,11 @@ func _die():
 		$YellSound.play()
 
 func _restart_me():
+	state = BOUNCING
 	velocity = Vector3(0,0,0)
-	position = Vector3(0,3,0)
+	position = Vector3(Global.rng.randf_range(-0.1, 0.1),3,Global.rng.randf_range(-0.1, 0.1))
+	hitPercent = 0.0
+	player_percent_changed.emit(playerID, hitPercent)
 
 # Angle the player based on the stick/arrows
 func _set_angle():
@@ -185,21 +201,36 @@ func _calc_diving_velocity():
 	velocity.y = -diveVelocity
 	velocity.x = (rotation.z * diveVelocity)
 	velocity.z = (-rotation.x * diveVelocity)
+	if playerOpponent.global_position.x < global_position.x \
+		and global_position.x - 10.0 < playerOpponent.global_position.x:
+			velocity.x -= 10.0
+	elif global_position.x < playerOpponent.global_position.x \
+		and playerOpponent.global_position.x < global_position.x + 10.0:
+			velocity.x += 10.0
+	if playerOpponent.global_position.z < global_position.z \
+		and global_position.z - 10.0 < playerOpponent.global_position.z:
+			velocity.z -= 10.0
+	elif global_position.z < playerOpponent.global_position.z \
+		and playerOpponent.global_position.z < global_position.z + 10.0:
+			velocity.z += 10.0
 
 func _calc_hit_velocity():
 	velocity = lastHitVector
 
 func _on_hurtbox_area_entered(area: Area3D) -> void:
-	var groups = area.get_groups()
-	if groups.find("Hitbox") != -1 and area.get_parent_node_3d().name != $Hitbox.get_parent_node_3d().name:
-		state = HIT
-		$Hitbox.set_deferred("monitorable", false)
-		var hitVelocity = area.get_parent_node_3d().velocity
-		lastHitVector = Vector3(hitVelocity.x, -hitVelocity.y,hitVelocity.z)
-		var explosionInstance = explosionScene.instantiate()
-		explosionInstance.position = position
-		explosionInstance.position.y -= .5
-		get_tree().get_root().add_child(explosionInstance)
+	if state != DEAD:
+		var groups = area.get_groups()
+		if groups.find("Hitbox") != -1 and area.get_parent_node_3d().name != $Hitbox.get_parent_node_3d().name:
+			state = HIT
+			hitPercent += Global.rng.randf_range(0.05, 0.2)
+			player_percent_changed.emit(playerID, hitPercent)
+			$Hitbox.set_deferred("monitorable", false)
+			var hitVelocity = area.get_parent_node_3d().velocity * hitPercent
+			lastHitVector = Vector3(hitVelocity.x, -hitVelocity.y,hitVelocity.z)
+			var explosionInstance = explosionScene.instantiate()
+			explosionInstance.position = position
+			explosionInstance.position.y -= .5
+			get_tree().get_root().add_child(explosionInstance)
 		
 func _set_hitbox(x: bool):
 	$Hitbox.monitorable = x
