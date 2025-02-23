@@ -79,8 +79,8 @@ func _on_joy_connection_changed(_device: int, connected: bool) -> void:
 
 func get_winner():
 	if numDeathsTotalArr[0] > numDeathsTotalArr[1]:
-		return "PLAYER 0"
-	elif numDeathsTotalArr[1] > numDeathsTotalArr[0]:
 		return "PLAYER 1"
+	elif numDeathsTotalArr[1] > numDeathsTotalArr[0]:
+		return "PLAYER 0"
 	else:
 		return "NOBODY?!"
