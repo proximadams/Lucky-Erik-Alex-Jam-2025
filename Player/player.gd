@@ -207,7 +207,7 @@ func _on_hurtbox_area_entered(area: Area3D) -> void:
 	if groups.find("Hitbox") != -1 and area.get_parent_node_3d().name != $Hitbox.get_parent_node_3d().name:
 		state = HIT
 		$Hitbox.set_deferred("monitorable", false)
-		var hitVelocity = area.get_parent_node_3d().velocity
+		var hitVelocity = area.get_parent_node_3d().velocity * 0.3
 		lastHitVector = Vector3(hitVelocity.x, -hitVelocity.y,hitVelocity.z)
 		var explosionInstance = explosionScene.instantiate()
 		explosionInstance.position = position
