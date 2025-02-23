@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cnusqcounn7h4"]
+[gd_scene load_steps=20 format=3 uid="uid://cnusqcounn7h4"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_lqg1k"]
 [ext_resource type="PackedScene" uid="uid://dk1afjd68iofm" path="res://UI/CountDown.tscn" id="2_vnxen"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://bdvq1nuj5gsiv" path="res://UI/Themes/LabelTheme.tres" id="6_qbgtb"]
 [ext_resource type="PackedScene" uid="uid://p05bxnmo0rp3" path="res://Environments/Cookie/world_environmentcookie.tscn" id="7_8ah4w"]
 [ext_resource type="PackedScene" uid="uid://btnw48qd2ao8o" path="res://Environments/Cookie/Donuts/SM_Donut_01.fbx" id="7_mqbf7"]
+[ext_resource type="PackedScene" uid="uid://c42wpyf1s1f5x" path="res://Environments/Cookie/truffle.tscn" id="7_xi7ex"]
 [ext_resource type="Material" uid="uid://51ri6s8fewk3" path="res://Environments/Cookie/Donuts/M_Donut.tres" id="8_lp1nh"]
 [ext_resource type="PackedScene" uid="uid://bfsh62uhsiq3x" path="res://Environments/Cookie/Donuts/SM_Donut_02.fbx" id="9_g8kdm"]
 [ext_resource type="PackedScene" uid="uid://cyaor2035kgka" path="res://Environments/Cookie/Donuts/SM_Donut_03.fbx" id="10_xb1nj"]
@@ -81,6 +82,53 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
 colour = Color(0.971812, 0.860267, 0.747942, 1)
 floorPath = NodePath("../Floor")
 playerID = 1
+
+[node name="Truffle" parent="." instance=ExtResource("7_xi7ex")]
+
+[node name="visual2" parent="Truffle/TruffleNode3D" index="1"]
+visible = false
+
+[node name="visual3" parent="Truffle/TruffleNode3D" index="2"]
+visible = false
+
+[node name="visual4" parent="Truffle/TruffleNode3D" index="3"]
+visible = false
+
+[node name="Truffle2" parent="." instance=ExtResource("7_xi7ex")]
+timeOffset = 1.0
+
+[node name="visual1" parent="Truffle2/TruffleNode3D" index="0"]
+visible = false
+
+[node name="visual3" parent="Truffle2/TruffleNode3D" index="2"]
+visible = false
+
+[node name="visual4" parent="Truffle2/TruffleNode3D" index="3"]
+visible = false
+
+[node name="Truffle3" parent="." instance=ExtResource("7_xi7ex")]
+timeOffset = 2.0
+
+[node name="visual1" parent="Truffle3/TruffleNode3D" index="0"]
+visible = false
+
+[node name="visual2" parent="Truffle3/TruffleNode3D" index="1"]
+visible = false
+
+[node name="visual4" parent="Truffle3/TruffleNode3D" index="3"]
+visible = false
+
+[node name="Truffle4" parent="." instance=ExtResource("7_xi7ex")]
+timeOffset = 3.0
+
+[node name="visual1" parent="Truffle4/TruffleNode3D" index="0"]
+visible = false
+
+[node name="visual2" parent="Truffle4/TruffleNode3D" index="1"]
+visible = false
+
+[node name="visual3" parent="Truffle4/TruffleNode3D" index="2"]
+visible = false
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("7_8ah4w")]
 
@@ -220,6 +268,10 @@ grow_vertical = 0
 theme = SubResource("Theme_bk8hy")
 
 [editable path="Floor/SM_Skybox"]
+[editable path="Truffle"]
+[editable path="Truffle2"]
+[editable path="Truffle3"]
+[editable path="Truffle4"]
 [editable path="WorldEnvironment"]
 [editable path="WorldEnvironment/SM_CookiePlatform"]
 [editable path="WorldEnvironment/SM_IceCreamMint"]

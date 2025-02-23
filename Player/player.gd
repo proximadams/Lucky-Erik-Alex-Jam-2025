@@ -226,15 +226,32 @@ func _calc_diving_velocity():
 func _calc_hit_velocity():
 	velocity = lastHitVector
 
+func handle_truffle_hit() -> void:
+	var randomX = Global.rng.randf_range(0.0, 50.0)
+	state = HIT
+	hitPercent += Global.rng.randf_range(0.05, 0.2)
+	player_percent_changed.emit(playerID, hitPercent)
+	var hitVelocity = Vector3(randomX, -50.0, 50.0 - randomX) * hitPercent
+	var explosionInstance = explosionScene.instantiate()
+	lastHitVector = Vector3(hitVelocity.x, -hitVelocity.y,hitVelocity.z)
+	explosionInstance.position = position
+	explosionInstance.position.y -= .5
+	get_tree().get_root().add_child(explosionInstance)
+
 func _on_hurtbox_area_entered(area: Area3D) -> void:
-	if state != DEAD:
+	if state != DEAD and is_instance_valid(area):
 		var groups = area.get_groups()
 		if groups.find("Hitbox") != -1 and area.get_parent_node_3d().name != $Hitbox.get_parent_node_3d().name:
 			state = HIT
 			hitPercent += Global.rng.randf_range(0.05, 0.2)
 			player_percent_changed.emit(playerID, hitPercent)
 			$Hitbox.set_deferred("monitorable", false)
-			var hitVelocity = area.get_parent_node_3d().velocity * hitPercent
+			var hitVelocity
+			if 'Player' in area.get_parent_node_3d().name:
+				hitVelocity = area.get_parent_node_3d().velocity * hitPercent
+			else:
+				var randomX = Global.rng.randf_range(0.0, 10.0)
+				hitVelocity = Vector3(randomX, 0.0, 10.0 - randomX) * hitPercent
 			lastHitVector = Vector3(hitVelocity.x, -hitVelocity.y,hitVelocity.z)
 			var explosionInstance = explosionScene.instantiate()
 			explosionInstance.position = position
