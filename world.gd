@@ -1,10 +1,14 @@
 extends Node3D
 
+var roundFinishedTimerRes: PackedScene = load('res://Environments/RoundFinishedTimer.tscn')
+
 const ROUND_TIME = 30.0
 
 var currentRound = 1
 var numDeathsArr = [0, 0]
 var timeRemaining = ROUND_TIME
+
+@export var nextRoundScene = ''
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,6 +40,9 @@ func game_over():
 		$HUD/WinnerLabel.text = roundPrefix + 'TIE!'
 	Global.numDeathsTotalArr[0] += numDeathsArr[0]
 	Global.numDeathsTotalArr[1] += numDeathsArr[1]
+	var roundFinishedTimerInst = roundFinishedTimerRes.instantiate()
+	add_child(roundFinishedTimerInst)
+	roundFinishedTimerInst.nextRoundScene = nextRoundScene
 	get_tree().paused = true
 
 func _process(delta: float) -> void:

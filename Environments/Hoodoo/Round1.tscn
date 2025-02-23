@@ -53,6 +53,7 @@ Panel/styles/panel = SubResource("StyleBoxFlat_cwkv4")
 
 [node name="Round1" type="Node3D"]
 script = ExtResource("1_0e4qq")
+nextRoundScene = "res://Environments/Cookie/Round2.tscn"
 
 [node name="CountDown" parent="." instance=ExtResource("2_wyfdr")]
 
