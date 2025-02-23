@@ -1,5 +1,7 @@
 extends Node
 
+const USER_SETTINGS_FILE_PATH = 'user://settings.ini'
+
 var rng
 var yellSounds = [
 	load('res://SoundEffects/Unmixed/yellSound1.wav'),
@@ -10,14 +12,30 @@ var yellSounds = [
 	load('res://SoundEffects/Unmixed/yellSound6.wav'),
 ]
 
+var musicVolume = 1.0# range between 0.0 and 1.0 (inclusive)
 var numDeathsTotalArr = [0, 0]
 var numDevicesConnected = 0
-var musicVolume = 1.0# range between 0.0 and 1.0 (inclusive)
+var config = ConfigFile.new()
 
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
 	var _res = Input.connect('joy_connection_changed', _on_joy_connection_changed)
+	_init_settings()
+
+func _init_settings():
+	if not FileAccess.file_exists(USER_SETTINGS_FILE_PATH):
+		config.set_value('volume', 'music', 1.0)
+		config.set_value('volume', 'sound_effects', 1.0)
+		config.save(USER_SETTINGS_FILE_PATH)
+	else:
+		config.load(USER_SETTINGS_FILE_PATH)
+		musicVolume = config.get_value('volume', 'music')
+		refresh_music_volume()
+
+func save_setting_music_volume():
+	config.set_value('volume', 'music', musicVolume)
+	config.save(USER_SETTINGS_FILE_PATH)
 
 func get_random_yell_sound():
 	var index = rng.randi_range(0, yellSounds.size() -2)

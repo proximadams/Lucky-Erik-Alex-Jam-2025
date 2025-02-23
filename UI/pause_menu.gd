@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func set_music_volume(value: float) -> void:
 	Global.set_music_volume(value / 100.0)
+	Global.save_setting_music_volume()
 
 func grab_focus_unpause_button() -> void:
 	$Control/VBoxContainer/ButtonUnpause.grab_focus()
@@ -28,6 +29,7 @@ func _pause() -> void:
 	tree.paused = true
 	prevFocus = tree.get_root().gui_get_focus_owner()
 	grab_focus_unpause_button()
+	$Control/VBoxContainer/HBoxContainerMusic/HSlider.value = Global.musicVolume * 100.0
 
 func _toggle_pause() -> void:
 	if visible:
