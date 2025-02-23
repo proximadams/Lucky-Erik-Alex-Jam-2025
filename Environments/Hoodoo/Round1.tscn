@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://world.gd" id="1_0e4qq"]
 [ext_resource type="Script" path="res://Environments/Hoodoo/floor.gd" id="2_n6xlw"]
-[ext_resource type="PackedScene" uid="uid://dk1afjd68iofm" path="res://UI/CountDown.tscn" id="2_wyfdr"]
+[ext_resource type="PackedScene" path="res://UI/CountDown.tscn" id="2_wyfdr"]
 [ext_resource type="PackedScene" uid="uid://djyqk7xmvc81i" path="res://Environments/Hoodoo/SM_MainPlatform2.fbx" id="3_5t6qs"]
 [ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environments/Hoodoo/SM_Skybox.fbx" id="4_4pnhd"]
 [ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environments/Hoodoo/T_Skybox.png" id="5_umqud"]
@@ -196,12 +196,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bkda3")
 surface_material_override/1 = SubResource("StandardMaterial3D_mywqs")
 surface_material_override/2 = SubResource("StandardMaterial3D_5apvl")
 surface_material_override/4 = SubResource("StandardMaterial3D_p88mg")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.535587, -0.56884, -0.624154, 0.0277995, -0.726822, 0.686264, -0.844022, -0.384905, -0.373463, 0, 7.27007, 0)
-light_color = Color(1, 0.792472, 0.796286, 1)
-light_energy = 0.1
-shadow_enabled = true
 
 [editable path="Floor/SM_Skybox"]
 [editable path="SM_HoodoEnviro"]
