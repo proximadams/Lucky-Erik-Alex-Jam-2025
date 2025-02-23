@@ -4,7 +4,7 @@ extends StaticBody3D
 
 var playTimer = 0.0
 
-const SHRINK_SPEED_MULT = 0.01
+const SHRINK_SPEED_MULT = 0.03
 
 func _process(delta: float) -> void:
 	playTimer += delta
