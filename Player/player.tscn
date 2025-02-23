@@ -251,22 +251,27 @@ script = ExtResource("1_ixvv2")
 explosionScene = ExtResource("2_43kq7")
 
 [node name="BounceSmall1Sound" parent="." instance=ExtResource("2_s5pna")]
+process_mode = 3
 volume_db = -30.0
 autoplay = false
 
 [node name="Note1Sound" parent="." instance=ExtResource("2_s5pna")]
+process_mode = 3
 stream = ExtResource("3_23bbc")
 autoplay = false
 
 [node name="Note2Sound" parent="." instance=ExtResource("2_s5pna")]
+process_mode = 3
 stream = ExtResource("4_fscw0")
 autoplay = false
 
 [node name="Note3Sound" parent="." instance=ExtResource("2_s5pna")]
+process_mode = 3
 stream = ExtResource("5_ecl7q")
 autoplay = false
 
 [node name="YellSound" parent="." instance=ExtResource("2_s5pna")]
+process_mode = 3
 stream = ExtResource("6_tk1wj")
 autoplay = false
 

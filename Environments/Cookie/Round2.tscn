@@ -32,6 +32,7 @@ script = ExtResource("1_lqg1k")
 nextRoundScene = "res://Environments/Cookie/Round1.tscn"
 
 [node name="CountDown" parent="." instance=ExtResource("2_vnxen")]
+round = 2
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
