@@ -14,7 +14,7 @@ var yellSounds = [
 ]
 
 var musicVolume = 1.0# range between 0.0 and 1.0 (inclusive)
-var sfxVolume = 1.0
+var sfxVolume = 1.0# range between 0.0 and 1.0 (inclusive)
 var numDeathsTotalArr = [0, 0]
 var numDevicesConnected = 0
 var config = ConfigFile.new()

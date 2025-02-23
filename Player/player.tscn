@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bfe8ccb4md8k8" path="res://SoundEffects/Mixed/BounceNote2.mp3" id="4_fscw0"]
 [ext_resource type="AudioStream" uid="uid://ld6lmw3ipntl" path="res://SoundEffects/Mixed/BounceNote3.mp3" id="5_ecl7q"]
 [ext_resource type="AudioStream" uid="uid://c6guc21w8rumy" path="res://SoundEffects/Unmixed/yellSound1.wav" id="6_tk1wj"]
-[ext_resource type="Material" path="res://Player/Pogo/M_PogoYellow.tres" id="7_8i3vx"]
+[ext_resource type="Material" uid="uid://bseiq1g37wfol" path="res://Player/Pogo/M_PogoYellow.tres" id="7_8i3vx"]
 [ext_resource type="Material" uid="uid://uni1heob0piv" path="res://Player/Pogo/M_PogoPurple.tres" id="8_66mpi"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bvhw4"]
