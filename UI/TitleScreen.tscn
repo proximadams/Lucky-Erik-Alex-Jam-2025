@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkuvfiredapns"]
+[gd_scene load_steps=7 format=3 uid="uid://dkuvfiredapns"]
 
 [ext_resource type="Script" path="res://UI/title_screen.gd" id="1_o0vp8"]
 [ext_resource type="Texture2D" uid="uid://beph7tvfly38t" path="res://UI/TitleImage.png" id="2_308d5"]
 [ext_resource type="Theme" uid="uid://b807bm2g6mjc8" path="res://UI/Themes/ButtonTheme.tres" id="3_d1n7v"]
-[ext_resource type="Texture2D" uid="uid://cbyeenvkdf3g" path="res://UI/ControlsScreen.png" id="3_ea5o3"]
+[ext_resource type="Texture2D" uid="uid://0dnw0ptxjc0r" path="res://UI/Controls_Screen_0.png" id="4_l6lil"]
+[ext_resource type="Texture2D" uid="uid://bdn437voeooon" path="res://UI/Controls_Screen_1.png" id="5_si4c3"]
+[ext_resource type="Texture2D" uid="uid://bsu31pfihd6xf" path="res://UI/Controls_Screen_2.png" id="6_vhtuf"]
 
 [node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource("1_o0vp8")
@@ -41,18 +43,52 @@ layout_mode = 2
 theme = ExtResource("3_d1n7v")
 text = "Controls"
 
-[node name="ControlsTextureRect" type="TextureRect" parent="."]
+[node name="Controls" type="Control" parent="."]
 visible = false
 show_behind_parent = true
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_ea5o3")
+
+[node name="ControlsTextureRect0" type="TextureRect" parent="Controls"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_l6lil")
 expand_mode = 5
 
-[node name="BackButton" type="Button" parent="ControlsTextureRect"]
+[node name="ControlsTextureRect1" type="TextureRect" parent="Controls"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_si4c3")
+expand_mode = 5
+
+[node name="ControlsTextureRect2" type="TextureRect" parent="Controls"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_vhtuf")
+expand_mode = 5
+
+[node name="BackButton" type="Button" parent="Controls"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -66,7 +102,8 @@ theme = ExtResource("3_d1n7v")
 text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ControlsButton" to="ControlsTextureRect/BackButton" method="grab_focus"]
-[connection signal="pressed" from="VBoxContainer/ControlsButton" to="ControlsTextureRect" method="set_visible" binds= [true]]
-[connection signal="pressed" from="ControlsTextureRect/BackButton" to="VBoxContainer/StartButton" method="grab_focus"]
-[connection signal="pressed" from="ControlsTextureRect/BackButton" to="ControlsTextureRect" method="set_visible" binds= [false]]
+[connection signal="pressed" from="VBoxContainer/ControlsButton" to="." method="refresh_controller_instructions"]
+[connection signal="pressed" from="VBoxContainer/ControlsButton" to="Controls/BackButton" method="grab_focus"]
+[connection signal="pressed" from="VBoxContainer/ControlsButton" to="Controls" method="set_visible" binds= [true]]
+[connection signal="pressed" from="Controls/BackButton" to="VBoxContainer/StartButton" method="grab_focus"]
+[connection signal="pressed" from="Controls/BackButton" to="Controls" method="set_visible" binds= [false]]
