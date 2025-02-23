@@ -6,6 +6,7 @@ var timeLeftCurrentAnimation = 0.0
 func _pick_animation() -> void:
 	var randomAnimationIndex = Global.rng.randi_range(1, 3)
 	$AnimationPlayer.play('a' + str(randomAnimationIndex))
+	$AnimationPlayer.seek(Global.rng.randf_range(0.0, 0.5))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
