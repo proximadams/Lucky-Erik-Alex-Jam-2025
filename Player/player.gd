@@ -30,7 +30,7 @@ const SPEED = 10.0
 const SPEED_MULT_SHALLOW_BOUNCE = 1.5
 const SPEED_MULT_JUMP = 0.5
 const VOLUME_SILENT = -80.0
-const VOLUME_NOTE_LOUD = 0.0
+var sfxVolume = 0.0
 
 var didJumpEarly = false
 var numJumpsSoFar = 0
@@ -91,6 +91,7 @@ func _movement(delta: float):
 
 		if state != GROUNDED and state != STUCK:
 			$AnimationPlayer.play('SquishJump')
+			$BounceSmall1Sound.volume_db = Global.get_sfx_db()
 			$BounceSmall1Sound.play()
 			$Note1Sound.play()
 			$Note2Sound.play()
@@ -139,23 +140,23 @@ func _note_bounce_volumes():
 	while 5.3333333 < barTime:
 		barTime -= 5.3333333
 	if barTime < secondsInBar:
-		$Note1Sound.volume_db = VOLUME_NOTE_LOUD
+		$Note1Sound.volume_db = Global.get_sfx_db()
 		$Note2Sound.volume_db = VOLUME_SILENT
 		$Note3Sound.volume_db = VOLUME_SILENT
 	elif barTime < secondsInBar * 2:
 		$Note1Sound.volume_db = VOLUME_SILENT
-		$Note2Sound.volume_db = VOLUME_NOTE_LOUD
+		$Note2Sound.volume_db = Global.get_sfx_db()
 		$Note3Sound.volume_db = VOLUME_SILENT
 	elif barTime < secondsInBar * 3:
-		$Note1Sound.volume_db = VOLUME_NOTE_LOUD
+		$Note1Sound.volume_db = Global.get_sfx_db()
 		$Note2Sound.volume_db = VOLUME_SILENT
 		$Note3Sound.volume_db = VOLUME_SILENT
 	elif barTime < secondsInBar * 4:
 		$Note1Sound.volume_db = VOLUME_SILENT
 		$Note2Sound.volume_db = VOLUME_SILENT
-		$Note3Sound.volume_db = VOLUME_NOTE_LOUD
+		$Note3Sound.volume_db = Global.get_sfx_db()
 	else:
-		$Note1Sound.volume_db = VOLUME_NOTE_LOUD
+		$Note1Sound.volume_db = Global.get_sfx_db()
 		$Note2Sound.volume_db = VOLUME_SILENT
 		$Note3Sound.volume_db = VOLUME_SILENT
 
@@ -163,7 +164,8 @@ func _die():
 	if state != DEAD:
 		state = DEAD
 		player_died.emit(playerID)
-		$YellSound.stream = Global.get_random_yell_sound()
+		$YellSound.stream = Global.get_random_yell_sound() # sfx
+		$YellSound.volume_db = Global.get_sfx_db()
 		$YellSound.play()
 
 func _restart_me():

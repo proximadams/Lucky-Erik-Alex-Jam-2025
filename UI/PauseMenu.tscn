@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1b1vntcpy4qe"]
+[gd_scene load_steps=5 format=3 uid="uid://b2elgah7x37b"]
 
 [ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_fuxeg"]
 [ext_resource type="Theme" uid="uid://b807bm2g6mjc8" path="res://UI/Themes/ButtonTheme.tres" id="1_m0guu"]
@@ -102,5 +102,6 @@ theme_override_font_sizes/font_size = 64
 text = "Title screen"
 
 [connection signal="value_changed" from="Control/VBoxContainer/HBoxContainerMusic/HSlider" to="." method="set_music_volume"]
+[connection signal="value_changed" from="Control/VBoxContainer/HBoxContainerSFX/HSlider" to="." method="set_sfx_volume"]
 [connection signal="pressed" from="Control/VBoxContainer/ButtonUnpause" to="." method="unpause"]
 [connection signal="pressed" from="Control/VBoxContainer/ButtonTitleScreen" to="." method="go_to_title_screen"]
