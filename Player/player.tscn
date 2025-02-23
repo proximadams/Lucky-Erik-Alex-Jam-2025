@@ -1,10 +1,12 @@
-[gd_scene load_steps=29 format=4 uid="uid://c4yjmdym54n72"]
+[gd_scene load_steps=31 format=4 uid="uid://c4yjmdym54n72"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_ixvv2"]
 [ext_resource type="PackedScene" uid="uid://b72gt2cvwv77a" path="res://Player/Effects/Explosion.tscn" id="2_43kq7"]
 [ext_resource type="PackedScene" uid="uid://mup50pcmuicx" path="res://SoundEffects/BounceSmall1Sound.tscn" id="2_s5pna"]
 [ext_resource type="AudioStream" uid="uid://dedv6mkbq4l45" path="res://SoundEffects/Mixed/BounceNote1.mp3" id="3_23bbc"]
+[ext_resource type="AudioStream" uid="uid://ba8mk4kwranm4" path="res://SoundEffects/Unmixed/diveLand.wav" id="3_ehxp7"]
 [ext_resource type="AudioStream" uid="uid://bfe8ccb4md8k8" path="res://SoundEffects/Mixed/BounceNote2.mp3" id="4_fscw0"]
+[ext_resource type="AudioStream" uid="uid://dhkdfjygxnri" path="res://SoundEffects/Unmixed/diveStart2.wav" id="4_ieco4"]
 [ext_resource type="AudioStream" uid="uid://ld6lmw3ipntl" path="res://SoundEffects/Mixed/BounceNote3.mp3" id="5_ecl7q"]
 [ext_resource type="AudioStream" uid="uid://c6guc21w8rumy" path="res://SoundEffects/Unmixed/yellSound1.wav" id="6_tk1wj"]
 [ext_resource type="Material" uid="uid://bseiq1g37wfol" path="res://Player/Pogo/M_PogoYellow.tres" id="7_8i3vx"]
@@ -249,6 +251,12 @@ _data = {
 collision_layer = 0
 script = ExtResource("1_ixvv2")
 explosionScene = ExtResource("2_43kq7")
+
+[node name="DiveLand" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ehxp7")
+
+[node name="DiveStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ieco4")
 
 [node name="BounceSmall1Sound" parent="." instance=ExtResource("2_s5pna")]
 process_mode = 3

@@ -107,6 +107,8 @@ func _movement(delta: float):
 				)
 			else:
 				state = STUCK
+				$DiveLand.volume_db = Global.get_sfx_db()
+				$DiveLand.play()
 		
 		if state == PRE_JUMP and didJumpEarly:
 			state = JUMPING
@@ -133,6 +135,8 @@ func _input(event: InputEvent) -> void:
 		if state != HIT and not event.is_echo() and event.is_action_pressed('dive.' + str(playerID)) and not is_on_floor(): # do the dive
 			state = DIVING
 			_set_hitbox(true)
+			$DiveStart.volume_db = Global.get_sfx_db()
+			$DiveStart.play()
 
 func _note_bounce_volumes():
 	var barTime = MusicPlayer.get_child(0).get_playback_position()
