@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environments/Hoodoo/SM_Skybox.fbx" id="3_6kc3c"]
 [ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environments/Hoodoo/T_Skybox.png" id="4_niowa"]
 [ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="5_e8qiw"]
-[ext_resource type="PackedScene" path="res://Environments/Concert/world_environment_concert.tscn" id="6_ylkp5"]
+[ext_resource type="PackedScene" uid="uid://bk7x8jq15lla6" path="res://Environments/Concert/world_environment_concert.tscn" id="6_ylkp5"]
 [ext_resource type="Theme" uid="uid://bdvq1nuj5gsiv" path="res://UI/Themes/LabelTheme.tres" id="7_g06of"]
 [ext_resource type="PackedScene" uid="uid://bv4rjs0p40v6x" path="res://Environments/Concert/SM_Platform01.fbx" id="8_opbj1"]
 
@@ -55,7 +55,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 4, 5, 7, 8, 12),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 28, 0), Vector3(0, 29.5, 0), Vector3(0, 29.5, 0), Vector3(0, 28, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, -25, 0), Vector3(0, 28, 0), Vector3(0, 29.5, 0), Vector3(0, 29.5, 0), Vector3(0, 28, 0), Vector3(0, -25, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -64,10 +64,10 @@ tracks/1/path = NodePath("SM_Platform02:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 8, 12, 13, 15, 16),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 8, 12, 13, 15, 16, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 28, 0), Vector3(0, 29.5, 0), Vector3(0, 29.5, 0), Vector3(0, 28, 0)]
+"values": [Vector3(0, -25, 0), Vector3(0, -25, 0), Vector3(0, 28, 0), Vector3(0, 29.5, 0), Vector3(0, 29.5, 0), Vector3(0, 28, 0), Vector3(0, -25, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -79,7 +79,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 4, 8, 9, 11, 12, 16),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 28, 0), Vector3(0, 29.5, 0), Vector3(0, 29.5, 0), Vector3(0, 28, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, -25, 0), Vector3(0, -25, 0), Vector3(0, 28, 0), Vector3(0, 29.5, 0), Vector3(0, 29.5, 0), Vector3(0, 28, 0), Vector3(0, -25, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -91,7 +91,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 12, 16, 17, 19, 20, 24),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 28, 0), Vector3(0, 29.5, 0), Vector3(0, 29.5, 0), Vector3(0, 28, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, -25, 0), Vector3(0, -25, 0), Vector3(0, 28, 0), Vector3(0, 29.5, 0), Vector3(0, 29.5, 0), Vector3(0, 28, 0), Vector3(0, -25, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_hdq6k"]
