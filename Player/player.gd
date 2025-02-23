@@ -237,5 +237,3 @@ func _set_hitbox(x: bool):
 
 func is_hitbox_on():
 	return $Hitbox.monitorable
-
-# TODO if you hit another player you should bounce back in the direction of the centre of the floor/world
