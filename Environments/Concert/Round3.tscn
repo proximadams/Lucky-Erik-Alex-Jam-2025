@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cr6pp3n24feg4"]
+[gd_scene load_steps=16 format=3 uid="uid://cr6pp3n24feg4"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_nq1y7"]
 [ext_resource type="PackedScene" uid="uid://dk1afjd68iofm" path="res://UI/CountDown.tscn" id="2_omlaj"]
@@ -27,6 +27,117 @@ border_color = Color(0.466057, 0.236093, 0.373678, 1)
 
 [sub_resource type="Theme" id="Theme_bk8hy"]
 Panel/styles/panel = SubResource("StyleBoxFlat_cwkv4")
+
+[sub_resource type="Animation" id="Animation_mcdk5"]
+resource_name = "Animate"
+length = 24.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SM_Platform01:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 5, 7, 8, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 28, 0), Vector3(0, 29.5, 0), Vector3(0, 29.5, 0), Vector3(0, 28, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SM_Platform02:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8, 12, 13, 15, 16),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 28, 0), Vector3(0, 29.5, 0), Vector3(0, 29.5, 0), Vector3(0, 28, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SM_Platform03:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4, 8, 9, 11, 12, 16),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 28, 0), Vector3(0, 29.5, 0), Vector3(0, 29.5, 0), Vector3(0, 28, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SM_Platform04:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 12, 16, 17, 19, 20, 24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 28, 0), Vector3(0, 29.5, 0), Vector3(0, 29.5, 0), Vector3(0, 28, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hdq6k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SM_Platform01:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SM_Platform02:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SM_Platform03:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SM_Platform04:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xo5nk"]
+_data = {
+"Animate": SubResource("Animation_mcdk5"),
+"RESET": SubResource("Animation_hdq6k")
+}
 
 [node name="Round3" type="Node3D"]
 script = ExtResource("1_nq1y7")
@@ -145,17 +256,21 @@ theme = SubResource("Theme_bk8hy")
 [node name="MovingPlatforms" type="Node3D" parent="."]
 
 [node name="SM_Platform01" parent="MovingPlatforms" instance=ExtResource("8_opbj1")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 27.9628, 0)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 
 [node name="SM_Platform02" parent="MovingPlatforms" instance=ExtResource("8_opbj1")]
-transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0, 27.9628, 0)
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0, 0, 0)
 
 [node name="SM_Platform03" parent="MovingPlatforms" instance=ExtResource("8_opbj1")]
-transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, 0, 27.9628, 0)
+transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, 0, 0, 0)
 
 [node name="SM_Platform04" parent="MovingPlatforms" instance=ExtResource("8_opbj1")]
-transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, 0, 27.9628, 0)
+transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MovingPlatforms"]
+libraries = {
+"": SubResource("AnimationLibrary_xo5nk")
+}
+autoplay = "Animate"
 
 [editable path="Floor/SM_Skybox"]
