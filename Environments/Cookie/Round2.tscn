@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://cnusqcounn7h4"]
+[gd_scene load_steps=21 format=3 uid="uid://cnusqcounn7h4"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_lqg1k"]
-[ext_resource type="PackedScene" uid="uid://dk1afjd68iofm" path="res://UI/CountDown.tscn" id="2_vnxen"]
+[ext_resource type="PackedScene" path="res://UI/CountDown.tscn" id="2_vnxen"]
 [ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environments/Hoodoo/SM_Skybox.fbx" id="4_4fc2l"]
 [ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environments/Hoodoo/T_Skybox.png" id="5_kh030"]
 [ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="6_iwvby"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://i5i00hfb24tr" path="res://Environments/Cookie/Donuts/SM_Donut_04.fbx" id="11_gmbhd"]
 [ext_resource type="PackedScene" uid="uid://bo68rgc46esi6" path="res://Environments/Cookie/Donuts/SM_Donut_05.fbx" id="12_nuquj"]
 [ext_resource type="PackedScene" uid="uid://bre37tlq4o4d8" path="res://Environments/Cookie/Donuts/SM_Donut_06.fbx" id="13_bgl01"]
+[ext_resource type="PackedScene" uid="uid://nhx07m55kjlu" path="res://Environments/Cookie/Donuts/SM_Donut_07.fbx" id="15_sr8lf"]
+[ext_resource type="PackedScene" uid="uid://blk1gvi5km26u" path="res://Environments/Cookie/Donuts/SM_Donut_08.fbx" id="16_yiq6i"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_phmpv"]
 height = 100.0
@@ -66,7 +68,7 @@ light_size = 10.0
 spot_range = 100.0
 
 [node name="MainSpotlight" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 27.886, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 27.886, 3.57937)
 light_energy = 10.0
 shadow_enabled = true
 spot_range = 100.0
@@ -106,14 +108,14 @@ transform = Transform3D(-3.78269, -0.321619, 2.09041, 0.86032, 3.67906, 2.12282,
 transform = Transform3D(84.692, 0, 0, 0, 84.692, 0, 0, 0, 84.692, -5.6825, 14.606, 27.6636)
 
 [node name="pTorus1" parent="WorldEnvironment/SM_IceCreamPink/SM_Donut_01" index="0"]
-transform = Transform3D(0.52072, -0.38423, 0.135347, 0.392544, 0.531987, 0, -0.108907, 0.0803609, 0.647134, 0.480467, 0.0229769, 0.163948)
+transform = Transform3D(0.52072, -0.38423, 0.135347, 0.392544, 0.531987, 0, -0.108907, 0.0803609, 0.647134, 0.478107, 0.0252521, 0.0738147)
 material_override = ExtResource("8_lp1nh")
 
 [node name="SM_Donut_02" parent="WorldEnvironment/SM_IceCreamPink/SM_Donut_01" instance=ExtResource("9_g8kdm")]
 transform = Transform3D(0.564805, 0, 0, 0, 0.564805, 0, 0, 0, 0.564805, 0.122267, 0.031472, 0.318843)
 
 [node name="pTorus2" parent="WorldEnvironment/SM_IceCreamPink/SM_Donut_01/SM_Donut_02" index="0"]
-transform = Transform3D(0.693114, -0.664162, -0.280147, 0.691866, 0.722026, 0, 0.202274, -0.193824, 0.959957, 0.606499, -0.0289958, 0.118976)
+transform = Transform3D(0.693114, -0.664162, -0.280147, 0.691866, 0.722026, 0, 0.202274, -0.193824, 0.959957, 0.606499, -0.0289958, 0.193805)
 material_override = ExtResource("8_lp1nh")
 
 [node name="SM_Donut_03" parent="WorldEnvironment/SM_IceCreamPink/SM_Donut_01/SM_Donut_02" instance=ExtResource("10_xb1nj")]
@@ -161,6 +163,11 @@ transform = Transform3D(-0.0636545, 0.284547, -1.58457, -0.60099, 1.46696, 0.287
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="DeathsLabel" type="Label" parent="HUD/P0"]
+layout_mode = 2
+theme = ExtResource("6_qbgtb")
+text = "P0 Deaths = 0"
+
 [node name="PercentLabel" type="Label" parent="HUD/P0"]
 layout_mode = 2
 theme = ExtResource("6_qbgtb")
@@ -173,6 +180,12 @@ anchor_right = 1.0
 offset_left = -485.0
 offset_bottom = 176.0
 grow_horizontal = 0
+
+[node name="DeathsLabel" type="Label" parent="HUD/P1"]
+layout_mode = 2
+theme = ExtResource("6_qbgtb")
+text = "P1 Deaths = 0"
+horizontal_alignment = 2
 
 [node name="PercentLabel" type="Label" parent="HUD/P1"]
 layout_mode = 2
@@ -219,6 +232,19 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_bk8hy")
 
+[node name="SM_Donut_07" parent="." instance=ExtResource("15_sr8lf")]
+transform = Transform3D(46.717, 0.415031, 0, -0.37378, 42.0737, 20.3056, 0.180387, -20.3048, 42.0754, 33.9129, -10.541, 34.4027)
+
+[node name="pTorus7" parent="SM_Donut_07" index="0"]
+material_override = ExtResource("8_lp1nh")
+
+[node name="SM_Donut_08" parent="." instance=ExtResource("16_yiq6i")]
+transform = Transform3D(-1.77151, -25.775, 37.9354, 0, 37.9637, 25.7943, -45.8633, 0.995584, -1.46529, -5.96506, 0.0287266, -6.78286)
+
+[node name="pTorus8" parent="SM_Donut_08" index="0"]
+transform = Transform3D(0.958479, -0.269302, 0.0937795, 0.138431, 0.726922, 0.672623, -0.249309, -0.631713, 0.734019, -0.151977, -0.334311, 0.492034)
+material_override = ExtResource("8_lp1nh")
+
 [editable path="Floor/SM_Skybox"]
 [editable path="WorldEnvironment"]
 [editable path="WorldEnvironment/SM_CookiePlatform"]
@@ -232,3 +258,5 @@ theme = SubResource("Theme_bk8hy")
 [editable path="WorldEnvironment/SM_IceCreamPink/SM_Donut_01/SM_Donut_02/SM_Donut_03/SM_Donut_04/SM_Donut_05/SM_Donut_06"]
 [editable path="WorldEnvironment/SM_PopsicleFudge"]
 [editable path="WorldEnvironment/SM_PopsicleRainbow"]
+[editable path="SM_Donut_07"]
+[editable path="SM_Donut_08"]
