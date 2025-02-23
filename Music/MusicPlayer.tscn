@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dba1orv1ubw7b"]
+[gd_scene load_steps=9 format=3 uid="uid://dba1orv1ubw7b"]
 
 [ext_resource type="AudioStream" uid="uid://duryyhm1egdwc" path="res://Music/Mixed/SongLayerBaseLoop.mp3" id="1_hvvek"]
+[ext_resource type="Script" path="res://Music/song_layer.gd" id="2_hoaci"]
 [ext_resource type="AudioStream" uid="uid://3g6wj4otsoi0" path="res://Music/Mixed/SongLayerSaxophoneLoop.mp3" id="2_tr8cu"]
 [ext_resource type="AudioStream" uid="uid://cn5x7mx6siq8x" path="res://Music/Mixed/SongLayerDrumKitLoop.mp3" id="3_1xiyr"]
 [ext_resource type="AudioStream" uid="uid://cmupq51tivroq" path="res://Music/Mixed/SongLayerVocalsLoop.mp3" id="4_c586p"]
@@ -63,7 +64,7 @@ step = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BaseLayer:volume_db")
+tracks/0/path = NodePath("BaseLayer:baseVolumeDB")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -75,11 +76,11 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SaxophoneLayer:volume_db")
+tracks/1/path = NodePath("SaxophoneLayer:baseVolumeDB")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 35, 40),
+"times": PackedFloat32Array(0, 35, 50),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [-80.0, -80.0, 0.0]
@@ -87,7 +88,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("DrumKitLayer:volume_db")
+tracks/2/path = NodePath("DrumKitLayer:baseVolumeDB")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -99,7 +100,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("VocalsLayer:volume_db")
+tracks/3/path = NodePath("VocalsLayer:baseVolumeDB")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -122,24 +123,31 @@ process_mode = 3
 stream = ExtResource("1_hvvek")
 autoplay = true
 parameters/looping = true
+script = ExtResource("2_hoaci")
 
 [node name="SaxophoneLayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_tr8cu")
 volume_db = -80.0
 autoplay = true
 parameters/looping = true
+script = ExtResource("2_hoaci")
+baseVolumeDB = -80.0
 
 [node name="DrumKitLayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_1xiyr")
 volume_db = -80.0
 autoplay = true
 parameters/looping = true
+script = ExtResource("2_hoaci")
+baseVolumeDB = -80.0
 
 [node name="VocalsLayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_c586p")
 volume_db = -80.0
 autoplay = true
 parameters/looping = true
+script = ExtResource("2_hoaci")
+baseVolumeDB = -80.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

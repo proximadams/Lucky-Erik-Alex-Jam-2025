@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1b1vntcpy4qe"]
+
+[ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_fuxeg"]
+[ext_resource type="Theme" uid="uid://b807bm2g6mjc8" path="res://UI/Themes/ButtonTheme.tres" id="1_m0guu"]
+[ext_resource type="Theme" uid="uid://bdvq1nuj5gsiv" path="res://UI/Themes/LabelTheme.tres" id="1_u47ki"]
+[ext_resource type="Theme" uid="uid://tiuomye6ijmp" path="res://UI/Themes/SliderTheme.tres" id="2_535ml"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+script = ExtResource("1_fuxeg")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5576.0
+offset_top = -5324.0
+offset_right = 4424.0
+offset_bottom = 4676.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.5
+offset_top = -25.0
+offset_right = 135.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainerMusic" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainerMusic"]
+layout_mode = 2
+theme = ExtResource("1_u47ki")
+theme_override_font_sizes/font_size = 50
+text = "Music volume  "
+horizontal_alignment = 2
+
+[node name="HSlider" type="HSlider" parent="Control/VBoxContainer/HBoxContainerMusic"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_535ml")
+step = 25.0
+value = 100.0
+tick_count = 5
+
+[node name="HBoxContainerSFX" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainerSFX"]
+layout_mode = 2
+theme = ExtResource("1_u47ki")
+theme_override_font_sizes/font_size = 50
+text = "Sound effects volume  "
+horizontal_alignment = 2
+
+[node name="HSlider" type="HSlider" parent="Control/VBoxContainer/HBoxContainerSFX"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_535ml")
+step = 25.0
+value = 100.0
+tick_count = 5
+
+[node name="ButtonUnpause" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_m0guu")
+theme_override_font_sizes/font_size = 64
+text = "Unpause"
+
+[node name="ButtonTitleScreen" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_m0guu")
+theme_override_font_sizes/font_size = 64
+text = "Title screen"
+
+[connection signal="value_changed" from="Control/VBoxContainer/HBoxContainerMusic/HSlider" to="." method="set_music_volume"]
+[connection signal="pressed" from="Control/VBoxContainer/ButtonUnpause" to="." method="unpause"]
+[connection signal="pressed" from="Control/VBoxContainer/ButtonTitleScreen" to="." method="go_to_title_screen"]

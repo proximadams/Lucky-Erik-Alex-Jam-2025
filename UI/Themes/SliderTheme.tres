@@ -1,0 +1,48 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://tiuomye6ijmp"]
+
+[ext_resource type="Texture2D" uid="uid://cp3ka0d5teim1" path="res://UI/Themes/GrabberSprite.png" id="1_h2x4p"]
+[ext_resource type="Texture2D" uid="uid://c7lw4pj7ralac" path="res://UI/Themes/GrabberSpriteHighlight.png" id="2_rq1d4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ufyj1"]
+bg_color = Color(1, 0.541176, 0.815686, 1)
+draw_center = false
+border_width_left = 6
+border_width_top = 20
+border_width_right = 6
+border_width_bottom = 20
+border_color = Color(1, 0.541176, 0.815686, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwddt"]
+bg_color = Color(1, 0.541176, 0.815686, 1)
+border_width_left = 6
+border_width_top = 20
+border_width_right = 6
+border_width_bottom = 20
+border_color = Color(1, 0.541176, 0.815686, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aq3mt"]
+bg_color = Color(1, 0.541176, 0.815686, 1)
+border_width_left = 6
+border_width_top = 20
+border_width_right = 6
+border_width_bottom = 20
+border_color = Color(0.466667, 0.235294, 0.372549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[resource]
+HSlider/icons/grabber = ExtResource("1_h2x4p")
+HSlider/icons/grabber_highlight = ExtResource("2_rq1d4")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_ufyj1")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_cwddt")
+HSlider/styles/slider = SubResource("StyleBoxFlat_aq3mt")

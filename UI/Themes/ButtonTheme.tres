@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://b807bm2g6mjc8"]
 
-[ext_resource type="FontFile" uid="uid://cmjwv7ccyiqyi" path="res://Themes/Bungee-Regular.ttf" id="1_ockik"]
+[ext_resource type="FontFile" uid="uid://cmjwv7ccyiqyi" path="res://UI/Themes/Bungee-Regular.ttf" id="1_ockik"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5py10"]
 bg_color = Color(0.447059, 0.184314, 0.458824, 1)

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environments/Hoodoo/SM_Skybox.fbx" id="4_4pnhd"]
 [ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environments/Hoodoo/T_Skybox.png" id="5_umqud"]
 [ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="6_dx8tj"]
-[ext_resource type="FontFile" uid="uid://cmjwv7ccyiqyi" path="res://Themes/Bungee-Regular.ttf" id="7_7oqr0"]
+[ext_resource type="FontFile" uid="uid://cmjwv7ccyiqyi" path="res://UI/Themes/Bungee-Regular.ttf" id="7_7oqr0"]
 [ext_resource type="PackedScene" uid="uid://bagy4yri1s7v4" path="res://Environments/Hoodoo/SM_BGPillar.fbx" id="8_0b1jv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_phmpv"]

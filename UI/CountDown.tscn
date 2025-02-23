@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dk1afjd68iofm"]
 
-[ext_resource type="Theme" uid="uid://bdvq1nuj5gsiv" path="res://Themes/LabelTheme.tres" id="1_fwpn2"]
+[ext_resource type="Theme" uid="uid://bdvq1nuj5gsiv" path="res://UI/Themes/LabelTheme.tres" id="1_fwpn2"]
 [ext_resource type="Script" path="res://UI/count_down.gd" id="1_wn7h6"]
 
 [sub_resource type="Animation" id="Animation_lntwc"]

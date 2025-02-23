@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://bdvq1nuj5gsiv"]
 
-[ext_resource type="FontFile" uid="uid://cmjwv7ccyiqyi" path="res://Themes/Bungee-Regular.ttf" id="1_cp6oo"]
+[ext_resource type="FontFile" uid="uid://cmjwv7ccyiqyi" path="res://UI/Themes/Bungee-Regular.ttf" id="1_cp6oo"]
 
 [resource]
 Label/font_sizes/font_size = 128
