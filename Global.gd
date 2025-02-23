@@ -10,6 +10,8 @@ var yellSounds = [
 	load('res://SoundEffects/Unmixed/yellSound6.wav'),
 ]
 
+var numDeathsTotalArr = [0, 0]
+
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
 	rng.randomize()

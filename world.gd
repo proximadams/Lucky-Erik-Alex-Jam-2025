@@ -1,6 +1,10 @@
 extends Node3D
 
+const ROUND_TIME = 3.0
+
+var currentRound = 1
 var numDeathsArr = [0, 0]
+var timeRemaining = ROUND_TIME
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,10 +26,22 @@ func player_percent_changed(playerID: int, percent: float) -> void:
 	$HUD.get_child(playerID).find_child('PercentLabel', false).text = str(percentInt) + '%'
 
 func game_over():
+	var roundPrefix = 'Round ' + str(currentRound) + ': '
 	$HUD/WinnerLabel.visible = true
 	if numDeathsArr[0] < numDeathsArr[1]:
-		$HUD/WinnerLabel.text = 'Player 0 Wins!'
+		$HUD/WinnerLabel.text = roundPrefix + 'Player 0 Wins!'
 	elif numDeathsArr[0] > numDeathsArr[1]:
-		$HUD/WinnerLabel.text = 'Player 1 Wins!'
+		$HUD/WinnerLabel.text = roundPrefix + 'Player 1 Wins!'
 	else:
-		$HUD/WinnerLabel.text = 'TIE!'
+		$HUD/WinnerLabel.text = roundPrefix + 'TIE!'
+	Global.numDeathsTotalArr[0] += numDeathsArr[0]
+	Global.numDeathsTotalArr[1] += numDeathsArr[1]
+	get_tree().paused = true
+
+func _process(delta: float) -> void:
+	if timeRemaining <= 0.0:
+		timeRemaining = 0.0
+		game_over()
+	else:
+		timeRemaining -= delta
+	$HUD/TimeBar.scale.x = timeRemaining / ROUND_TIME
