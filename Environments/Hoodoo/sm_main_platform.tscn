@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqqyvg1fsgj1w"]
+
+[ext_resource type="PackedScene" uid="uid://dpolitoa6n4wa" path="res://Environments/Hoodoo/SM_MainPlatform.fbx" id="1_lgptp"]
+[ext_resource type="Texture2D" uid="uid://bp6wtbyl8by5" path="res://Environments/Hoodoo/T_WIP_Texture.png" id="2_vdpep"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73m58"]
+albedo_texture = ExtResource("2_vdpep")
+
+[node name="SM_MainPlatform" instance=ExtResource("1_lgptp")]
+
+[node name="MainPlatform" parent="." index="0"]
+transform = Transform3D(1000, 0, 0, 0, 5000, 0, 0, 0, 1000, 0, -50, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_73m58")

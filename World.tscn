@@ -1,13 +1,13 @@
 [gd_scene load_steps=17 format=3 uid="uid://byh6xb4v8jlow"]
 
-[ext_resource type="Script" path="res://Environment/floor.gd" id="1_8reu6"]
+[ext_resource type="Script" path="res://Environments/Hoodoo/floor.gd" id="1_8reu6"]
 [ext_resource type="Script" path="res://world.gd" id="1_oh6od"]
-[ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environment/SM_Skybox.fbx" id="2_dp8aw"]
-[ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environment/T_Skybox.png" id="3_t73nb"]
+[ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environments/Hoodoo/SM_Skybox.fbx" id="2_dp8aw"]
+[ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environments/Hoodoo/T_Skybox.png" id="3_t73nb"]
 [ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="4_eiw2n"]
 [ext_resource type="FontFile" uid="uid://cmjwv7ccyiqyi" path="res://Themes/Bungee-Regular.ttf" id="6_78its"]
-[ext_resource type="PackedScene" uid="uid://djyqk7xmvc81i" path="res://Environment/SM_MainPlatform2.fbx" id="8_hgijc"]
-[ext_resource type="PackedScene" uid="uid://bagy4yri1s7v4" path="res://Environment/SM_BGPillar.fbx" id="8_nyc7j"]
+[ext_resource type="PackedScene" uid="uid://djyqk7xmvc81i" path="res://Environments/Hoodoo/SM_MainPlatform2.fbx" id="8_hgijc"]
+[ext_resource type="PackedScene" uid="uid://bagy4yri1s7v4" path="res://Environments/Hoodoo/SM_BGPillar.fbx" id="8_nyc7j"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_phmpv"]
 height = 100.0
