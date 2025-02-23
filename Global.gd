@@ -76,3 +76,11 @@ func _on_joy_connection_changed(_device: int, connected: bool) -> void:
 	if numDevicesConnected < 0:
 		# should never be called but just to be safe...
 		numDevicesConnected = 0
+
+func get_winner():
+	if numDeathsTotalArr[0] > numDeathsTotalArr[1]:
+		return "PLAYER 0"
+	elif numDeathsTotalArr[1] > numDeathsTotalArr[0]:
+		return "PLAYER 1"
+	else:
+		return "NOBODY?!"

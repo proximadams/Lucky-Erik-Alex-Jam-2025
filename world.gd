@@ -22,8 +22,6 @@ func _ready() -> void:
 func player_died(playerID: int) -> void:
 	if 0 <= playerID and playerID < numDeathsArr.size():
 		numDeathsArr[playerID] += 1
-		var textStr = 'P' + str(playerID) + ' Deaths = ' + str(numDeathsArr[playerID])
-		$HUD.get_child(playerID).find_child('DeathsLabel', false).text = textStr
 
 func player_percent_changed(playerID: int, percent: float) -> void:
 	var percentInt = round(percent * 100.0)

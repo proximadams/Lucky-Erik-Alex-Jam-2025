@@ -1,19 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://cnusqcounn7h4"]
+[gd_scene load_steps=12 format=3 uid="uid://661rmq0tnqho"]
 
-[ext_resource type="Script" path="res://world.gd" id="1_lqg1k"]
-[ext_resource type="PackedScene" path="res://UI/CountDown.tscn" id="2_vnxen"]
-[ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environments/Hoodoo/SM_Skybox.fbx" id="4_4fc2l"]
-[ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environments/Hoodoo/T_Skybox.png" id="5_kh030"]
-[ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="6_iwvby"]
-[ext_resource type="Theme" uid="uid://bdvq1nuj5gsiv" path="res://UI/Themes/LabelTheme.tres" id="6_qbgtb"]
-[ext_resource type="PackedScene" uid="uid://p05bxnmo0rp3" path="res://Environments/Cookie/world_environmentcookie.tscn" id="7_8ah4w"]
+[ext_resource type="Script" path="res://world.gd" id="1_nq1y7"]
+[ext_resource type="PackedScene" path="res://UI/CountDown.tscn" id="2_omlaj"]
+[ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environments/Hoodoo/SM_Skybox.fbx" id="3_6kc3c"]
+[ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environments/Hoodoo/T_Skybox.png" id="4_niowa"]
+[ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="5_e8qiw"]
+[ext_resource type="PackedScene" uid="uid://b3drgoqbior32" path="res://Environments/Concert/world_environment_concert.tscn" id="6_ylkp5"]
+[ext_resource type="Theme" uid="uid://bdvq1nuj5gsiv" path="res://UI/Themes/LabelTheme.tres" id="7_g06of"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_phmpv"]
 height = 100.0
-radius = 10.0
+radius = 6.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofd5i"]
-albedo_texture = ExtResource("5_kh030")
+albedo_texture = ExtResource("4_niowa")
 emission = Color(0.226707, 0.226707, 0.226707, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwkv4"]
@@ -27,12 +27,12 @@ border_color = Color(0.466057, 0.236093, 0.373678, 1)
 [sub_resource type="Theme" id="Theme_bk8hy"]
 Panel/styles/panel = SubResource("StyleBoxFlat_cwkv4")
 
-[node name="Round2" type="Node3D"]
-script = ExtResource("1_lqg1k")
-nextRoundScene = "res://Environments/Concert/Round3.tscn"
+[node name="Round3" type="Node3D"]
+script = ExtResource("1_nq1y7")
+nextRoundScene = "res://UI/endScreen.tscn"
 
-[node name="CountDown" parent="." instance=ExtResource("2_vnxen")]
-fightRound = 2
+[node name="CountDown" parent="." instance=ExtResource("2_omlaj")]
+fightRound = 3
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
@@ -42,7 +42,7 @@ collision_layer = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 shape = SubResource("CylinderShape3D_phmpv")
 
-[node name="SM_Skybox" parent="Floor" instance=ExtResource("4_4fc2l")]
+[node name="SM_Skybox" parent="Floor" instance=ExtResource("3_6kc3c")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.102794, -297.591, -0.309763)
 visible = false
 
@@ -53,6 +53,7 @@ material_override = SubResource("StandardMaterial3D_ofd5i")
 transform = Transform3D(-4.37114e-08, 0.642788, -0.766044, 0, 0.766044, 0.642788, 1, 2.80971e-08, -3.34849e-08, -19.2129, 11.5709, 0)
 
 [node name="CameraSpotlight" type="SpotLight3D" parent="Camera3D"]
+transform = Transform3D(1, 1.40697e-08, 7.91462e-09, -1.02375e-08, 0.931805, -0.362959, -1.24816e-08, 0.362959, 0.931805, 0, 0, 0)
 light_energy = 10.0
 light_size = 10.0
 spot_range = 100.0
@@ -63,33 +64,18 @@ light_energy = 10.0
 shadow_enabled = true
 spot_range = 100.0
 
-[node name="Player_0" parent="." instance=ExtResource("6_iwvby")]
+[node name="Player_0" parent="." instance=ExtResource("5_e8qiw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -4)
 colour = Color(0.128822, 0.0644205, 0.391381, 1)
 floorPath = NodePath("../Floor")
 
-[node name="Player_1" parent="." instance=ExtResource("6_iwvby")]
+[node name="Player_1" parent="." instance=ExtResource("5_e8qiw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
 colour = Color(0.971812, 0.860267, 0.747942, 1)
 floorPath = NodePath("../Floor")
 playerID = 1
 
-[node name="WorldEnvironment" parent="." instance=ExtResource("7_8ah4w")]
-
-[node name="SM_CookiePlatform" parent="WorldEnvironment" index="0"]
-transform = Transform3D(7.75, 0, 0, 0, 7.75, 0, 0, 0, 7.75, 0, 0, 0)
-
-[node name="CookiePlatform" parent="WorldEnvironment/SM_CookiePlatform" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.567, 0)
-
-[node name="SM_IceCreamMint" parent="WorldEnvironment" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
-
-[node name="SM_IceCreamPink" parent="WorldEnvironment" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
-
-[node name="SM_PopsicleFudge" parent="WorldEnvironment" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.17, 0, -10)
+[node name="WorldEnvironmentConcert" parent="." instance=ExtResource("6_ylkp5")]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -99,7 +85,7 @@ offset_bottom = 40.0
 
 [node name="PercentLabel" type="Label" parent="HUD/P0"]
 layout_mode = 2
-theme = ExtResource("6_qbgtb")
+theme = ExtResource("7_g06of")
 text = "0%"
 
 [node name="P1" type="VBoxContainer" parent="HUD"]
@@ -112,7 +98,7 @@ grow_horizontal = 0
 
 [node name="PercentLabel" type="Label" parent="HUD/P1"]
 layout_mode = 2
-theme = ExtResource("6_qbgtb")
+theme = ExtResource("7_g06of")
 text = "0%"
 horizontal_alignment = 2
 
@@ -129,7 +115,7 @@ offset_right = 262.5
 offset_bottom = 43.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("6_qbgtb")
+theme = ExtResource("7_g06of")
 text = "Player 0 Wins"
 horizontal_alignment = 2
 
@@ -156,9 +142,3 @@ grow_vertical = 0
 theme = SubResource("Theme_bk8hy")
 
 [editable path="Floor/SM_Skybox"]
-[editable path="WorldEnvironment"]
-[editable path="WorldEnvironment/SM_CookiePlatform"]
-[editable path="WorldEnvironment/SM_IceCreamMint"]
-[editable path="WorldEnvironment/SM_IceCreamPink"]
-[editable path="WorldEnvironment/SM_PopsicleFudge"]
-[editable path="WorldEnvironment/SM_PopsicleRainbow"]
