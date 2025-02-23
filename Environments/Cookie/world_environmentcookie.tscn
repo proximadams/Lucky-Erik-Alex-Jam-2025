@@ -54,7 +54,7 @@ surface_material_override/0 = ExtResource("6_5fc48")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2827, 0, -5.62812)
 
 [node name="Icecream2" parent="SM_IceCreamPink" index="0"]
-transform = Transform3D(-0.973202, 0.00167079, 0.229947, 0.0016132, 0.999999, -0.000438428, -0.229947, -5.57268e-05, -0.973203, 23.2558, 0, 21.0137)
+transform = Transform3D(-0.973202, 0.00167079, 0.229947, 0.0016132, 0.999999, -0.000438428, -0.229947, -5.57268e-05, -0.973203, 23.311, 0.697504, 21.5542)
 surface_material_override/0 = ExtResource("6_5fc48")
 
 [node name="SM_PopsicleFudge" parent="." instance=ExtResource("8_bl6fl")]
