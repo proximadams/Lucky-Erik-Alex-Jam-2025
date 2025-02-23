@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://world.gd" id="1_0e4qq"]
 [ext_resource type="Script" path="res://Environments/Hoodoo/floor.gd" id="2_n6xlw"]
-[ext_resource type="PackedScene" path="res://UI/CountDown.tscn" id="2_wyfdr"]
+[ext_resource type="PackedScene" uid="uid://dk1afjd68iofm" path="res://UI/CountDown.tscn" id="2_wyfdr"]
 [ext_resource type="PackedScene" uid="uid://djyqk7xmvc81i" path="res://Environments/Hoodoo/SM_MainPlatform2.fbx" id="3_5t6qs"]
 [ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environments/Hoodoo/SM_Skybox.fbx" id="4_4pnhd"]
 [ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environments/Hoodoo/T_Skybox.png" id="5_umqud"]

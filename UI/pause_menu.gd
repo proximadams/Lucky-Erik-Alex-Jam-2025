@@ -3,7 +3,6 @@ extends CanvasLayer
 var titleScene = 'res://UI/TitleScreen.tscn'
 
 var prevFocus = null
-var prevPausedValue = false
 
 @onready var tree = get_tree()
 
@@ -24,12 +23,11 @@ func grab_focus_unpause_button() -> void:
 func unpause() -> void:
 	if is_instance_valid(prevFocus):
 		prevFocus.grab_focus()
-	tree.paused = prevPausedValue
+	tree.paused = false
 	visible = false
 
 func _pause() -> void:
 	visible = true
-	prevPausedValue = tree.paused
 	tree.paused = true
 	prevFocus = tree.get_root().gui_get_focus_owner()
 	grab_focus_unpause_button()

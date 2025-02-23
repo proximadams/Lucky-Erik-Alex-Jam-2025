@@ -27,11 +27,12 @@ border_color = Color(0.466057, 0.236093, 0.373678, 1)
 [sub_resource type="Theme" id="Theme_bk8hy"]
 Panel/styles/panel = SubResource("StyleBoxFlat_cwkv4")
 
-[node name="Round1" type="Node3D"]
+[node name="Round2" type="Node3D"]
 script = ExtResource("1_lqg1k")
 nextRoundScene = "res://Environments/Cookie/Round1.tscn"
 
 [node name="CountDown" parent="." instance=ExtResource("2_vnxen")]
+fightRound = 2
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
