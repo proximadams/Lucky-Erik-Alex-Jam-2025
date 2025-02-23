@@ -13,6 +13,7 @@ var yellSounds = [
 ]
 
 var musicVolume = 1.0# range between 0.0 and 1.0 (inclusive)
+var sfxVolume = 1.0
 var numDeathsTotalArr = [0, 0]
 var numDevicesConnected = 0
 var config = ConfigFile.new()
@@ -31,10 +32,15 @@ func _init_settings():
 	else:
 		config.load(USER_SETTINGS_FILE_PATH)
 		musicVolume = config.get_value('volume', 'music')
+		sfxVolume = config.get_value('volume', 'sound_effects')
 		refresh_music_volume()
 
 func save_setting_music_volume():
 	config.set_value('volume', 'music', musicVolume)
+	config.save(USER_SETTINGS_FILE_PATH)
+
+func save_setting_sfx_volume():
+	config.set_value('volume', 'sound_effects', sfxVolume)
 	config.save(USER_SETTINGS_FILE_PATH)
 
 func get_random_yell_sound():
@@ -53,6 +59,12 @@ func set_music_volume(fractionValue: float) -> void:
 	for musicChild in MusicPlayer.get_children():
 		if musicChild is AudioStreamPlayer:
 			musicChild.volume_db = (musicChild.baseVolumeDB + 80.0) * pow(musicVolume, 0.25) - 80.0
+
+func set_sfx_volume(fractionValue: float):
+	sfxVolume = fractionValue
+
+func get_sfx_db():
+	return (80.0 * pow(sfxVolume, 0.25)) - 80.0
 
 func _on_joy_connection_changed(_device: int, connected: bool) -> void:
 	if connected:
