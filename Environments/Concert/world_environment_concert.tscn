@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3drgoqbior32"]
+
+[ext_resource type="PackedScene" uid="uid://nfo8bsmraoex" path="res://Environments/Concert/SM_Stage.fbx" id="1_n1ydj"]
+[ext_resource type="PackedScene" uid="uid://ndh63sx78b0w" path="res://Environments/Concert/Crowd/PersonInCrowd.tscn" id="2_8hkhn"]
+
+[node name="WorldEnvironmentConcert" type="WorldEnvironment"]
+
+[node name="SM_Stage" parent="." instance=ExtResource("1_n1ydj")]
+transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, 0, 0, 0)
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(0.717628, 0, 0.696427, 0, 1, 0, -0.696427, 0, 0.717628, -1.71293, 3.12193, -3.6909)
+
+[node name="PersonInCrowd3" parent="Node3D2" instance=ExtResource("2_8hkhn")]
+transform = Transform3D(0.929016, 0, -0.370039, 0, 1, 0, 0.370039, 0, 0.929016, 30.3192, -1.88304, 12.5445)
+
+[node name="PersonInCrowd2" parent="Node3D2" instance=ExtResource("2_8hkhn")]
+transform = Transform3D(0.980587, 0, -0.196083, 0, 1, 0, 0.196083, 0, 0.980587, 31.1458, -2.11204, 7.33226)
+
+[node name="PersonInCrowd" parent="Node3D2" instance=ExtResource("2_8hkhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.992, -1.08037, 2.12942)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="PersonInCrowd3" parent="Node3D" instance=ExtResource("2_8hkhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3194, -1.09049, 0)
+
+[node name="PersonInCrowd2" parent="Node3D" instance=ExtResource("2_8hkhn")]
+transform = Transform3D(0.931533, 0, -0.363658, 0, 1, 0, 0.363658, 0, 0.931533, 26.5995, -0.723071, 7.76392)
+
+[node name="PersonInCrowd" parent="Node3D" instance=ExtResource("2_8hkhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.654, -1.08037, 2.47938)
+
+[node name="Node3D3" type="Node3D" parent="."]
+transform = Transform3D(0.842189, 0, -0.539182, 0, 1, 0, 0.539182, 0, 0.842189, -2.35665, -0.167169, 0.888103)
+
+[node name="PersonInCrowd3" parent="Node3D3" instance=ExtResource("2_8hkhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5849, -1.09049, -1.45041)
+
+[node name="PersonInCrowd2" parent="Node3D3" instance=ExtResource("2_8hkhn")]
+transform = Transform3D(0.931533, 0, -0.363658, 0, 1, 0, 0.363658, 0, 0.931533, 26.5995, -0.723071, 7.76392)
+
+[node name="PersonInCrowd" parent="Node3D3" instance=ExtResource("2_8hkhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.654, -1.08037, 2.47938)
