@@ -36,6 +36,7 @@ var numJumpsSoFar = 0
 var jumpEarlyWindowTimer = 0
 var oldAirVelocity = Vector3(0,0,0)
 var oldIsOnFloor = false # did we just land????
+var playerOpponent
 
 var currGroundTime = 0;
 var currAirTime = 0;
@@ -185,6 +186,18 @@ func _calc_diving_velocity():
 	velocity.y = -diveVelocity
 	velocity.x = (rotation.z * diveVelocity)
 	velocity.z = (-rotation.x * diveVelocity)
+	if playerOpponent.global_position.x < global_position.x \
+		and global_position.x - 10.0 < playerOpponent.global_position.x:
+			velocity.x -= 10.0
+	elif global_position.x < playerOpponent.global_position.x \
+		and playerOpponent.global_position.x < global_position.x + 10.0:
+			velocity.x += 10.0
+	if playerOpponent.global_position.z < global_position.z \
+		and global_position.z - 10.0 < playerOpponent.global_position.z:
+			velocity.z -= 10.0
+	elif global_position.z < playerOpponent.global_position.z \
+		and playerOpponent.global_position.z < global_position.z + 10.0:
+			velocity.z += 10.0
 
 func _calc_hit_velocity():
 	velocity = lastHitVector

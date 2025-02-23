@@ -6,6 +6,8 @@ var numDeathsArr = [0, 0]
 func _ready() -> void:
 	var _res = $Player_0.connect('player_died', player_died)
 	_res = $Player_1.connect('player_died', player_died)
+	$Player_0.playerOpponent = $Player_1
+	$Player_1.playerOpponent = $Player_0
 
 func player_died(playerID: int):
 	if 0 <= playerID and playerID < numDeathsArr.size():
