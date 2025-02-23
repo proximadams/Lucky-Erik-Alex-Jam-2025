@@ -48,6 +48,7 @@ var currHitTime = 0
 var lastHitVector: Vector3 = Vector3(0,0,0)
 
 @onready var floorInst = get_node(floorPath)
+@onready var crackScene = preload("res://Player/Effects/crack.tscn")
 
 signal player_died(playerID: int)
 signal player_percent_changed(playerID: int, percent: float)
@@ -111,6 +112,7 @@ func _movement(delta: float):
 				state = STUCK
 				$DiveLand.volume_db = Global.get_sfx_db()
 				$DiveLand.play()
+				spawn_crack()
 				# spawn a crack texture on the fkn. ground
 		
 		if state == PRE_JUMP and didJumpEarly:
@@ -263,3 +265,9 @@ func _set_hitbox(x: bool):
 
 func is_hitbox_on():
 	return $Hitbox.monitorable
+
+func spawn_crack():
+	var crackInstance = crackScene.instantiate()
+	crackInstance.position = position
+	crackInstance.position.y += 0.1
+	get_tree().get_root().add_child(crackInstance)
