@@ -44,6 +44,7 @@ script = ExtResource("1_oh6od")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+collision_layer = 3
 script = ExtResource("1_8reu6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
@@ -76,13 +77,11 @@ spot_range = 100.0
 
 [node name="Player_0" parent="." instance=ExtResource("4_eiw2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -4)
-collision_mask = 1
 colour = Color(0.128822, 0.0644205, 0.391381, 1)
 floorPath = NodePath("../Floor")
 
 [node name="Player_1" parent="." instance=ExtResource("4_eiw2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
-collision_mask = 1
 colour = Color(0.971812, 0.860267, 0.747942, 1)
 floorPath = NodePath("../Floor")
 playerID = 1
