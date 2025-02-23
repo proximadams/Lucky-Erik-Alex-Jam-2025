@@ -105,10 +105,13 @@ func _movement(delta: float):
 					jumpVelocity,
 					global_position.z * -BOUNCE_BACK_TO_CENTRE_SPEED
 				)
+				$Hit.volume_db = Global.get_sfx_db()
+				$Hit.play()
 			else:
 				state = STUCK
 				$DiveLand.volume_db = Global.get_sfx_db()
 				$DiveLand.play()
+				# spawn a crack texture on the fkn. ground
 		
 		if state == PRE_JUMP and didJumpEarly:
 			state = JUMPING
