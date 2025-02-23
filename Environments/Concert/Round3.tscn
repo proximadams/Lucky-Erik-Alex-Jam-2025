@@ -1,11 +1,11 @@
 [gd_scene load_steps=20 format=3 uid="uid://cr6pp3n24feg4"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_nq1y7"]
-[ext_resource type="PackedScene" uid="uid://dk1afjd68iofm" path="res://UI/CountDown.tscn" id="2_omlaj"]
+[ext_resource type="PackedScene" path="res://UI/CountDown.tscn" id="2_omlaj"]
 [ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environments/Hoodoo/SM_Skybox.fbx" id="3_6kc3c"]
 [ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environments/Hoodoo/T_Skybox.png" id="4_niowa"]
 [ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="5_e8qiw"]
-[ext_resource type="PackedScene" uid="uid://bk7x8jq15lla6" path="res://Environments/Concert/world_environment_concert.tscn" id="6_ylkp5"]
+[ext_resource type="PackedScene" uid="uid://b3drgoqbior32" path="res://Environments/Concert/world_environment_concert.tscn" id="6_ylkp5"]
 [ext_resource type="Theme" uid="uid://bdvq1nuj5gsiv" path="res://UI/Themes/LabelTheme.tres" id="7_g06of"]
 [ext_resource type="PackedScene" uid="uid://bv4rjs0p40v6x" path="res://Environments/Concert/SM_Platform01.fbx" id="8_opbj1"]
 
