@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://cnusqcounn7h4"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_lqg1k"]
-[ext_resource type="PackedScene" path="res://UI/CountDown.tscn" id="2_vnxen"]
+[ext_resource type="PackedScene" uid="uid://dk1afjd68iofm" path="res://UI/CountDown.tscn" id="2_vnxen"]
 [ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environments/Hoodoo/SM_Skybox.fbx" id="4_4fc2l"]
 [ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environments/Hoodoo/T_Skybox.png" id="5_kh030"]
 [ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="6_iwvby"]
@@ -161,11 +161,6 @@ transform = Transform3D(-0.0636545, 0.284547, -1.58457, -0.60099, 1.46696, 0.287
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DeathsLabel" type="Label" parent="HUD/P0"]
-layout_mode = 2
-theme = ExtResource("6_qbgtb")
-text = "P0 Deaths = 0"
-
 [node name="PercentLabel" type="Label" parent="HUD/P0"]
 layout_mode = 2
 theme = ExtResource("6_qbgtb")
@@ -178,12 +173,6 @@ anchor_right = 1.0
 offset_left = -485.0
 offset_bottom = 176.0
 grow_horizontal = 0
-
-[node name="DeathsLabel" type="Label" parent="HUD/P1"]
-layout_mode = 2
-theme = ExtResource("6_qbgtb")
-text = "P1 Deaths = 0"
-horizontal_alignment = 2
 
 [node name="PercentLabel" type="Label" parent="HUD/P1"]
 layout_mode = 2

@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dba1orv1ubw7b"]
 
-[ext_resource type="AudioStream" uid="uid://duryyhm1egdwc" path="res://Music/Mixed/SongLayerBaseLoop.mp3" id="1_hvvek"]
+[ext_resource type="AudioStream" uid="uid://dccxa5ycv1v5o" path="res://Music/Mixed/Special/SpecialBaseLayer.mp3" id="1_j4rr6"]
 [ext_resource type="Script" path="res://Music/song_layer.gd" id="2_hoaci"]
-[ext_resource type="AudioStream" uid="uid://3g6wj4otsoi0" path="res://Music/Mixed/SongLayerSaxophoneLoop.mp3" id="2_tr8cu"]
-[ext_resource type="AudioStream" uid="uid://cn5x7mx6siq8x" path="res://Music/Mixed/SongLayerDrumKitLoop.mp3" id="3_1xiyr"]
+[ext_resource type="AudioStream" uid="uid://dsxxm4gmk7s8l" path="res://Music/Mixed/Special/SpecialSaxLayer.mp3" id="3_ifg1f"]
 [ext_resource type="AudioStream" uid="uid://cmupq51tivroq" path="res://Music/Mixed/SongLayerVocalsLoop.mp3" id="4_c586p"]
+[ext_resource type="AudioStream" uid="uid://bq1q7ybkpndpy" path="res://Music/Mixed/Special/SpecialDrumLayer.mp3" id="4_uu3qi"]
 
 [sub_resource type="Animation" id="Animation_mofbv"]
 length = 0.001
@@ -120,13 +120,13 @@ _data = {
 process_mode = 3
 
 [node name="BaseLayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_hvvek")
+stream = ExtResource("1_j4rr6")
 autoplay = true
 parameters/looping = true
 script = ExtResource("2_hoaci")
 
 [node name="SaxophoneLayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_tr8cu")
+stream = ExtResource("3_ifg1f")
 volume_db = -80.0
 autoplay = true
 parameters/looping = true
@@ -134,7 +134,7 @@ script = ExtResource("2_hoaci")
 baseVolumeDB = -80.0
 
 [node name="DrumKitLayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_1xiyr")
+stream = ExtResource("4_uu3qi")
 volume_db = -80.0
 autoplay = true
 parameters/looping = true

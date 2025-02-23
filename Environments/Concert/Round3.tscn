@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://661rmq0tnqho"]
+[gd_scene load_steps=12 format=3 uid="uid://cr6pp3n24feg4"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_nq1y7"]
-[ext_resource type="PackedScene" path="res://UI/CountDown.tscn" id="2_omlaj"]
+[ext_resource type="PackedScene" uid="uid://dk1afjd68iofm" path="res://UI/CountDown.tscn" id="2_omlaj"]
 [ext_resource type="PackedScene" uid="uid://dojtvkjexrtqe" path="res://Environments/Hoodoo/SM_Skybox.fbx" id="3_6kc3c"]
 [ext_resource type="Texture2D" uid="uid://cwxodangmbk18" path="res://Environments/Hoodoo/T_Skybox.png" id="4_niowa"]
 [ext_resource type="PackedScene" uid="uid://c4yjmdym54n72" path="res://Player/player.tscn" id="5_e8qiw"]
-[ext_resource type="PackedScene" uid="uid://b3drgoqbior32" path="res://Environments/Concert/world_environment_concert.tscn" id="6_ylkp5"]
+[ext_resource type="PackedScene" path="res://Environments/Concert/world_environment_concert.tscn" id="6_ylkp5"]
 [ext_resource type="Theme" uid="uid://bdvq1nuj5gsiv" path="res://UI/Themes/LabelTheme.tres" id="7_g06of"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_phmpv"]
@@ -27,9 +27,9 @@ border_color = Color(0.466057, 0.236093, 0.373678, 1)
 [sub_resource type="Theme" id="Theme_bk8hy"]
 Panel/styles/panel = SubResource("StyleBoxFlat_cwkv4")
 
-[node name="Round1" type="Node3D"]
+[node name="Round3" type="Node3D"]
 script = ExtResource("1_nq1y7")
-nextRoundScene = "res://Environments/Cookie/Round1.tscn"
+nextRoundScene = "res://UI/endScreen.tscn"
 
 [node name="CountDown" parent="." instance=ExtResource("2_omlaj")]
 fightRound = 3
@@ -83,11 +83,6 @@ playerID = 1
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DeathsLabel" type="Label" parent="HUD/P0"]
-layout_mode = 2
-theme = ExtResource("7_g06of")
-text = "P0 Deaths = 0"
-
 [node name="PercentLabel" type="Label" parent="HUD/P0"]
 layout_mode = 2
 theme = ExtResource("7_g06of")
@@ -100,12 +95,6 @@ anchor_right = 1.0
 offset_left = -485.0
 offset_bottom = 176.0
 grow_horizontal = 0
-
-[node name="DeathsLabel" type="Label" parent="HUD/P1"]
-layout_mode = 2
-theme = ExtResource("7_g06of")
-text = "P1 Deaths = 0"
-horizontal_alignment = 2
 
 [node name="PercentLabel" type="Label" parent="HUD/P1"]
 layout_mode = 2

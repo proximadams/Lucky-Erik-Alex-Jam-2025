@@ -127,11 +127,6 @@ environment = SubResource("Environment_hhfu7")
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DeathsLabel" type="Label" parent="HUD/P0"]
-layout_mode = 2
-theme = SubResource("Theme_14284")
-text = "P0 Deaths = 0"
-
 [node name="PercentLabel" type="Label" parent="HUD/P0"]
 layout_mode = 2
 theme = SubResource("Theme_14284")
@@ -144,12 +139,6 @@ anchor_right = 1.0
 offset_left = -485.0
 offset_bottom = 176.0
 grow_horizontal = 0
-
-[node name="DeathsLabel" type="Label" parent="HUD/P1"]
-layout_mode = 2
-theme = SubResource("Theme_14284")
-text = "P1 Deaths = 0"
-horizontal_alignment = 2
 
 [node name="PercentLabel" type="Label" parent="HUD/P1"]
 layout_mode = 2
