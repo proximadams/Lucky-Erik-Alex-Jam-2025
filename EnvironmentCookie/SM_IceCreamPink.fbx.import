@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://buc5q6g771xjo"
-path="res://.godot/imported/SM_Popsicle.fbx-8fcc66068b53f06933561d0053997a83.scn"
+uid="uid://dgvqukyucnkdb"
+path="res://.godot/imported/SM_IceCreamPink.fbx-d0d3370abf5e7ce69fb591d01cbd9d9b.scn"
 
 [deps]
 
-source_file="res://EnvironmentCookie/SM_Popsicle.fbx"
-dest_files=["res://.godot/imported/SM_Popsicle.fbx-8fcc66068b53f06933561d0053997a83.scn"]
+source_file="res://EnvironmentCookie/SM_IceCreamPink.fbx"
+dest_files=["res://.godot/imported/SM_IceCreamPink.fbx-d0d3370abf5e7ce69fb591d01cbd9d9b.scn"]
 
 [params]
 

@@ -4,14 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://cyu41f1gmvni8" path="res://EnvironmentCookie/SM_CookiePlatform_C.png" id="2_l2lof"]
 [ext_resource type="Texture2D" uid="uid://cg65k4hquj1g5" path="res://EnvironmentCookie/SM_CookiePlatform_N.png" id="3_8nnsi"]
 [ext_resource type="Texture2D" uid="uid://2jdrnjv3etr8" path="res://EnvironmentCookie/SM_CookiePlatform_R.png" id="4_c6iw1"]
-[ext_resource type="PackedScene" uid="uid://buc5q6g771xjo" path="res://EnvironmentCookie/SM_Popsicle.fbx" id="5_5dgt3"]
-[ext_resource type="Texture2D" uid="uid://bynoaw6sg6y7a" path="res://EnvironmentCookie/T_Popsicle_C.png" id="6_aew36"]
-[ext_resource type="Texture2D" uid="uid://c5pmqkd8pg601" path="res://EnvironmentCookie/T_Popsicle_N.png" id="7_ntp3n"]
-[ext_resource type="Texture2D" uid="uid://cfwi3us73dr8h" path="res://EnvironmentCookie/T_Popsicle_R.png" id="8_2krcb"]
+[ext_resource type="PackedScene" uid="uid://cfex3sry51slh" path="res://EnvironmentCookie/SM_IceCreamMint.fbx" id="5_42tg2"]
+[ext_resource type="Material" uid="uid://beljlslo13ekn" path="res://EnvironmentCookie/M_BGSweets.tres" id="6_5fc48"]
+[ext_resource type="PackedScene" uid="uid://dgvqukyucnkdb" path="res://EnvironmentCookie/SM_IceCreamPink.fbx" id="7_7j3gy"]
+[ext_resource type="PackedScene" uid="uid://c28diq1k5bhfc" path="res://EnvironmentCookie/SM_PopsicleFudge.fbx" id="8_bl6fl"]
+[ext_resource type="PackedScene" uid="uid://dmqao2hv7xvfu" path="res://EnvironmentCookie/SM_PopsicleRainbow.fbx" id="9_hlgx8"]
 
 [sub_resource type="Gradient" id="Gradient_stmxt"]
-offsets = PackedFloat32Array(0.0932203, 0.20339, 0.330508, 0.440678, 0.491525)
-colors = PackedColorArray(0.666049, 0.339262, 0.514913, 1, 0.565048, 0.30669, 0.53979, 1, 0.370997, 0.683203, 0.785498, 1, 0.848555, 0.961495, 1, 1, 0.975231, 0.694307, 0.827974, 1)
+offsets = PackedFloat32Array(0.0932203, 0.271186, 0.415254)
+colors = PackedColorArray(0.866855, 0.597763, 0.731956, 1, 0.71017, 0.573608, 0.778393, 1, 0.848555, 0.961495, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rkb58"]
 gradient = SubResource("Gradient_stmxt")
@@ -33,13 +34,6 @@ roughness_texture = ExtResource("4_c6iw1")
 normal_enabled = true
 normal_texture = ExtResource("3_8nnsi")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gi4op"]
-transparency = 1
-albedo_texture = ExtResource("6_aew36")
-roughness_texture = ExtResource("8_2krcb")
-normal_enabled = true
-normal_texture = ExtResource("7_ntp3n")
-
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_km8uw")
 
@@ -49,36 +43,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.189004, 0, 4.08229)
 [node name="CookiePlatform" parent="SM_CookiePlatform" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_hn4gq")
 
-[node name="SM_Popsicle" parent="SM_CookiePlatform" instance=ExtResource("5_5dgt3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14229, 0.283434, -7.0027)
+[node name="SM_IceCreamMint" parent="." instance=ExtResource("5_42tg2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.72108, 0, -5.03277)
 
-[node name="Popsicle_low" parent="SM_CookiePlatform/SM_Popsicle" index="0"]
-transform = Transform3D(0.639265, 0.230629, 0.733588, -0.339362, 0.940656, 0, -0.690053, -0.248952, 0.679595, -7.62206, -2.06342, -3.15588)
-surface_material_override/0 = SubResource("StandardMaterial3D_gi4op")
+[node name="IceCream1" parent="SM_IceCreamMint" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1816, 0, 21.0137)
+surface_material_override/0 = ExtResource("6_5fc48")
 
-[node name="SM_Popsicle2" parent="SM_CookiePlatform" instance=ExtResource("5_5dgt3")]
-transform = Transform3D(-0.0969229, 0, 0.995292, 0, 1, 0, -0.995292, 0, -0.0969229, -2.47088, -2.7354, -16.315)
+[node name="SM_IceCreamPink" parent="." instance=ExtResource("7_7j3gy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2827, 0, -5.62812)
 
-[node name="Popsicle_low" parent="SM_CookiePlatform/SM_Popsicle2" index="0"]
-transform = Transform3D(0.639265, 0.230629, 0.733588, -0.339362, 0.940656, 0, -0.690053, -0.248952, 0.679595, -1.80372, 1.49648, -4.58512)
-surface_material_override/0 = SubResource("StandardMaterial3D_gi4op")
+[node name="Icecream2" parent="SM_IceCreamPink" index="0"]
+transform = Transform3D(-0.973202, 0.00167079, 0.229947, 0.0016132, 0.999999, -0.000438428, -0.229947, -5.57268e-05, -0.973203, 23.2558, 0, 21.0137)
+surface_material_override/0 = ExtResource("6_5fc48")
 
-[node name="SM_Popsicle3" parent="SM_CookiePlatform" instance=ExtResource("5_5dgt3")]
-transform = Transform3D(-0.748828, 0, 0.662764, 0, 1, 0, -0.662764, 0, -0.748828, 2.45715, -3.61924, -18.7031)
+[node name="SM_PopsicleFudge" parent="." instance=ExtResource("8_bl6fl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1702, 0, -4.9241)
 
-[node name="Popsicle_low" parent="SM_CookiePlatform/SM_Popsicle3" index="0"]
-transform = Transform3D(0.639265, 0.230629, 0.733587, -0.339362, 0.940656, 0, -0.690053, -0.248952, 0.679595, -3.76962, 1.49648, -1.23037)
-surface_material_override/0 = SubResource("StandardMaterial3D_gi4op")
+[node name="Popsicle2" parent="SM_PopsicleFudge" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0075, 0, 21.0137)
+surface_material_override/0 = ExtResource("6_5fc48")
 
-[node name="SM_Popsicle4" parent="SM_CookiePlatform" instance=ExtResource("5_5dgt3")]
-transform = Transform3D(-0.704465, 0.339083, 0.623499, 0.253915, 0.940757, -0.224732, -0.662764, 0, -0.748828, 8.9343, -2.48094, -16.1832)
+[node name="SM_PopsicleRainbow" parent="." instance=ExtResource("9_hlgx8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.508317, 0, 16.5055)
 
-[node name="Popsicle_low" parent="SM_CookiePlatform/SM_Popsicle4" index="0"]
-transform = Transform3D(0.639265, 0.230629, 0.733588, -0.339362, 0.940656, 0, -0.690053, -0.248952, 0.679595, -5.41104, 1.49648, -3.08494)
-surface_material_override/0 = SubResource("StandardMaterial3D_gi4op")
+[node name="Popsicle1" parent="SM_PopsicleRainbow" index="0"]
+surface_material_override/0 = ExtResource("6_5fc48")
 
 [editable path="SM_CookiePlatform"]
-[editable path="SM_CookiePlatform/SM_Popsicle"]
-[editable path="SM_CookiePlatform/SM_Popsicle2"]
-[editable path="SM_CookiePlatform/SM_Popsicle3"]
-[editable path="SM_CookiePlatform/SM_Popsicle4"]
+[editable path="SM_IceCreamMint"]
+[editable path="SM_IceCreamPink"]
+[editable path="SM_PopsicleFudge"]
+[editable path="SM_PopsicleRainbow"]
