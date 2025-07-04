@@ -60,8 +60,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dq32g"]
 _data = {
-"Explode": SubResource("Animation_ubcrp"),
-"RESET": SubResource("Animation_2m0un")
+&"Explode": SubResource("Animation_ubcrp"),
+&"RESET": SubResource("Animation_2m0un")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oehsj"]

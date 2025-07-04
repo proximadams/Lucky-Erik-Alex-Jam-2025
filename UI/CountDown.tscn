@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dk1afjd68iofm"]
 
 [ext_resource type="Theme" uid="uid://bdvq1nuj5gsiv" path="res://UI/Themes/LabelTheme.tres" id="1_fwpn2"]
-[ext_resource type="Script" path="res://UI/count_down.gd" id="1_wn7h6"]
+[ext_resource type="Script" uid="uid://d2peswhbefupa" path="res://UI/count_down.gd" id="1_wn7h6"]
 [ext_resource type="AudioStream" uid="uid://c5y0ucy712y5q" path="res://SoundEffects/Mixed/321_FIGHT_1.mp3" id="3_r628i"]
 [ext_resource type="AudioStream" uid="uid://c86wojijb4swg" path="res://SoundEffects/Mixed/321_FIGHT_2.mp3" id="4_qxkjj"]
 [ext_resource type="AudioStream" uid="uid://dd7vh3vla0xgb" path="res://SoundEffects/Mixed/321_FIGHT_3.mp3" id="5_3stfg"]
@@ -249,8 +249,8 @@ tracks/8/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wdq3i"]
 _data = {
-"Animate": SubResource("Animation_lntwc"),
-"RESET": SubResource("Animation_0y1cw")
+&"Animate": SubResource("Animation_lntwc"),
+&"RESET": SubResource("Animation_0y1cw")
 }
 
 [node name="CountDown" type="CanvasLayer"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ftxdf6iknjw4"]
 
-[ext_resource type="Script" path="res://Environments/round_finished_timer.gd" id="1_1fswl"]
+[ext_resource type="Script" uid="uid://bakvp8uq748ai" path="res://Environments/round_finished_timer.gd" id="1_1fswl"]
 
 [sub_resource type="Animation" id="Animation_bj3c4"]
 resource_name = "Animate"
@@ -23,7 +23,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x4rt2"]
 _data = {
-"Animate": SubResource("Animation_bj3c4")
+&"Animate": SubResource("Animation_bj3c4")
 }
 
 [node name="RoundFinishedTimer" type="Node3D"]

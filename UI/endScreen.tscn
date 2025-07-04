@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dd6yahof0ui0a"]
 
-[ext_resource type="Script" path="res://UI/end_screen.gd" id="1_hd3h4"]
+[ext_resource type="Script" uid="uid://b55scnglcdilk" path="res://UI/end_screen.gd" id="1_hd3h4"]
 [ext_resource type="Theme" uid="uid://b807bm2g6mjc8" path="res://UI/Themes/ButtonTheme.tres" id="1_if0aw"]
 [ext_resource type="Theme" uid="uid://bdvq1nuj5gsiv" path="res://UI/Themes/LabelTheme.tres" id="2_dxq3o"]
 

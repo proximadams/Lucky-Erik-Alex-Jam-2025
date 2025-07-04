@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=4 uid="uid://c4yjmdym54n72"]
 
-[ext_resource type="Script" path="res://Player/player.gd" id="1_ixvv2"]
+[ext_resource type="Script" uid="uid://df3psp63ykgov" path="res://Player/player.gd" id="1_ixvv2"]
 [ext_resource type="PackedScene" uid="uid://b72gt2cvwv77a" path="res://Player/Effects/Explosion.tscn" id="2_43kq7"]
 [ext_resource type="PackedScene" uid="uid://mup50pcmuicx" path="res://SoundEffects/BounceSmall1Sound.tscn" id="2_s5pna"]
 [ext_resource type="AudioStream" uid="uid://cbob6uvvw30ad" path="res://SoundEffects/Unmixed/hit.wav" id="3_0mlox"]
@@ -50,8 +50,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h03nl"]
 _data = {
-"RESET": SubResource("Animation_ykjkq"),
-"SquishJump": SubResource("Animation_ymuik")
+&"RESET": SubResource("Animation_ykjkq"),
+&"SquishJump": SubResource("Animation_ymuik")
 }
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_coque"]
@@ -245,7 +245,7 @@ length = 1.25
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_thk4e"]
 _data = {
-"Take 001": SubResource("Animation_yuy6o")
+&"Take 001": SubResource("Animation_yuy6o")
 }
 
 [node name="Player" type="CharacterBody3D"]

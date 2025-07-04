@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dba1orv1ubw7b"]
 
 [ext_resource type="AudioStream" uid="uid://dccxa5ycv1v5o" path="res://Music/Mixed/Special/SpecialBaseLayer.mp3" id="1_j4rr6"]
-[ext_resource type="Script" path="res://Music/song_layer.gd" id="2_hoaci"]
+[ext_resource type="Script" uid="uid://d0yd5fle0n7jl" path="res://Music/song_layer.gd" id="2_hoaci"]
 [ext_resource type="AudioStream" uid="uid://dsxxm4gmk7s8l" path="res://Music/Mixed/Special/SpecialSaxLayer.mp3" id="3_ifg1f"]
 [ext_resource type="AudioStream" uid="uid://cmupq51tivroq" path="res://Music/Mixed/SongLayerVocalsLoop.mp3" id="4_c586p"]
 [ext_resource type="AudioStream" uid="uid://bq1q7ybkpndpy" path="res://Music/Mixed/Special/SpecialDrumLayer.mp3" id="4_uu3qi"]
@@ -112,8 +112,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ttciq"]
 _data = {
-"RESET": SubResource("Animation_mofbv"),
-"SlowlyAddLayers": SubResource("Animation_rtrxj")
+&"RESET": SubResource("Animation_mofbv"),
+&"SlowlyAddLayers": SubResource("Animation_rtrxj")
 }
 
 [node name="MusicPlayer" type="Node3D"]

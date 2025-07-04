@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c42wpyf1s1f5x"]
 
 [ext_resource type="PackedScene" uid="uid://bv80lm871sv8u" path="res://Environments/Cookie/SM_Truffle_01.fbx" id="1_uc4da"]
-[ext_resource type="Script" path="res://Environments/Cookie/truffle.gd" id="1_xm0x0"]
+[ext_resource type="Script" uid="uid://dfqekmywh7ekx" path="res://Environments/Cookie/truffle.gd" id="1_xm0x0"]
 [ext_resource type="PackedScene" uid="uid://bsl3ctic1oavb" path="res://Environments/Cookie/SM_Truffle_02.fbx" id="3_cc5hm"]
 [ext_resource type="PackedScene" uid="uid://kv3vj36yrfrr" path="res://Environments/Cookie/SM_Truffle_03.fbx" id="4_5eldl"]
 [ext_resource type="PackedScene" uid="uid://qgiuphbyddyn" path="res://Environments/Cookie/SM_Truffle_04.fbx" id="5_wmdhk"]
@@ -55,8 +55,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7xna3"]
 _data = {
-"Animate": SubResource("Animation_gb78a"),
-"RESET": SubResource("Animation_88345")
+&"Animate": SubResource("Animation_gb78a"),
+&"RESET": SubResource("Animation_88345")
 }
 
 [node name="Truffle" type="Node3D"]

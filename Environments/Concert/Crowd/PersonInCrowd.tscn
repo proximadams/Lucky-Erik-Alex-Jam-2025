@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://ndh63sx78b0w"]
 
-[ext_resource type="Script" path="res://Environments/Concert/Crowd/person_in_crowd.gd" id="1_a2a2f"]
+[ext_resource type="Script" uid="uid://doj0yqa2ae53p" path="res://Environments/Concert/Crowd/person_in_crowd.gd" id="1_a2a2f"]
 [ext_resource type="Texture2D" uid="uid://hkcasgou4kuv" path="res://Environments/Concert/Crowd/Person1 Sprite Sheet.png" id="1_err1e"]
 [ext_resource type="Texture2D" uid="uid://fh3npf77364k" path="res://Environments/Concert/Crowd/Person2 Sprite Sheet.png" id="2_pny20"]
 [ext_resource type="Texture2D" uid="uid://m1r5eqpg2bdi" path="res://Environments/Concert/Crowd/Person3 Sprite Sheet.png" id="3_dajq8"]
@@ -169,10 +169,10 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uonq3"]
 _data = {
-"RESET": SubResource("Animation_3lbp8"),
-"a1": SubResource("Animation_bd0oy"),
-"a2": SubResource("Animation_1pvih"),
-"a3": SubResource("Animation_p62xn")
+&"RESET": SubResource("Animation_3lbp8"),
+&"a1": SubResource("Animation_bd0oy"),
+&"a2": SubResource("Animation_1pvih"),
+&"a3": SubResource("Animation_p62xn")
 }
 
 [node name="PersonInCrowd" type="Node3D"]
