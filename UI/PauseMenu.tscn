@@ -89,19 +89,11 @@ step = 25.0
 value = 100.0
 tick_count = 5
 
-[node name="ButtonUnpause" type="Button" parent="Control/VBoxContainer"]
+[node name="CloseButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_m0guu")
-theme_override_font_sizes/font_size = 64
-text = "Unpause"
-
-[node name="ButtonTitleScreen" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_m0guu")
-theme_override_font_sizes/font_size = 64
-text = "Title screen"
+text = "Close"
 
 [connection signal="value_changed" from="Control/VBoxContainer/HBoxContainerMusic/HSlider" to="." method="set_music_volume"]
 [connection signal="value_changed" from="Control/VBoxContainer/HBoxContainerSFX/HSlider" to="." method="set_sfx_volume"]
-[connection signal="pressed" from="Control/VBoxContainer/ButtonUnpause" to="." method="unpause"]
-[connection signal="pressed" from="Control/VBoxContainer/ButtonTitleScreen" to="." method="go_to_title_screen"]
+[connection signal="pressed" from="Control/VBoxContainer/CloseButton" to="." method="unpause"]

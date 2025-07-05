@@ -17,8 +17,8 @@ func set_sfx_volume(value: float) -> void:
 	Global.set_sfx_volume(value / 100.0)
 	Global.save_setting_sfx_volume()
 
-func grab_focus_unpause_button() -> void:
-	$Control/VBoxContainer/ButtonUnpause.grab_focus()
+func grab_focus_slider() -> void:
+	$Control/VBoxContainer/HBoxContainerMusic/HSlider.grab_focus()
 
 func unpause() -> void:
 	if is_instance_valid(prevFocus):
@@ -30,11 +30,11 @@ func _pause() -> void:
 	visible = true
 	tree.paused = true
 	prevFocus = tree.get_root().gui_get_focus_owner()
-	grab_focus_unpause_button()
+	grab_focus_slider()
 	$Control/VBoxContainer/HBoxContainerMusic/HSlider.value = Global.musicVolume * 100.0
 	$Control/VBoxContainer/HBoxContainerSFX/HSlider.value = Global.sfxVolume * 100.0
 
-func _toggle_pause() -> void:
+func toggle_pause() -> void:
 	if visible:
 		unpause()
 	else:
@@ -42,7 +42,7 @@ func _toggle_pause() -> void:
 
 func _input(event: InputEvent) -> void:
 	if not event.is_echo() and event.is_action_pressed('pause'):
-		_toggle_pause()
+		toggle_pause()
 
 func go_to_title_screen() -> void:
 	tree.change_scene_to_file(titleScene)

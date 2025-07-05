@@ -26,9 +26,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -362.5
-offset_top = -182.0
-offset_right = 362.5
+offset_left = -362.0
+offset_top = -129.0
+offset_right = 363.0
 offset_bottom = 182.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -42,6 +42,11 @@ text = "Start"
 layout_mode = 2
 theme = ExtResource("3_d1n7v")
 text = "Controls"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_d1n7v")
+text = "Settings"
 
 [node name="Controls" type="Control" parent="."]
 visible = false
@@ -89,13 +94,14 @@ texture = ExtResource("6_vhtuf")
 expand_mode = 5
 
 [node name="BackButton" type="Button" parent="Controls"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 24.0
-offset_top = -204.0
-offset_right = 396.0
+offset_top = -120.0
+offset_right = 215.0
 offset_bottom = -24.0
 grow_vertical = 0
 theme = ExtResource("3_d1n7v")
@@ -105,5 +111,6 @@ text = "Back"
 [connection signal="pressed" from="VBoxContainer/ControlsButton" to="." method="refresh_controller_instructions"]
 [connection signal="pressed" from="VBoxContainer/ControlsButton" to="Controls/BackButton" method="grab_focus"]
 [connection signal="pressed" from="VBoxContainer/ControlsButton" to="Controls" method="set_visible" binds= [true]]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_show_settings"]
 [connection signal="pressed" from="Controls/BackButton" to="VBoxContainer/StartButton" method="grab_focus"]
 [connection signal="pressed" from="Controls/BackButton" to="Controls" method="set_visible" binds= [false]]

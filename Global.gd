@@ -13,11 +13,13 @@ var yellSounds = [
 	load('res://SoundEffects/Mixed/MyLeg.mp3'),
 ]
 
-var musicVolume = 1.0# range between 0.0 and 1.0 (inclusive)
-var sfxVolume = 1.0# range between 0.0 and 1.0 (inclusive)
+var musicVolume: float = 1.0# range between 0.0 and 1.0 (inclusive)
+var sfxVolume: float = 1.0# range between 0.0 and 1.0 (inclusive)
 var numDeathsTotalArr = [0, 0]
 var numDevicesConnected = 0
 var config = ConfigFile.new()
+
+@onready var tree = get_tree()
 
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
@@ -32,8 +34,14 @@ func _init_settings():
 		config.save(USER_SETTINGS_FILE_PATH)
 	else:
 		config.load(USER_SETTINGS_FILE_PATH)
-		musicVolume = config.get_value('volume', 'music')
-		sfxVolume = config.get_value('volume', 'sound_effects')
+		var musicVolumeSetting = config.get_value('volume', 'music')
+		if musicVolumeSetting == null:
+			musicVolumeSetting = 0.0
+		var sfxVolumeSetting = config.get_value('volume', 'sound_effects')
+		if sfxVolumeSetting == null:
+			sfxVolumeSetting = 0.0
+		musicVolume = musicVolumeSetting
+		sfxVolume = sfxVolumeSetting
 		refresh_music_volume()
 
 func save_setting_music_volume():
@@ -87,4 +95,7 @@ func get_winner():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_released('quit'):
-		get_tree().quit()
+		if tree.paused:
+			PauseMenu.unpause()
+		else:
+			tree.quit()
