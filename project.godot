@@ -23,7 +23,7 @@ PauseMenu="*res://UI/PauseMenu.tscn"
 
 [display]
 
-window/size/mode=2
+window/size/mode=3
 
 [input]
 
