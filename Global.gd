@@ -13,6 +13,7 @@ var yellSounds = [
 	load('res://SoundEffects/Mixed/MyLeg.mp3'),
 ]
 
+var instantExitEnabled = true
 var musicVolume: float = 1.0# range between 0.0 and 1.0 (inclusive)
 var sfxVolume: float = 1.0# range between 0.0 and 1.0 (inclusive)
 var numDeathsTotalArr = [0, 0]
@@ -27,8 +28,8 @@ func _ready() -> void:
 	var _res = Input.connect('joy_connection_changed', _on_joy_connection_changed)
 	_init_settings()
 	process_mode = Node.PROCESS_MODE_ALWAYS
-
 func _init_settings():
+
 	if not FileAccess.file_exists(USER_SETTINGS_FILE_PATH):
 		config.set_value('volume', 'music', 1.0)
 		config.set_value('volume', 'sound_effects', 1.0)
@@ -95,8 +96,5 @@ func get_winner():
 		return "NOBODY?!"
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_released('quit'):
-		if tree.paused:
-			PauseMenu.unpause()
-		else:
-			tree.quit()
+	if event.is_action_released('quit') and instantExitEnabled:
+		tree.quit()

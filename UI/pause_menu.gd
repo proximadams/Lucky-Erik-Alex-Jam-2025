@@ -29,6 +29,7 @@ func unpause() -> void:
 func _pause() -> void:
 	visible = true
 	tree.paused = true
+	Global.instantExitEnabled = false
 	prevFocus = tree.get_root().gui_get_focus_owner()
 	grab_focus_slider()
 	$Control/VBoxContainer/HBoxContainerMusic/HSlider.value = Global.musicVolume * 100.0
@@ -43,6 +44,9 @@ func toggle_pause() -> void:
 func _input(event: InputEvent) -> void:
 	if not event.is_echo() and event.is_action_pressed('pause'):
 		toggle_pause()
+	if event.is_action_released('quit') and tree.paused:
+		Global.set_deferred('instantExitEnabled', true)
+		PauseMenu.unpause()
 
 func go_to_title_screen() -> void:
 	tree.change_scene_to_file(titleScene)

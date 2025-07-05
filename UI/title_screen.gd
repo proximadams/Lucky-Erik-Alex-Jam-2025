@@ -17,3 +17,12 @@ func refresh_controller_instructions():
 
 func _on_joy_connection_changed(_device: int, _connected: bool) -> void:
 	refresh_controller_instructions()
+
+func one_layer_deeper_back_stack() -> void:
+	Global.instantExitEnabled = false
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_released('quit') and $Controls.visible:
+		Global.set_deferred('instantExitEnabled', true)
+		$Controls.set_visible(false)
+		$VBoxContainer/ControlsButton.grab_focus()
