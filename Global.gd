@@ -26,6 +26,7 @@ func _ready() -> void:
 	rng.randomize()
 	var _res = Input.connect('joy_connection_changed', _on_joy_connection_changed)
 	_init_settings()
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _init_settings():
 	if not FileAccess.file_exists(USER_SETTINGS_FILE_PATH):
