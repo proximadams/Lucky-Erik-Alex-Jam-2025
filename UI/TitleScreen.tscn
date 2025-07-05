@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkuvfiredapns"]
+[gd_scene load_steps=5 format=3 uid="uid://dkuvfiredapns"]
 
 [ext_resource type="Script" uid="uid://bw6vgtpq5ypg2" path="res://UI/title_screen.gd" id="1_o0vp8"]
 [ext_resource type="Texture2D" uid="uid://2lufd6f1gpk5" path="res://UI/TitleImage.png" id="2_308d5"]
 [ext_resource type="Theme" uid="uid://b807bm2g6mjc8" path="res://UI/Themes/ButtonTheme.tres" id="3_d1n7v"]
-[ext_resource type="Texture2D" uid="uid://0dnw0ptxjc0r" path="res://UI/Controls_Screen_0.png" id="4_l6lil"]
-[ext_resource type="Texture2D" uid="uid://bdn437voeooon" path="res://UI/Controls_Screen_1.png" id="5_si4c3"]
-[ext_resource type="Texture2D" uid="uid://bsu31pfihd6xf" path="res://UI/Controls_Screen_2.png" id="6_vhtuf"]
+[ext_resource type="Texture2D" uid="uid://dx81tprt7m0v2" path="res://UI/Controls_Screen_Winnitron.png" id="4_ag8pb"]
 
 [node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource("1_o0vp8")
@@ -58,7 +56,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ControlsTextureRect0" type="TextureRect" parent="Controls"]
+[node name="ControlsTextureRect" type="TextureRect" parent="Controls"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -66,31 +64,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_l6lil")
-expand_mode = 5
-
-[node name="ControlsTextureRect1" type="TextureRect" parent="Controls"]
-visible = false
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_si4c3")
-expand_mode = 5
-
-[node name="ControlsTextureRect2" type="TextureRect" parent="Controls"]
-visible = false
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_vhtuf")
+texture = ExtResource("4_ag8pb")
 expand_mode = 5
 
 [node name="BackButton" type="Button" parent="Controls"]
@@ -108,7 +82,6 @@ text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ControlsButton" to="." method="one_layer_deeper_back_stack"]
-[connection signal="pressed" from="VBoxContainer/ControlsButton" to="." method="refresh_controller_instructions"]
 [connection signal="pressed" from="VBoxContainer/ControlsButton" to="Controls/BackButton" method="grab_focus"]
 [connection signal="pressed" from="VBoxContainer/ControlsButton" to="Controls" method="set_visible" binds= [true]]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_show_settings"]
